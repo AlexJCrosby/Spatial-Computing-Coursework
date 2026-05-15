@@ -923,11 +923,11 @@ PlayerSettings:
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
   enableDirectStorage: 0
-  cloudProjectId: 
+  cloudProjectId: 4af6fc98-a6fc-4476-9f1a-93a554c237f6
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: Spatial Computing Coursework
+  organizationId: unity_d4a5b3561a6b6eed43f9
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
