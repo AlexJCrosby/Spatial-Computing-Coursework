@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
         inputActions.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
         inputActions.Player.Move.canceled += ctx => moveInput = Vector2.zero;
 
-        inputActions.Player.Jump.performed += ctx => Jump();
+        inputActions.Player.Jump.performed += ctx => TryJump();
     }
 
     private void OnEnable()
@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
     }
 
-    private void Jump()
+    public void TryJump()
     {
         if (controller.isGrounded)
         {
