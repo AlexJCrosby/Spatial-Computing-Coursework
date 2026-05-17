@@ -10,20 +10,27 @@ public class PlayerMovement : MonoBehaviour
     public float backwardSpeed = 2.5f;
     public float strafeSpeed = 5f;
     public float turnSpeed = 140f;
+    public float mouseTurnSpeed = 0.15f;
 
     [Header("Jumping")]
     public float jumpHeight = 1.5f;
     public float gravity = -9.81f;
+    public float idleJumpForwardNudge = 2f;
 
     private float forwardBackInput;
     private float turnInput;
     private float strafeInput;
+
+    private Vector2 lookInput;
+    private bool leftClickHeld;
+    private bool rightClickHeld;
 
     private Vector3 verticalVelocity;
     private Vector3 lastGroundedHorizontalMove;
     private Vector3 lockedAirHorizontalMove;
 
     private bool jumpRequested;
+    private bool jumpedFromIdle;
 
     private void Awake()
     {
@@ -39,6 +46,15 @@ public class PlayerMovement : MonoBehaviour
         inputActions.Player.Strafe.performed += ctx => strafeInput = ctx.ReadValue<float>();
         inputActions.Player.Strafe.canceled += ctx => strafeInput = 0f;
 
+        inputActions.Player.Look.performed += ctx => lookInput = ctx.ReadValue<Vector2>();
+        inputActions.Player.Look.canceled += ctx => lookInput = Vector2.zero;
+
+        inputActions.Player.LeftClick.performed += ctx => leftClickHeld = true;
+        inputActions.Player.LeftClick.canceled += ctx => leftClickHeld = false;
+
+        inputActions.Player.RightClick.performed += ctx => rightClickHeld = true;
+        inputActions.Player.RightClick.canceled += ctx => rightClickHeld = false;
+
         inputActions.Player.Jump.performed += ctx => jumpRequested = true;
     }
 
@@ -47,13 +63,16 @@ public class PlayerMovement : MonoBehaviour
         inputActions.Enable();
     }
 
+    private void OnDisable()
+    {
+        inputActions.Disable();
+    }
+
     private void Update()
     {
         bool isGrounded = controller.isGrounded;
 
-        // Allow turning both on the ground and in mid-air.
-        // This changes facing direction, but not the locked jump trajectory.
-        transform.Rotate(Vector3.up * turnInput * turnSpeed * Time.deltaTime);
+        HandleTurning();
 
         Vector3 horizontalMove;
 
@@ -70,12 +89,21 @@ public class PlayerMovement : MonoBehaviour
             if (jumpRequested)
             {
                 verticalVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+
+                jumpedFromIdle = lastGroundedHorizontalMove.magnitude < 0.1f;
                 lockedAirHorizontalMove = lastGroundedHorizontalMove;
             }
         }
         else
         {
             horizontalMove = lockedAirHorizontalMove;
+
+            if (jumpedFromIdle && WantsForwardMovement())
+            {
+                horizontalMove = transform.forward * idleJumpForwardNudge;
+                lockedAirHorizontalMove = horizontalMove;
+                jumpedFromIdle = false;
+            }
         }
 
         verticalVelocity.y += gravity * Time.deltaTime;
@@ -86,16 +114,38 @@ public class PlayerMovement : MonoBehaviour
         jumpRequested = false;
     }
 
+    private void HandleTurning()
+    {
+        transform.Rotate(Vector3.up * turnInput * turnSpeed * Time.deltaTime);
+
+        if (rightClickHeld)
+        {
+            transform.Rotate(Vector3.up * lookInput.x * mouseTurnSpeed);
+        }
+    }
+
     private Vector3 CalculateGroundMovement()
     {
-        float currentForwardSpeed = forwardBackInput >= 0
-            ? forwardBackInput * forwardSpeed
-            : forwardBackInput * backwardSpeed;
+        float effectiveForwardBackInput = forwardBackInput;
+
+        if (leftClickHeld && rightClickHeld)
+        {
+            effectiveForwardBackInput = 1f;
+        }
+
+        float currentForwardSpeed = effectiveForwardBackInput >= 0
+            ? effectiveForwardBackInput * forwardSpeed
+            : effectiveForwardBackInput * backwardSpeed;
 
         Vector3 forwardMove = transform.forward * currentForwardSpeed;
         Vector3 strafeMove = transform.right * strafeInput * strafeSpeed;
 
         return forwardMove + strafeMove;
+    }
+
+    private bool WantsForwardMovement()
+    {
+        return forwardBackInput > 0 || (leftClickHeld && rightClickHeld);
     }
 
     public void TryJump()
