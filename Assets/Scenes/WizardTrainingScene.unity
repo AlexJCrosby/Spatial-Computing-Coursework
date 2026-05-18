@@ -637,7 +637,7 @@ MonoBehaviour:
   spellCastPoint: {fileID: 952188018}
   playerCamera: {fileID: 180734761}
   minDepth: 9
-  maxDepth: 50
+  maxDepth: 25
   depthMoveSpeed: 20
 --- !u!114 &5767474888345352822
 MonoBehaviour:
