@@ -612,6 +612,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8018084769812766026, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5767474888345352816}
+    - targetCorrespondingSourceObject: {fileID: 8018084769812766026, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5767474888345352822}
   m_SourcePrefab: {fileID: 100100000, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
 --- !u!1 &5767474888345352815 stripped
 GameObject:
@@ -632,6 +635,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSpellCaster
   fireballPrefab: {fileID: 6404518141201530030, guid: 43eee4f05095c8d49aa89a16a0337cb2, type: 3}
   spellCastPoint: {fileID: 952188018}
+--- !u!114 &5767474888345352822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5767474888345352815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ab7e91c77a82034c893deed62b2fb8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoiceSpellCaster
+  playerSpellCaster: {fileID: 5767474888345352816}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

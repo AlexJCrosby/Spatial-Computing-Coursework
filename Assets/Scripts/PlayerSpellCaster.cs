@@ -8,18 +8,33 @@ public class PlayerSpellCaster : MonoBehaviour
 
     private void Update()
     {
+        // Keyboard fallback for testing
         if (Keyboard.current.fKey.wasPressedThisFrame)
         {
             CastFireball();
         }
     }
 
-    private void CastFireball()
+    public void CastFireball()
     {
+        if (fireballPrefab == null)
+        {
+            Debug.LogWarning("Fireball prefab is not assigned.");
+            return;
+        }
+
+        if (spellCastPoint == null)
+        {
+            Debug.LogWarning("Spell cast point is not assigned.");
+            return;
+        }
+
         Instantiate(
             fireballPrefab,
             spellCastPoint.position,
-            transform.rotation
+            spellCastPoint.rotation
         );
+
+        Debug.Log("Fireball cast.");
     }
 }
