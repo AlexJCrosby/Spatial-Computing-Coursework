@@ -635,6 +635,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSpellCaster
   fireballPrefab: {fileID: 6404518141201530030, guid: 43eee4f05095c8d49aa89a16a0337cb2, type: 3}
   spellCastPoint: {fileID: 952188018}
+  playerCamera: {fileID: 180734761}
+  minDepth: 9
+  maxDepth: 50
+  depthMoveSpeed: 20
 --- !u!114 &5767474888345352822
 MonoBehaviour:
   m_ObjectHideFlags: 0

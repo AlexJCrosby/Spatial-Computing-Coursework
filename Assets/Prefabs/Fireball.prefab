@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1440521825041168328}
   - component: {fileID: 8235062618769458940}
   - component: {fileID: 8344492443105232620}
-  - component: {fileID: 5954622313764984603}
+  - component: {fileID: 7509303098365919227}
   m_Layer: 0
   m_Name: Fireball
   m_TagString: Untagged
@@ -163,7 +163,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5954622313764984603
+--- !u!114 &7509303098365919227
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,8 +172,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6404518141201530030}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79453f8143c439c4fb9707fe01f2f90f, type: 3}
+  m_Script: {fileID: 11500000, guid: 969f04820ef8e55428f4334bc22c69a9, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FireballProjectile
-  speed: 12
-  lifetime: 4
+  m_EditorClassIdentifier: Assembly-CSharp::HeldFireball
+  followSpeed: 12
