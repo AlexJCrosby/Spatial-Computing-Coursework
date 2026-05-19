@@ -7,6 +7,7 @@ public class PlayerSpellCaster : MonoBehaviour
     [SerializeField] private GameObject fireballPrefab;
     [SerializeField] private Transform spellCastPoint;
     [SerializeField] private Camera playerCamera;
+    [SerializeField] private BeamAimProvider aimProvider;
 
     [Header("Held Fireball Settings")]
     [SerializeField] private float minDepth = 1.5f;
@@ -31,21 +32,9 @@ public class PlayerSpellCaster : MonoBehaviour
 
     public void CastFireball()
     {
-        if (fireballPrefab == null)
+        if (fireballPrefab == null || spellCastPoint == null || playerCamera == null)
         {
-            Debug.LogWarning("Fireball prefab is not assigned.");
-            return;
-        }
-
-        if (spellCastPoint == null)
-        {
-            Debug.LogWarning("Spell cast point is not assigned.");
-            return;
-        }
-
-        if (playerCamera == null)
-        {
-            Debug.LogWarning("Player camera is not assigned.");
+            Debug.LogWarning("PlayerSpellCaster is missing required references.");
             return;
         }
 
@@ -61,12 +50,6 @@ public class PlayerSpellCaster : MonoBehaviour
         );
 
         activeFireball = fireballObject.GetComponent<HeldFireball>();
-
-        if (activeFireball == null)
-        {
-            Debug.LogWarning("Fireball prefab needs a HeldFireball script.");
-        }
-
         currentDepth = 3f;
 
         Debug.Log("Summoned fireball.");
@@ -74,7 +57,16 @@ public class PlayerSpellCaster : MonoBehaviour
 
     private void UpdateHeldFireball()
     {
-        Vector2 mousePosition = Mouse.current.position.ReadValue();
+        Vector2 aimScreenPosition;
+
+        if (aimProvider != null)
+        {
+            aimScreenPosition = aimProvider.GetAimScreenPosition();
+        }
+        else
+        {
+            aimScreenPosition = Mouse.current.position.ReadValue();
+        }
 
         if (Mouse.current.leftButton.isPressed)
         {
@@ -89,8 +81,8 @@ public class PlayerSpellCaster : MonoBehaviour
         currentDepth = Mathf.Clamp(currentDepth, minDepth, maxDepth);
 
         Vector3 screenPosition = new Vector3(
-            mousePosition.x,
-            mousePosition.y,
+            aimScreenPosition.x,
+            aimScreenPosition.y,
             currentDepth
         );
 
