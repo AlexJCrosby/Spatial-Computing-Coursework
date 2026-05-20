@@ -26,7 +26,7 @@ public class VoiceSpellCaster : MonoBehaviour
 
         if (command == "fireball")
         {
-            playerSpellCaster.CastFireball();
+            playerSpellCaster.TriggerFireball();
         }
     }
 

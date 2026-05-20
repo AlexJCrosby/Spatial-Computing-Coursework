@@ -9,28 +9,52 @@ public class PlayerSpellCaster : MonoBehaviour
     [SerializeField] private Camera playerCamera;
     [SerializeField] private BeamAimProvider aimProvider;
 
-    [Header("Held Fireball Settings")]
-    [SerializeField] private float minDepth = 1.5f;
-    [SerializeField] private float maxDepth = 12f;
-    [SerializeField] private float depthMoveSpeed = 4f;
+    [Header("Aiming")]
+    [SerializeField] private LineRenderer aimLine;
+    [SerializeField] private float aimDepth = 10f;
+    [SerializeField] private float heldFireballFollowSpeed = 12f;
 
-    private HeldFireball activeFireball;
-    private float currentDepth = 3f;
+    private GameObject activeFireball;
+    private Vector3 currentAimWorldPosition;
+    private bool isPreparingFireball;
 
-    private void Update()
+    private void Start()
     {
-        if (Keyboard.current.fKey.wasPressedThisFrame)
+        if (aimLine != null)
         {
-            CastFireball();
-        }
-
-        if (activeFireball != null)
-        {
-            UpdateHeldFireball();
+            aimLine.positionCount = 2;
+            aimLine.enabled = false;
         }
     }
 
-    public void CastFireball()
+    private void Update()
+    {
+        if (Keyboard.current.rKey.wasPressedThisFrame)
+        {
+            TriggerFireball();
+        }
+
+        if (isPreparingFireball)
+        {
+            UpdateAimTarget();
+            UpdateHeldFireballPosition();
+            UpdateAimLine();
+        }
+    }
+
+    public void TriggerFireball()
+    {
+        if (!isPreparingFireball)
+        {
+            SummonFireball();
+        }
+        else
+        {
+            LaunchFireball();
+        }
+    }
+
+    private void SummonFireball()
     {
         if (fireballPrefab == null || spellCastPoint == null || playerCamera == null)
         {
@@ -38,24 +62,23 @@ public class PlayerSpellCaster : MonoBehaviour
             return;
         }
 
-        if (activeFireball != null)
-        {
-            Destroy(activeFireball.gameObject);
-        }
-
-        GameObject fireballObject = Instantiate(
+        activeFireball = Instantiate(
             fireballPrefab,
             spellCastPoint.position,
             spellCastPoint.rotation
         );
 
-        activeFireball = fireballObject.GetComponent<HeldFireball>();
-        currentDepth = 3f;
+        if (aimLine != null)
+        {
+            aimLine.enabled = true;
+        }
 
-        Debug.Log("Summoned fireball.");
+        isPreparingFireball = true;
+
+        Debug.Log("Fireball prepared. Aim with eyes, press R again to launch.");
     }
 
-    private void UpdateHeldFireball()
+    private void UpdateAimTarget()
     {
         Vector2 aimScreenPosition;
 
@@ -68,26 +91,63 @@ public class PlayerSpellCaster : MonoBehaviour
             aimScreenPosition = Mouse.current.position.ReadValue();
         }
 
-        if (Mouse.current.leftButton.isPressed)
-        {
-            currentDepth += depthMoveSpeed * Time.deltaTime;
-        }
-
-        if (Mouse.current.rightButton.isPressed)
-        {
-            currentDepth -= depthMoveSpeed * Time.deltaTime;
-        }
-
-        currentDepth = Mathf.Clamp(currentDepth, minDepth, maxDepth);
-
         Vector3 screenPosition = new Vector3(
             aimScreenPosition.x,
             aimScreenPosition.y,
-            currentDepth
+            aimDepth
         );
 
-        Vector3 worldPosition = playerCamera.ScreenToWorldPoint(screenPosition);
+        currentAimWorldPosition = playerCamera.ScreenToWorldPoint(screenPosition);
+    }
 
-        activeFireball.MoveTo(worldPosition);
+    private void UpdateHeldFireballPosition()
+    {
+        if (activeFireball == null) return;
+
+        activeFireball.transform.position = Vector3.Lerp(
+            activeFireball.transform.position,
+            spellCastPoint.position,
+            heldFireballFollowSpeed * Time.deltaTime
+        );
+    }
+
+    private void UpdateAimLine()
+    {
+        if (aimLine == null || activeFireball == null) return;
+
+        aimLine.SetPosition(0, activeFireball.transform.position);
+        aimLine.SetPosition(1, currentAimWorldPosition);
+    }
+
+    private void LaunchFireball()
+    {
+        if (activeFireball == null)
+        {
+            isPreparingFireball = false;
+            return;
+        }
+
+        Vector3 launchDirection = currentAimWorldPosition - activeFireball.transform.position;
+
+        FireballProjectile projectile = activeFireball.GetComponent<FireballProjectile>();
+
+        if (projectile != null)
+        {
+            projectile.Launch(launchDirection);
+        }
+        else
+        {
+            Debug.LogWarning("Fireball prefab is missing FireballProjectile script.");
+        }
+
+        if (aimLine != null)
+        {
+            aimLine.enabled = false;
+        }
+
+        activeFireball = null;
+        isPreparingFireball = false;
+
+        Debug.Log("Fireball launched.");
     }
 }

@@ -48,25 +48,14 @@ public class CameraFollow : MonoBehaviour
             return;
         }
 
-        if (leftClickHeld && !rightClickHeld)
-        {
-            cameraYawOffset += lookInput.x * mouseCameraSpeed;
-        }
-
-        if (rightClickHeld)
-        {
-            cameraYawOffset = 0f;
-        }
-
-        Quaternion cameraRotation = target.rotation * Quaternion.Euler(0, cameraYawOffset, 0);
-        Vector3 desiredPosition = target.position + cameraRotation * offset;
+        Vector3 headPosition = target.position + target.rotation * offset;
 
         transform.position = Vector3.Lerp(
             transform.position,
-            desiredPosition,
+            headPosition,
             followSmoothness * Time.deltaTime
         );
 
-        transform.LookAt(target.position + Vector3.up * lookHeight);
+        transform.rotation = target.rotation;
     }
 }

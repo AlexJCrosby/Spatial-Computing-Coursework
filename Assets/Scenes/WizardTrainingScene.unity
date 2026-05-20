@@ -264,9 +264,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
   target: {fileID: 246176146}
-  offset: {x: 0, y: 2, z: -7}
-  followSmoothness: 10
-  lookHeight: 1.5
+  offset: {x: 0, y: 1.6, z: 0.15}
+  followSmoothness: 20
+  lookHeight: 1.6
   mouseCameraSpeed: 0.15
 --- !u!114 &180734759
 MonoBehaviour:
@@ -656,7 +656,7 @@ Transform:
   m_GameObject: {fileID: 952188017}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 1.4, z: 0.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1091,9 +1091,14 @@ MonoBehaviour:
   spellCastPoint: {fileID: 952188018}
   playerCamera: {fileID: 180734761}
   aimProvider: {fileID: 5767474888345352828}
-  minDepth: 9
-  maxDepth: 25
-  depthMoveSpeed: 20
+  aimLine: {fileID: 5767474888345352817}
+  aimDepth: 10
+  heldFireballFollowSpeed: 12
+--- !u!120 &5767474888345352817 stripped
+LineRenderer:
+  m_CorrespondingSourceObject: {fileID: -6024450653437805394, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
+  m_PrefabInstance: {fileID: 5767474888345352814}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5767474888345352822
 MonoBehaviour:
   m_ObjectHideFlags: 0
