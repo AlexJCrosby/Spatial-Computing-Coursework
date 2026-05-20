@@ -1833,8 +1833,9 @@ MonoBehaviour:
   playerCamera: {fileID: 180734761}
   aimProvider: {fileID: 5767474888345352828}
   characterAnimator: {fileID: 1260019089}
+  castDelay: 0.2
   maxScreenDistance: 180
-  projectileSpeed: 14
+  projectileSpeed: 20
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
