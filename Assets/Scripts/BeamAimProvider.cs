@@ -5,37 +5,41 @@ using UnityEngine.InputSystem.Controls;
 public class BeamAimProvider : MonoBehaviour
 {
     [SerializeField] private bool useMouseFallback = false;
+    [SerializeField] private bool logDebugInfo = false;
 
     private InputDevice beamDevice;
-
-    private ButtonControl topLeft;
-    private ButtonControl topMiddle;
-    private ButtonControl topRight;
-    private ButtonControl centerLeft;
-    private ButtonControl centerRight;
-    private ButtonControl bottomLeft;
-    private ButtonControl bottomMiddle;
-    private ButtonControl bottomRight;
+    private Vector2Control unifiedScreenGazePosition;
+    private Vector2Control viewportGazePosition;
 
     private void Start()
     {
         Debug.Log("BeamAimProvider Start is running.");
+
         foreach (InputDevice device in InputSystem.devices)
         {
             if (device.GetType().Name == "BeamEyeTrackerInputDevice")
             {
                 beamDevice = device;
 
-                topLeft = device.TryGetChildControl<ButtonControl>("isLookingAtTopLeftCorner");
-                topMiddle = device.TryGetChildControl<ButtonControl>("isLookingAtTopMiddle");
-                topRight = device.TryGetChildControl<ButtonControl>("isLookingAtTopRightCorner");
-                centerLeft = device.TryGetChildControl<ButtonControl>("isLookingAtCenterLeft");
-                centerRight = device.TryGetChildControl<ButtonControl>("isLookingAtCenterRight");
-                bottomLeft = device.TryGetChildControl<ButtonControl>("isLookingAtBottomLeftCorner");
-                bottomMiddle = device.TryGetChildControl<ButtonControl>("isLookingAtBottomMiddle");
-                bottomRight = device.TryGetChildControl<ButtonControl>("isLookingAtBottomRightCorner");
+                unifiedScreenGazePosition =
+                    device.TryGetChildControl<Vector2Control>("unifiedScreenGazePosition");
 
-                Debug.Log("Beam region controls connected.");
+                viewportGazePosition =
+                    device.TryGetChildControl<Vector2Control>("viewportGazePosition");
+
+                if (unifiedScreenGazePosition != null)
+                {
+                    Debug.Log("Beam unified screen gaze position connected.");
+                }
+                else if (viewportGazePosition != null)
+                {
+                    Debug.Log("Beam viewport gaze position connected.");
+                }
+                else
+                {
+                    Debug.LogWarning("Beam found, but no continuous gaze position control found.");
+                }
+
                 return;
             }
         }
@@ -47,33 +51,40 @@ public class BeamAimProvider : MonoBehaviour
     {
         if (beamDevice != null)
         {
-            if (topLeft != null && topLeft.isPressed)
-                return new Vector2(Screen.width * 0.2f, Screen.height * 0.8f);
+            if (unifiedScreenGazePosition != null)
+            {
+                Vector2 gazePosition = unifiedScreenGazePosition.ReadValue();
 
-            if (topMiddle != null && topMiddle.isPressed)
-                return new Vector2(Screen.width * 0.5f, Screen.height * 0.8f);
+                gazePosition.y = Screen.height - gazePosition.y;
 
-            if (topRight != null && topRight.isPressed)
-                return new Vector2(Screen.width * 0.8f, Screen.height * 0.8f);
+                if (logDebugInfo)
+                {
+                    Debug.Log("Unified screen gaze: " + gazePosition);
+                }
 
-            if (centerLeft != null && centerLeft.isPressed)
-                return new Vector2(Screen.width * 0.2f, Screen.height * 0.5f);
+                return gazePosition;
+            }
 
-            if (centerRight != null && centerRight.isPressed)
-                return new Vector2(Screen.width * 0.8f, Screen.height * 0.5f);
+            if (viewportGazePosition != null)
+            {
+                Vector2 viewportPosition = viewportGazePosition.ReadValue();
 
-            if (bottomLeft != null && bottomLeft.isPressed)
-                return new Vector2(Screen.width * 0.2f, Screen.height * 0.2f);
+                if (logDebugInfo)
+                {
+                    Debug.Log("Viewport gaze: " + viewportPosition);
+                }
 
-            if (bottomMiddle != null && bottomMiddle.isPressed)
-                return new Vector2(Screen.width * 0.5f, Screen.height * 0.2f);
-
-            if (bottomRight != null && bottomRight.isPressed)
-                return new Vector2(Screen.width * 0.8f, Screen.height * 0.2f);
+                return new Vector2(
+                    viewportPosition.x * Screen.width,
+                    viewportPosition.y * Screen.height
+                );
+            }
         }
 
         if (useMouseFallback && Mouse.current != null)
+        {
             return Mouse.current.position.ReadValue();
+        }
 
         return new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
     }
