@@ -11,7 +11,8 @@ public class PlayerSpellCaster : MonoBehaviour
 
     [Header("Aiming")]
     [SerializeField] private LineRenderer aimLine;
-    [SerializeField] private float aimDepth = 10f;
+    [SerializeField] private float maxAimDistance = 50f;
+    [SerializeField] private LayerMask aimLayerMask = ~0;
     [SerializeField] private float heldFireballFollowSpeed = 12f;
 
     private GameObject activeFireball;
@@ -79,26 +80,29 @@ public class PlayerSpellCaster : MonoBehaviour
     }
 
     private void UpdateAimTarget()
+{
+    Vector2 aimScreenPosition;
+
+    if (aimProvider != null)
     {
-        Vector2 aimScreenPosition;
-
-        if (aimProvider != null)
-        {
-            aimScreenPosition = aimProvider.GetAimScreenPosition();
-        }
-        else
-        {
-            aimScreenPosition = Mouse.current.position.ReadValue();
-        }
-
-        Vector3 screenPosition = new Vector3(
-            aimScreenPosition.x,
-            aimScreenPosition.y,
-            aimDepth
-        );
-
-        currentAimWorldPosition = playerCamera.ScreenToWorldPoint(screenPosition);
+        aimScreenPosition = aimProvider.GetAimScreenPosition();
     }
+    else
+    {
+        aimScreenPosition = Mouse.current.position.ReadValue();
+    }
+
+    Ray aimRay = playerCamera.ScreenPointToRay(aimScreenPosition);
+
+    if (Physics.Raycast(aimRay, out RaycastHit hit, maxAimDistance, aimLayerMask))
+    {
+        currentAimWorldPosition = hit.point;
+    }
+    else
+    {
+        currentAimWorldPosition = aimRay.origin + aimRay.direction * maxAimDistance;
+    }
+}
 
     private void UpdateHeldFireballPosition()
     {
