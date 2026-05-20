@@ -265,7 +265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
   target: {fileID: 246176146}
   offset: {x: 0, y: 2, z: -7}
-  followSmoothness: 20
+  followSmoothness: 100
   lookHeight: 1.5
   mouseCameraSpeed: 0.15
 --- !u!114 &180734759
@@ -530,6 +530,8 @@ GameObject:
   - component: {fileID: 460350642}
   - component: {fileID: 460350641}
   - component: {fileID: 460350640}
+  - component: {fileID: 460350644}
+  - component: {fileID: 460350645}
   m_Layer: 0
   m_Name: Beam (1)
   m_TagString: Untagged
@@ -624,12 +626,46 @@ Transform:
   m_GameObject: {fileID: 460350639}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.71, y: 1.5, z: 0.73}
+  m_LocalPosition: {x: -18.66, y: 1.5, z: 0.24}
   m_LocalScale: {x: 0.5, y: 3, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &460350644
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 460350639}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &460350645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 460350639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2fbdbaa2d41b5f4fb44c6861e7393fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EyeTargetable
+  highlightedColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &474289875
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,6 +791,8 @@ GameObject:
   - component: {fileID: 518029271}
   - component: {fileID: 518029270}
   - component: {fileID: 518029269}
+  - component: {fileID: 518029273}
+  - component: {fileID: 518029274}
   m_Layer: 0
   m_Name: Beam (3)
   m_TagString: Untagged
@@ -849,12 +887,46 @@ Transform:
   m_GameObject: {fileID: 518029268}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.71, y: 1.5, z: -2.32}
+  m_LocalPosition: {x: -18.26, y: 1.5, z: -6.18}
   m_LocalScale: {x: 0.5, y: 3, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &518029273
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518029268}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &518029274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518029268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2fbdbaa2d41b5f4fb44c6861e7393fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EyeTargetable
+  highlightedColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &612305670
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,6 +939,8 @@ GameObject:
   - component: {fileID: 612305673}
   - component: {fileID: 612305672}
   - component: {fileID: 612305671}
+  - component: {fileID: 612305675}
+  - component: {fileID: 612305676}
   m_Layer: 0
   m_Name: Beam (2)
   m_TagString: Untagged
@@ -961,12 +1035,46 @@ Transform:
   m_GameObject: {fileID: 612305670}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.06, y: 1.5, z: 2.15}
+  m_LocalPosition: {x: -18.79, y: 1.5, z: 5.65}
   m_LocalScale: {x: 0.5, y: 3, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &612305675
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612305670}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &612305676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612305670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2fbdbaa2d41b5f4fb44c6861e7393fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EyeTargetable
+  highlightedColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &952188017
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,6 +1230,8 @@ GameObject:
   - component: {fileID: 1148374743}
   - component: {fileID: 1148374742}
   - component: {fileID: 1148374741}
+  - component: {fileID: 1148374745}
+  - component: {fileID: 1148374746}
   m_Layer: 0
   m_Name: Beam (4)
   m_TagString: Untagged
@@ -1216,12 +1326,46 @@ Transform:
   m_GameObject: {fileID: 1148374740}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.71, y: 1.5, z: 4.65}
+  m_LocalPosition: {x: -18.88, y: 1.5, z: 9.48}
   m_LocalScale: {x: 0.5, y: 3, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1148374745
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148374740}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1148374746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148374740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2fbdbaa2d41b5f4fb44c6861e7393fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EyeTargetable
+  highlightedColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &1461716856
 GameObject:
   m_ObjectHideFlags: 0
@@ -1517,6 +1661,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8018084769812766026, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5767474888345352829}
+    - targetCorrespondingSourceObject: {fileID: 8018084769812766026, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5767474888345352835}
   m_SourcePrefab: {fileID: 100100000, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
 --- !u!1 &5767474888345352815 stripped
 GameObject:
@@ -1530,7 +1677,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5767474888345352815}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cfb09cadbf483ad4c8262a106f0671af, type: 3}
   m_Name: 
@@ -1541,7 +1688,7 @@ MonoBehaviour:
   aimProvider: {fileID: 5767474888345352828}
   minDepth: 9
   maxDepth: 25
-  depthMoveSpeed: 20
+  depthMoveSpeed: 30
 --- !u!114 &5767474888345352822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1549,7 +1696,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5767474888345352815}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ab7e91c77a82034c893deed62b2fb8b, type: 3}
   m_Name: 
@@ -1582,6 +1729,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: tech.eyeware.beam-eye-tracker.Runtime::Eyeware.BeamEyeTracker.Unity.AutoStartBeamEyeTrackerBehaviour
   startBeamEyeTrackerOnStart: 1
+--- !u!114 &5767474888345352835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5767474888345352815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23f5b5fd3497e5d439fa8220da461a49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EyeTargetingFireballCaster
+  fireballPrefab: {fileID: 6404518141201530030, guid: 43eee4f05095c8d49aa89a16a0337cb2, type: 3}
+  spellCastPoint: {fileID: 952188018}
+  playerCamera: {fileID: 180734761}
+  aimProvider: {fileID: 5767474888345352828}
+  maxScreenDistance: 180
+  projectileSpeed: 14
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -25,4 +25,9 @@ public class SimpleFireballProjectile : MonoBehaviour
         transform.position += direction * speed * Time.deltaTime;
         transform.rotation = Quaternion.LookRotation(direction);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Destroy(gameObject);
+    }
 }
