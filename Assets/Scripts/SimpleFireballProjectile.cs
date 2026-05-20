@@ -28,6 +28,13 @@ public class SimpleFireballProjectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.GetComponentInParent<PlayerMovement>() != null)
+        {
+            return;
+        }
+
+        Debug.Log("Fireball hit: " + other.name);
+
         Destroy(gameObject);
     }
 }

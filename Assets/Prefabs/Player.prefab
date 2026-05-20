@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5290110177037164604}
   - component: {fileID: 6380508994100643398}
   - component: {fileID: 8612606303361870401}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,6 +153,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44882c2804e34440b1573a62575c150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  characterAnimator: {fileID: 0}
+  speedParameterName: Speed
+  moveXParameterName: MoveX
+  moveZParameterName: MoveZ
   forwardSpeed: 5
   backwardSpeed: 2.5
   strafeSpeed: 5
