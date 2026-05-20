@@ -175,4 +175,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 969f04820ef8e55428f4334bc22c69a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HeldFireball
-  followSpeed: 12
+  followSpeed: 3
