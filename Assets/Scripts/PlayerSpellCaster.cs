@@ -8,6 +8,7 @@ public class PlayerSpellCaster : MonoBehaviour
     [SerializeField] private Transform spellCastPoint;
     [SerializeField] private Camera playerCamera;
     [SerializeField] private BeamAimProvider aimProvider;
+    [SerializeField] private Animator characterAnimator;
 
     [Header("Held Fireball Settings")]
     [SerializeField] private float minDepth = 1.5f;
@@ -32,6 +33,10 @@ public class PlayerSpellCaster : MonoBehaviour
 
     public void CastFireball()
     {
+        if (characterAnimator != null)
+        {
+            characterAnimator.SetTrigger("CastSpell");
+        }
         if (fireballPrefab == null || spellCastPoint == null || playerCamera == null)
         {
             Debug.LogWarning("PlayerSpellCaster is missing required references.");

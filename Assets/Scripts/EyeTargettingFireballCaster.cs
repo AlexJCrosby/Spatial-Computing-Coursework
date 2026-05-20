@@ -9,6 +9,7 @@ public class EyeTargetingFireballCaster : MonoBehaviour
     [SerializeField] private Transform spellCastPoint;
     [SerializeField] private Camera playerCamera;
     [SerializeField] private BeamAimProvider aimProvider;
+    [SerializeField] private Animator characterAnimator;
 
     [Header("Targeting")]
     [SerializeField] private float maxScreenDistance = 180f;
@@ -101,6 +102,11 @@ public class EyeTargetingFireballCaster : MonoBehaviour
 
     private void CastAtCurrentTarget()
     {
+        if (characterAnimator != null)
+        {
+            characterAnimator.SetTrigger("CastSpell");
+        }
+
         if (currentTarget == null)
         {
             Debug.Log("No eye target selected.");

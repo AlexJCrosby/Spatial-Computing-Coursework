@@ -1772,6 +1772,7 @@ MonoBehaviour:
   spellCastPoint: {fileID: 952188018}
   playerCamera: {fileID: 180734761}
   aimProvider: {fileID: 5767474888345352828}
+  characterAnimator: {fileID: 1260019089}
   minDepth: 9
   maxDepth: 25
   depthMoveSpeed: 30
@@ -1831,6 +1832,7 @@ MonoBehaviour:
   spellCastPoint: {fileID: 952188018}
   playerCamera: {fileID: 180734761}
   aimProvider: {fileID: 5767474888345352828}
+  characterAnimator: {fileID: 1260019089}
   maxScreenDistance: 180
   projectileSpeed: 14
 --- !u!1660057539 &9223372036854775807
