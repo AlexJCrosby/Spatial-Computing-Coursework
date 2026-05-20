@@ -1270,6 +1270,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sophie
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 78eeaecb7e80a444686ef30191d7e585, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d6bb8bf6cb8660649b5000f30a7f89e2, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
