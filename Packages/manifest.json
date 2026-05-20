@@ -1,15 +1,18 @@
 {
   "dependencies": {
+    "com.unity.2d.sprite": "1.0.0",
     "com.unity.ai.navigation": "2.0.12",
     "com.unity.collab-proxy": "2.12.4",
     "com.unity.ide.rider": "3.0.39",
     "com.unity.ide.visualstudio": "2.0.27",
+    "com.unity.ide.vscode": "1.2.5",
     "com.unity.inputsystem": "1.19.0",
     "com.unity.multiplayer.center": "1.0.1",
     "com.unity.render-pipelines.universal": "17.4.0",
     "com.unity.test-framework": "1.6.0",
     "com.unity.timeline": "1.8.12",
     "com.unity.ugui": "2.0.0",
+    "com.unity.visualeffectgraph": "17.4.0",
     "com.unity.visualscripting": "1.9.11",
     "tech.eyeware.beam-eye-tracker": "file:C:/Users/Alex/Downloads/beam_eye_tracker_sdk/beam_eye_tracker_sdk-2.1.0/unity/beam-eye-tracker-plugin",
     "com.unity.modules.accessibility": "1.0.0",
