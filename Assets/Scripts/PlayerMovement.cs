@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Animation")]
     [SerializeField] private Animator characterAnimator;
     [SerializeField] private string speedParameterName = "Speed";
+    [SerializeField] private string moveXParameterName = "MoveX";
+    [SerializeField] private string moveZParameterName = "MoveZ";
 
     [Header("Movement")]
     public float forwardSpeed = 5f;
@@ -133,7 +135,19 @@ public class PlayerMovement : MonoBehaviour
         if (animator == null) return;
 
         float speed = horizontalMove.magnitude;
+
         animator.SetFloat(speedParameterName, speed);
+
+        float moveX = strafeInput;
+        float moveZ = forwardBackInput;
+
+        if (leftClickHeld && rightClickHeld)
+        {
+            moveZ = 1f;
+        }
+
+        animator.SetFloat(moveXParameterName, moveX);
+        animator.SetFloat(moveZParameterName, moveZ);
     }
 
     private void HandleTurning()
