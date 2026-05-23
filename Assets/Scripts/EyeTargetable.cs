@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class EyeTargetable : MonoBehaviour
 {
+    [SerializeField] private Color normalHighlightColor = Color.yellow;
+    [SerializeField] private Color lockedHighlightColor = Color.white;
+
     private Outline outline;
 
     private void Awake()
@@ -11,15 +14,21 @@ public class EyeTargetable : MonoBehaviour
         if (outline != null)
         {
             outline.enabled = false;
+            outline.OutlineColor = normalHighlightColor;
         }
     }
 
     public void SetHighlighted(bool highlighted)
     {
-        if (outline != null)
-        {
-            outline.enabled = highlighted;
-        }
+        SetHighlighted(highlighted, false);
+    }
+
+    public void SetHighlighted(bool highlighted, bool locked)
+    {
+        if (outline == null) return;
+
+        outline.enabled = highlighted;
+        outline.OutlineColor = locked ? lockedHighlightColor : normalHighlightColor;
     }
 
     public Vector3 GetTargetPoint()
