@@ -33,6 +33,13 @@ public class SimpleFireballProjectile : MonoBehaviour
             return;
         }
 
+        NPCHealth npcHealth = other.GetComponentInParent<NPCHealth>();
+
+        if (npcHealth != null)
+        {
+            npcHealth.TakeDamage(1);
+        }
+
         Debug.Log("Fireball hit: " + other.name);
 
         Destroy(gameObject);
