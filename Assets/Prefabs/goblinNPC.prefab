@@ -124,7 +124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2fbdbaa2d41b5f4fb44c6861e7393fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EyeTargetable
-  highlightedColor: {r: 1, g: 0, b: 0, a: 0.5529412}
 --- !u!114 &2652744429071750008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,8 +197,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Outline
   outlineMode: 0
-  outlineColor: {r: 0.990566, g: 0.042052314, b: 0.042052314, a: 0.8156863}
-  outlineWidth: 2
+  outlineColor: {r: 0.99215686, g: 0.64987135, b: 0.043137245, a: 0.74509805}
+  outlineWidth: 2.5
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
