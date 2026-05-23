@@ -2665,6 +2665,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8018084769812766026, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5767474888345352841}
+    - targetCorrespondingSourceObject: {fileID: 8018084769812766026, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5767474888345352842}
   m_SourcePrefab: {fileID: 100100000, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
 --- !u!1 &5767474888345352815 stripped
 GameObject:
@@ -2758,7 +2761,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5767474888345352815}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8a2a7f869513fd488e9a23b744d585e, type: 3}
   m_Name: 
@@ -2771,6 +2774,26 @@ MonoBehaviour:
   horizontalAngleRange: 80
   verticalMoveRange: 15
   minimumHeight: 1.5
+--- !u!114 &5767474888345352842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5767474888345352815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3656b54b75c11849bc674b1b9cffb59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AOEKnockbackSpellCaster
+  playerCamera: {fileID: 180734761}
+  aimProvider: {fileID: 5767474888345352828}
+  playerTransform: {fileID: 246176146}
+  maxScreenDistance: 180
+  radius: 5
+  knockbackDistance: 15
+  upwardHeight: 3.5
+  knockbackDuration: 1.6
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

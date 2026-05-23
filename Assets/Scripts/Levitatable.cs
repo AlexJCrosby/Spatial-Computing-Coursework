@@ -112,4 +112,39 @@ public class Levitatable : MonoBehaviour
             rb.isKinematic = false;
         }
     }
+    public void ArcMoveTo(Vector3 endPosition, float arcHeight, float duration)
+    {
+        StopAllCoroutines();
+        StartCoroutine(ArcMoveRoutine(endPosition, arcHeight, duration));
+    }
+
+    private System.Collections.IEnumerator ArcMoveRoutine(Vector3 endPosition, float arcHeight, float duration)
+    {
+        Vector3 startPosition = transform.position;
+        float elapsed = 0f;
+
+        GoblinAI goblinAI = GetComponent<GoblinAI>();
+        CharacterController controller = GetComponent<CharacterController>();
+
+        if (goblinAI != null) goblinAI.enabled = false;
+        if (controller != null) controller.enabled = false;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+
+            Vector3 flatPosition = Vector3.Lerp(startPosition, endPosition, t);
+            float arc = Mathf.Sin(t * Mathf.PI) * arcHeight;
+
+            transform.position = flatPosition + Vector3.up * arc;
+
+            yield return null;
+        }
+
+        transform.position = endPosition;
+
+        if (controller != null) controller.enabled = true;
+        if (goblinAI != null) goblinAI.enabled = true;
+    }
 }
