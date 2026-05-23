@@ -19,11 +19,30 @@ public class SimpleFireballProjectile : MonoBehaviour
     {
         if (!launched || target == null) return;
 
-        Vector3 targetPosition = target.position;
+        Vector3 targetPosition = GetTargetPoint();
         Vector3 direction = (targetPosition - transform.position).normalized;
 
         transform.position += direction * speed * Time.deltaTime;
         transform.rotation = Quaternion.LookRotation(direction);
+    }
+
+    private Vector3 GetTargetPoint()
+    {
+        EyeTargetable eyeTargetable = target.GetComponent<EyeTargetable>();
+
+        if (eyeTargetable != null)
+        {
+            return eyeTargetable.GetTargetPoint();
+        }
+
+        Collider targetCollider = target.GetComponentInChildren<Collider>();
+
+        if (targetCollider != null)
+        {
+            return targetCollider.bounds.center;
+        }
+
+        return target.position + Vector3.up * 1.2f;
     }
 
     private void OnTriggerEnter(Collider other)
