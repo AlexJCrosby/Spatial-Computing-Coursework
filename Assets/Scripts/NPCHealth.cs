@@ -5,12 +5,21 @@ public class NPCHealth : MonoBehaviour
     [Header("Health")]
     [SerializeField] private int maxHealth = 3;
 
+    [Header("Animation")]
+    [SerializeField] private Animator animator;
+    [SerializeField] private float destroyDelayAfterDeath = 3f;
+
     private int currentHealth;
     private bool isDead;
 
     private void Awake()
     {
         currentHealth = maxHealth;
+
+        if (animator == null)
+        {
+            animator = GetComponentInChildren<Animator>();
+        }
     }
 
     public void TakeDamage(int damageAmount)
@@ -25,6 +34,18 @@ public class NPCHealth : MonoBehaviour
         {
             Die();
         }
+        else
+        {
+            PlayHitAnimation();
+        }
+    }
+
+    private void PlayHitAnimation()
+    {
+        if (animator != null)
+        {
+            animator.SetTrigger("Hit");
+        }
     }
 
     private void Die()
@@ -33,6 +54,17 @@ public class NPCHealth : MonoBehaviour
 
         Debug.Log(name + " died.");
 
-        Destroy(gameObject);
+        if (animator != null)
+        {
+            animator.SetBool("Dead", true);
+        }
+
+        GoblinAI goblinAI = GetComponent<GoblinAI>();
+        if (goblinAI != null)
+        {
+            goblinAI.enabled = false;
+        }
+
+        Destroy(gameObject, destroyDelayAfterDeath);
     }
 }
