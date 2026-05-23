@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Windows.Speech;
+using System.Collections;
 
 public class EyeTargetingFireballCaster : MonoBehaviour
 {
@@ -9,8 +10,10 @@ public class EyeTargetingFireballCaster : MonoBehaviour
     [SerializeField] private Transform spellCastPoint;
     [SerializeField] private Camera playerCamera;
     [SerializeField] private BeamAimProvider aimProvider;
+    [SerializeField] private Animator characterAnimator;
 
     [Header("Targeting")]
+    [SerializeField] private float castDelay = 0.35f;
     [SerializeField] private float maxScreenDistance = 180f;
     [SerializeField] private float projectileSpeed = 14f;
 
@@ -107,6 +110,23 @@ public class EyeTargetingFireballCaster : MonoBehaviour
             return;
         }
 
+        if (characterAnimator != null)
+        {
+            characterAnimator.SetTrigger("CastSpell");
+        }
+
+        StartCoroutine(SpawnFireballAfterDelay(currentTarget.transform));
+    }
+
+    private IEnumerator SpawnFireballAfterDelay(Transform targetTransform)
+    {
+        yield return new WaitForSeconds(castDelay);
+
+        if (targetTransform == null)
+        {
+            yield break;
+        }
+
         GameObject fireball = Instantiate(
             fireballPrefab,
             spellCastPoint.position,
@@ -121,9 +141,9 @@ public class EyeTargetingFireballCaster : MonoBehaviour
             projectile = fireball.AddComponent<SimpleFireballProjectile>();
         }
 
-        projectile.LaunchAt(currentTarget.transform, projectileSpeed);
+        projectile.LaunchAt(targetTransform, projectileSpeed);
 
-        Debug.Log("Fired at target: " + currentTarget.name);
+        Debug.Log("Fired at target: " + targetTransform.name);
     }
 
     private void OnPhraseRecognized(PhraseRecognizedEventArgs args)

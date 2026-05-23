@@ -1,0 +1,104 @@
+using UnityEngine;
+
+public class GoblinAI : MonoBehaviour
+{
+    [Header("Target")]
+    [SerializeField] private Transform player;
+
+    [Header("Movement")]
+    [SerializeField] private float moveSpeed = 2f;
+    [SerializeField] private float detectionRange = 10f;
+    [SerializeField] private float attackRange = 2f;
+
+    [Header("Attack")]
+    [SerializeField] private float attackCooldown = 1.2f;
+
+    [Header("Animation")]
+    [SerializeField] private Animator animator;
+
+    private int nextAttackIndex = 1;
+    private float lastAttackTime;
+
+    private void Update()
+    {
+        if (player == null) return;
+
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+
+        if (distanceToPlayer <= detectionRange)
+        {
+            FacePlayer();
+
+            if (distanceToPlayer > attackRange)
+            {
+                MoveTowardsPlayer();
+                SetSpeed(1f);
+            }
+            else
+            {
+                SetSpeed(0f);
+                TryAttack();
+            }
+        }
+        else
+        {
+            SetSpeed(0f);
+        }
+    }
+
+    private void TryAttack()
+    {
+        if (animator == null) return;
+
+        if (Time.time > lastAttackTime + attackCooldown)
+        {
+            animator.SetInteger("AttackIndex", nextAttackIndex);
+
+            nextAttackIndex++;
+
+            if (nextAttackIndex > 2)
+            {
+                nextAttackIndex = 1;
+            }
+
+            lastAttackTime = Time.time;
+
+            Invoke(nameof(ResetAttackIndex), 0.1f);
+        }
+    }
+
+    private void ResetAttackIndex()
+    {
+        if (animator != null)
+        {
+            animator.SetInteger("AttackIndex", 0);
+        }
+    }
+
+    private void SetSpeed(float speed)
+    {
+        if (animator != null)
+        {
+            animator.SetFloat("Speed", speed);
+        }
+    }
+
+    private void MoveTowardsPlayer()
+    {
+        Vector3 direction = (player.position - transform.position).normalized;
+        direction.y = 0f;
+
+        transform.position += direction * moveSpeed * Time.deltaTime;
+    }
+
+    private void FacePlayer()
+    {
+        Vector3 lookDirection = player.position - transform.position;
+        lookDirection.y = 0f;
+
+        if (lookDirection != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(lookDirection);
+        }
+    }
+}

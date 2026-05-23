@@ -4,6 +4,13 @@ public class PlayerMovement : MonoBehaviour
 {
     private CharacterController controller;
     private PlayerInputActions inputActions;
+    private Animator animator;
+
+    [Header("Animation")]
+    [SerializeField] private Animator characterAnimator;
+    [SerializeField] private string speedParameterName = "Speed";
+    [SerializeField] private string moveXParameterName = "MoveX";
+    [SerializeField] private string moveZParameterName = "MoveZ";
 
     [Header("Movement")]
     public float forwardSpeed = 5f;
@@ -35,6 +42,13 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
+
+        animator = characterAnimator;
+        if (animator == null)
+        {
+            animator = GetComponentInChildren<Animator>();
+        }
+
         inputActions = new PlayerInputActions();
 
         inputActions.Player.ForwardBack.performed += ctx => forwardBackInput = ctx.ReadValue<float>();
@@ -106,12 +120,34 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        UpdateAnimation(horizontalMove);
+
         verticalVelocity.y += gravity * Time.deltaTime;
 
         Vector3 finalMove = horizontalMove + verticalVelocity;
         controller.Move(finalMove * Time.deltaTime);
 
         jumpRequested = false;
+    }
+
+    private void UpdateAnimation(Vector3 horizontalMove)
+    {
+        if (animator == null) return;
+
+        float speed = horizontalMove.magnitude;
+
+        animator.SetFloat(speedParameterName, speed);
+
+        float moveX = strafeInput;
+        float moveZ = forwardBackInput;
+
+        if (leftClickHeld && rightClickHeld)
+        {
+            moveZ = 1f;
+        }
+
+        animator.SetFloat(moveXParameterName, moveX);
+        animator.SetFloat(moveZParameterName, moveZ);
     }
 
     private void HandleTurning()
