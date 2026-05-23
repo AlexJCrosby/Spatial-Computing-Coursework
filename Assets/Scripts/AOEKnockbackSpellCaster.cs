@@ -8,6 +8,7 @@ public class AOEKnockbackSpellCaster : MonoBehaviour
     [SerializeField] private Camera playerCamera;
     [SerializeField] private BeamAimProvider aimProvider;
     [SerializeField] private Transform playerTransform;
+    [SerializeField] private Animator characterAnimator;
 
     [Header("Targeting")]
     [SerializeField] private float maxScreenDistance = 180f;
@@ -54,6 +55,11 @@ public class AOEKnockbackSpellCaster : MonoBehaviour
         if (castFromPlayer)
         {
             origin = playerTransform.position;
+
+            if (characterAnimator != null)
+            {
+                characterAnimator.SetTrigger("CastKnock");
+            }
         }
         else
         {

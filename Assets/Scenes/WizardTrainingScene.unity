@@ -2789,6 +2789,7 @@ MonoBehaviour:
   playerCamera: {fileID: 180734761}
   aimProvider: {fileID: 5767474888345352828}
   playerTransform: {fileID: 246176146}
+  characterAnimator: {fileID: 1260019089}
   maxScreenDistance: 180
   radius: 5
   knockbackDistance: 15
