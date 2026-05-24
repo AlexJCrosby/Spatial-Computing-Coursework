@@ -567,7 +567,23 @@ MonoBehaviour:
   - {fileID: 2040150235}
   - {fileID: 1464209919}
   - {fileID: 762532183}
-  timeBetweenWaves: 10
+  - {fileID: 339336829}
+  - {fileID: 2040150235}
+  - {fileID: 1464209919}
+  - {fileID: 762532183}
+  - {fileID: 339336829}
+  - {fileID: 2040150235}
+  - {fileID: 1464209919}
+  - {fileID: 762532183}
+  - {fileID: 339336829}
+  - {fileID: 2040150235}
+  - {fileID: 1464209919}
+  - {fileID: 762532183}
+  - {fileID: 339336829}
+  - {fileID: 2040150235}
+  - {fileID: 1464209919}
+  - {fileID: 762532183}
+  timeBetweenWaves: 3
   startingEnemyCount: 1
 --- !u!4 &246176146 stripped
 Transform:
