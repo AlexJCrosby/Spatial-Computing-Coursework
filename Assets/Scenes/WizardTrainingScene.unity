@@ -1761,6 +1761,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &756031631 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1564860333797465651, guid: 78eeaecb7e80a444686ef30191d7e585, type: 3}
+  m_PrefabInstance: {fileID: 1140538235}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &762532182
 GameObject:
   m_ObjectHideFlags: 0
@@ -1791,6 +1796,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 233705708}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &812049643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 812049644}
+  m_Layer: 6
+  m_Name: LeftCastPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &812049644
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812049643}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.010564781, y: -0.0000904147, z: 0.9999245, w: 0.0062813}
+  m_LocalPosition: {x: 0.0031120032, y: -1.522874, z: 0.07254763}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 756031631}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &952188017
 GameObject:
@@ -2540,6 +2576,9 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1564860333797465651, guid: 78eeaecb7e80a444686ef30191d7e585, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 812049644}
     - targetCorrespondingSourceObject: {fileID: -104578136787704052, guid: 78eeaecb7e80a444686ef30191d7e585, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1708082662}
@@ -4062,6 +4101,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8018084769812766026, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5767474888345352848}
+    - targetCorrespondingSourceObject: {fileID: 8018084769812766026, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5767474888345352854}
   m_SourcePrefab: {fileID: 100100000, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
 --- !u!1 &5767474888345352815 stripped
 GameObject:
@@ -4207,6 +4249,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   maxHealth: 10
   characterAnimator: {fileID: 1260019089}
+--- !u!114 &5767474888345352854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5767474888345352815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f2542cee9a57b546ad1d7b005fd99dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EyeTargetingFrostboltCaster
+  castKey: 42
+  cooldownDuration: 0.5
+  frostboltPrefab: {fileID: 6404518141201530030, guid: 8b974974ec983f7499fe109418bf03af, type: 3}
+  spellCastPoint: {fileID: 812049644}
+  playerCamera: {fileID: 180734761}
+  aimProvider: {fileID: 5767474888345352828}
+  characterAnimator: {fileID: 1260019089}
+  castDelay: 0
+  maxScreenDistance: 180
+  projectileSpeed: 15
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
