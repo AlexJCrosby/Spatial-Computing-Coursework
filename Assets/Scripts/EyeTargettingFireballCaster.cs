@@ -5,6 +5,13 @@ using System.Collections;
 
 public class EyeTargetingFireballCaster : MonoBehaviour
 {
+    [Header("Cooldown")]
+    [SerializeField] private float cooldownDuration = 2f;
+
+    public float CooldownDuration => cooldownDuration;
+    public float CooldownRemaining { get; private set; }
+    public bool IsOnCooldown => CooldownRemaining > 0f;
+
     [Header("References")]
     [SerializeField] private GameObject fireballPrefab;
     [SerializeField] private Transform spellCastPoint;
@@ -36,7 +43,10 @@ public class EyeTargetingFireballCaster : MonoBehaviour
     private void Update()
     {
         UpdateCurrentTarget();
-
+        if (CooldownRemaining > 0f)
+        {
+            CooldownRemaining -= Time.deltaTime;
+        }
         if (Keyboard.current.rKey.wasPressedThisFrame)
         {
             CastAtCurrentTarget();
@@ -105,6 +115,12 @@ public class EyeTargetingFireballCaster : MonoBehaviour
 
     private void CastAtCurrentTarget()
     {
+        if (IsOnCooldown)
+        {
+            Debug.Log("Fireball is on cooldown.");
+            return;
+        }
+
         if (currentTarget == null)
         {
             Debug.Log("No eye target selected.");
@@ -115,6 +131,8 @@ public class EyeTargetingFireballCaster : MonoBehaviour
         {
             characterAnimator.SetTrigger("CastSpell");
         }
+
+        CooldownRemaining = cooldownDuration;
 
         StartCoroutine(SpawnFireballAfterDelay(currentTarget.transform));
     }
