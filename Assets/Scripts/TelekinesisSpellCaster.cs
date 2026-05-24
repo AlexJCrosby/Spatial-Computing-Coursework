@@ -167,10 +167,6 @@ public class TelekinesisSpellCaster : MonoBehaviour
 
         BeginLevitationLock();
 
-        if (fireballCaster != null)
-        {
-            fireballCaster.enabled = false;
-        }
         if (characterAnimator != null)
         {
             characterAnimator.SetTrigger("CastLevitate");
@@ -253,11 +249,6 @@ public class TelekinesisSpellCaster : MonoBehaviour
         if (lockedTarget != null)
         {
             lockedTarget.SetHighlighted(false);
-        }
-
-        if (fireballCaster != null)
-        {
-            fireballCaster.enabled = true;
         }
 
         lockedTarget = null;

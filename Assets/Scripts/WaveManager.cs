@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
+    [Header("Spawn Spread")]
+    [SerializeField] private float spawnRadius = 3f;
+
     [Header("Enemy Setup")]
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private Transform[] spawnPoints;
@@ -63,9 +66,17 @@ public class WaveManager : MonoBehaviour
 
         Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
+        Vector2 randomCircle = Random.insideUnitCircle * spawnRadius;
+
+        Vector3 spawnPosition = spawnPoint.position + new Vector3(
+            randomCircle.x,
+            0f,
+            randomCircle.y
+        );
+
         GameObject enemy = Instantiate(
             enemyPrefab,
-            spawnPoint.position,
+            spawnPosition,
             spawnPoint.rotation
         );
 
