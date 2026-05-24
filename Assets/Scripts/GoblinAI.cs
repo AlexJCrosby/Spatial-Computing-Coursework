@@ -16,8 +16,29 @@ public class GoblinAI : MonoBehaviour
     [Header("Animation")]
     [SerializeField] private Animator animator;
 
+    private CharacterController controller;
     private int nextAttackIndex = 1;
     private float lastAttackTime;
+
+    private void Awake()
+    {
+        controller = GetComponent<CharacterController>();
+
+        if (animator == null)
+        {
+            animator = GetComponentInChildren<Animator>();
+        }
+
+        if (player == null)
+        {
+            GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+
+            if (playerObject != null)
+            {
+                player = playerObject.transform;
+            }
+        }
+    }
 
     private void Update()
     {
@@ -43,6 +64,24 @@ public class GoblinAI : MonoBehaviour
         else
         {
             SetSpeed(0f);
+        }
+    }
+
+    private void MoveTowardsPlayer()
+    {
+        Vector3 direction = player.position - transform.position;
+        direction.y = 0f;
+        direction.Normalize();
+
+        Vector3 movement = direction * moveSpeed * Time.deltaTime;
+
+        if (controller != null)
+        {
+            controller.Move(movement);
+        }
+        else
+        {
+            transform.position += movement;
         }
     }
 
@@ -81,14 +120,6 @@ public class GoblinAI : MonoBehaviour
         {
             animator.SetFloat("Speed", speed);
         }
-    }
-
-    private void MoveTowardsPlayer()
-    {
-        Vector3 direction = (player.position - transform.position).normalized;
-        direction.y = 0f;
-
-        transform.position += direction * moveSpeed * Time.deltaTime;
     }
 
     private void FacePlayer()

@@ -2,28 +2,33 @@ using UnityEngine;
 
 public class EyeTargetable : MonoBehaviour
 {
-    [SerializeField] private Color highlightedColor = Color.red;
+    [SerializeField] private Color normalHighlightColor = Color.yellow;
+    [SerializeField] private Color lockedHighlightColor = Color.white;
 
-    private Renderer objectRenderer;
-    private Color originalColor;
+    private Outline outline;
 
     private void Awake()
     {
-        objectRenderer = GetComponentInChildren<Renderer>();
+        outline = GetComponentInChildren<Outline>();
 
-        if (objectRenderer != null)
+        if (outline != null)
         {
-            originalColor = objectRenderer.material.color;
+            outline.enabled = false;
+            outline.OutlineColor = normalHighlightColor;
         }
     }
 
     public void SetHighlighted(bool highlighted)
     {
-        if (objectRenderer == null) return;
+        SetHighlighted(highlighted, false);
+    }
 
-        objectRenderer.material.color = highlighted
-            ? highlightedColor
-            : originalColor;
+    public void SetHighlighted(bool highlighted, bool locked)
+    {
+        if (outline == null) return;
+
+        outline.enabled = highlighted;
+        outline.OutlineColor = locked ? lockedHighlightColor : normalHighlightColor;
     }
 
     public Vector3 GetTargetPoint()
@@ -35,6 +40,6 @@ public class EyeTargetable : MonoBehaviour
             return col.bounds.center;
         }
 
-        return transform.position;
+        return transform.position + Vector3.up * 1.2f;
     }
 }
