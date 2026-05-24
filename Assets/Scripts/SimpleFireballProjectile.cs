@@ -3,31 +3,66 @@ using UnityEngine;
 public class SimpleFireballProjectile : MonoBehaviour
 {
     private Transform target;
+    private Vector3 finalTargetPosition;
     private float speed;
     private bool launched;
+    private bool targetLost;
 
     public void LaunchAt(Transform targetTransform, float projectileSpeed)
     {
         target = targetTransform;
         speed = projectileSpeed;
         launched = true;
+        targetLost = false;
+
+        finalTargetPosition = GetTargetPoint();
 
         Destroy(gameObject, 6f);
     }
 
     private void Update()
     {
-        if (!launched || target == null) return;
+        if (!launched) return;
 
-        Vector3 targetPosition = GetTargetPoint();
-        Vector3 direction = (targetPosition - transform.position).normalized;
+        if (target != null && !targetLost)
+        {
+            NPCHealth npcHealth = target.GetComponentInParent<NPCHealth>();
 
-        transform.position += direction * speed * Time.deltaTime;
-        transform.rotation = Quaternion.LookRotation(direction);
+            if (npcHealth != null && npcHealth.IsDead)
+            {
+                targetLost = true;
+            }
+            else
+            {
+                finalTargetPosition = GetTargetPoint();
+            }
+        }
+        else
+        {
+            targetLost = true;
+        }
+
+        Vector3 direction = finalTargetPosition - transform.position;
+
+        if (direction.magnitude < 0.1f)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Vector3 moveDirection = direction.normalized;
+
+        transform.position += moveDirection * speed * Time.deltaTime;
+        transform.rotation = Quaternion.LookRotation(moveDirection);
     }
 
     private Vector3 GetTargetPoint()
     {
+        if (target == null)
+        {
+            return finalTargetPosition;
+        }
+
         EyeTargetable eyeTargetable = target.GetComponent<EyeTargetable>();
 
         if (eyeTargetable != null)
@@ -54,12 +89,12 @@ public class SimpleFireballProjectile : MonoBehaviour
 
         NPCHealth npcHealth = other.GetComponentInParent<NPCHealth>();
 
-        if (npcHealth != null)
+        if (npcHealth != null && !npcHealth.IsDead)
         {
             npcHealth.TakeDamage(1);
         }
 
-        Debug.Log("Fireball hit: " + other.name);
+        Debug.Log("Projectile hit: " + other.name);
 
         Destroy(gameObject);
     }

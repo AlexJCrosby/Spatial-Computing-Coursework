@@ -6,10 +6,25 @@ public class EyeTargetable : MonoBehaviour
     [SerializeField] private Color lockedHighlightColor = Color.white;
 
     private Outline outline;
+    private NPCHealth npcHealth;
+
+    public bool CanBeTargeted
+    {
+        get
+        {
+            if (npcHealth != null && npcHealth.IsDead)
+            {
+                return false;
+            }
+
+            return true;
+        }
+    }
 
     private void Awake()
     {
         outline = GetComponentInChildren<Outline>();
+        npcHealth = GetComponentInParent<NPCHealth>();
 
         if (outline != null)
         {
@@ -26,6 +41,12 @@ public class EyeTargetable : MonoBehaviour
     public void SetHighlighted(bool highlighted, bool locked)
     {
         if (outline == null) return;
+
+        if (!CanBeTargeted)
+        {
+            outline.enabled = false;
+            return;
+        }
 
         outline.enabled = highlighted;
         outline.OutlineColor = locked ? lockedHighlightColor : normalHighlightColor;

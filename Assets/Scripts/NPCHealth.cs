@@ -12,6 +12,8 @@ public class NPCHealth : MonoBehaviour
     private int currentHealth;
     private bool isDead;
 
+    public bool IsDead => isDead;
+
     private void Awake()
     {
         currentHealth = maxHealth;

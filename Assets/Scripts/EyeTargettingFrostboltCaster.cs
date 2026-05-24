@@ -69,6 +69,7 @@ public class EyeTargetingFrostboltCaster : MonoBehaviour
         foreach (EyeTargetable target in targets)
         {
             if (target == null) continue;
+            if (!target.CanBeTargeted) continue;
 
             Vector3 targetScreenPosition =
                 playerCamera.WorldToScreenPoint(target.GetTargetPoint());
