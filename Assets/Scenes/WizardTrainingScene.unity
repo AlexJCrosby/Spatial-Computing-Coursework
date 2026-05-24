@@ -899,6 +899,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 233705708}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &350061328
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 350061329}
+  m_Layer: 6
+  m_Name: LeftCastPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &350061329
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350061328}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 756031631}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &393343489
 GameObject:
   m_ObjectHideFlags: 0
@@ -1797,37 +1828,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 233705708}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &812049643
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 812049644}
-  m_Layer: 6
-  m_Name: LeftCastPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &812049644
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 812049643}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.010564781, y: -0.0000904147, z: 0.9999245, w: 0.0062813}
-  m_LocalPosition: {x: 0.0031120032, y: -1.522874, z: 0.07254763}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 756031631}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &952188017
 GameObject:
   m_ObjectHideFlags: 0
@@ -1894,7 +1894,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -27.87}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1029652235
@@ -2578,7 +2578,7 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1564860333797465651, guid: 78eeaecb7e80a444686ef30191d7e585, type: 3}
       insertIndex: 0
-      addedObject: {fileID: 812049644}
+      addedObject: {fileID: 350061329}
     - targetCorrespondingSourceObject: {fileID: -104578136787704052, guid: 78eeaecb7e80a444686ef30191d7e585, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1708082662}
@@ -3737,7 +3737,7 @@ Transform:
   m_GameObject: {fileID: 1708082661}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.07}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4264,7 +4264,7 @@ MonoBehaviour:
   castKey: 42
   cooldownDuration: 0.5
   frostboltPrefab: {fileID: 6404518141201530030, guid: 8b974974ec983f7499fe109418bf03af, type: 3}
-  spellCastPoint: {fileID: 812049644}
+  LeftCastPoint: {fileID: 350061329}
   playerCamera: {fileID: 180734761}
   aimProvider: {fileID: 5767474888345352828}
   characterAnimator: {fileID: 1260019089}

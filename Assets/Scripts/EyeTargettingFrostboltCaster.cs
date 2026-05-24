@@ -16,7 +16,7 @@ public class EyeTargetingFrostboltCaster : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private GameObject frostboltPrefab;
-    [SerializeField] private Transform spellCastPoint;
+    [SerializeField] private Transform LeftCastPoint;
     [SerializeField] private Camera playerCamera;
     [SerializeField] private BeamAimProvider aimProvider;
     [SerializeField] private Animator characterAnimator;
@@ -121,7 +121,7 @@ public class EyeTargetingFrostboltCaster : MonoBehaviour
 
         if (characterAnimator != null)
         {
-            characterAnimator.SetTrigger("CastSpell");
+            characterAnimator.SetTrigger("CastFrost");
         }
 
         CooldownRemaining = cooldownDuration;
@@ -140,8 +140,8 @@ public class EyeTargetingFrostboltCaster : MonoBehaviour
 
         GameObject frostbolt = Instantiate(
             frostboltPrefab,
-            spellCastPoint.position,
-            spellCastPoint.rotation
+            LeftCastPoint.position,
+            LeftCastPoint.rotation
         );
 
         SimpleFireballProjectile projectile =

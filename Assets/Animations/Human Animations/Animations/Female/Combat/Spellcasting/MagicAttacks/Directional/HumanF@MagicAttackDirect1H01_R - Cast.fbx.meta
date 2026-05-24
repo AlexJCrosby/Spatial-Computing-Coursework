@@ -1,7 +1,15 @@
 fileFormatVersion: 2
 guid: e20e79b93409bbf4d848255c88e74bd0
+AssetOrigin:
+  serializedVersion: 1
+  productId: 326043
+  packageName: Human Spellcasting Animations FREE
+  packageVersion: 1.0
+  assetPath: Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/Spellcasting/MagicAttacks/Directional/HumanF@MagicAttackDirect1H01_R
+    - Cast.fbx
+  uploadId: 825286
 ModelImporter:
-  serializedVersion: 22200
+  serializedVersion: 24200
   internalIDToNameTable: []
   externalObjects: {}
   materials:
@@ -46,7 +54,7 @@ ModelImporter:
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
-      loopBlendPositionXZ: 1
+      loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
@@ -203,6 +211,9 @@ ModelImporter:
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
     optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
@@ -951,8 +962,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 1841c298173cdad4db8df8602c8f1c8d,
-    type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 1841c298173cdad4db8df8602c8f1c8d, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
@@ -964,11 +974,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 326043
-  packageName: Human Spellcasting Animations FREE
-  packageVersion: 1.0
-  assetPath: Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/Spellcasting/MagicAttacks/Directional/HumanF@MagicAttackDirect1H01_R
-    - Cast.fbx
-  uploadId: 825286
