@@ -16,6 +16,7 @@ public class TelekinesisSpellCaster : MonoBehaviour
     [SerializeField] private BeamAimProvider aimProvider;
     [SerializeField] private Transform playerTransform;
     [SerializeField] private EyeTargetingFireballCaster fireballCaster;
+    [SerializeField] private Animator characterAnimator;
 
     [Header("Targeting")]
     [SerializeField] private float maxScreenDistance = 180f;
@@ -170,8 +171,12 @@ public class TelekinesisSpellCaster : MonoBehaviour
         {
             fireballCaster.enabled = false;
         }
-
+        if (characterAnimator != null)
+        {
+            characterAnimator.SetTrigger("CastLevitate");
+        }
         levitatedObject.BeginLevitate(GetLockedLevitateWorldPosition());
+
         CooldownRemaining = cooldownDuration;
     }
 

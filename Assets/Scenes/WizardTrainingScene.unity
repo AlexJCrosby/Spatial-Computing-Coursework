@@ -2846,8 +2846,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -160, y: -54}
-  m_SizeDelta: {x: 300, y: 50}
+  m_AnchoredPosition: {x: -243.8, y: -113}
+  m_SizeDelta: {x: 534.6, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1252227456
 MonoBehaviour:
@@ -2898,8 +2898,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 61.3
+  m_fontSizeBase: 61.3
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4166,6 +4166,7 @@ MonoBehaviour:
   aimProvider: {fileID: 5767474888345352828}
   playerTransform: {fileID: 246176146}
   fireballCaster: {fileID: 5767474888345352835}
+  characterAnimator: {fileID: 1260019089}
   maxScreenDistance: 180
   horizontalAngleRange: 80
   verticalMoveRange: 15
