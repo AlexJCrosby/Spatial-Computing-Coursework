@@ -9,6 +9,7 @@ public class GoblinAI : MonoBehaviour
     [SerializeField] private float moveSpeed = 2f;
     [SerializeField] private float detectionRange = 10f;
     [SerializeField] private float attackRange = 2f;
+    [SerializeField] private int damage = 1;
 
     [Header("Attack")]
     [SerializeField] private float attackCooldown = 1.2f;
@@ -102,6 +103,12 @@ public class GoblinAI : MonoBehaviour
 
             lastAttackTime = Time.time;
 
+            PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(damage);
+            }
             Invoke(nameof(ResetAttackIndex), 0.1f);
         }
     }
