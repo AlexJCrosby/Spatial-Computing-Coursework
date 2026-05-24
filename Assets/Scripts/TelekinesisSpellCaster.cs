@@ -4,11 +4,19 @@ using UnityEngine.Windows.Speech;
 
 public class TelekinesisSpellCaster : MonoBehaviour
 {
+    [Header("Cooldown")]
+    [SerializeField] private float cooldownDuration = 1.5f;
+
+    public float CooldownDuration => cooldownDuration;
+    public float CooldownRemaining { get; private set; }
+    public bool IsOnCooldown => CooldownRemaining > 0f;
+
     [Header("References")]
     [SerializeField] private Camera playerCamera;
     [SerializeField] private BeamAimProvider aimProvider;
     [SerializeField] private Transform playerTransform;
     [SerializeField] private EyeTargetingFireballCaster fireballCaster;
+    [SerializeField] private Animator characterAnimator;
 
     [Header("Targeting")]
     [SerializeField] private float maxScreenDistance = 180f;
@@ -49,6 +57,10 @@ public class TelekinesisSpellCaster : MonoBehaviour
 
     private void Update()
     {
+        if (CooldownRemaining > 0f)
+        {
+            CooldownRemaining -= Time.deltaTime;
+        }
         if (levitatedObject == null)
         {
             UpdateCurrentTarget();
@@ -76,6 +88,8 @@ public class TelekinesisSpellCaster : MonoBehaviour
 
     private void UpdateCurrentTarget()
     {
+        targets = FindObjectsByType<EyeTargetable>(FindObjectsSortMode.None);
+
         Vector2 gazeScreenPosition = GetGazeScreenPosition();
 
         EyeTargetable closestTarget = null;
@@ -125,6 +139,12 @@ public class TelekinesisSpellCaster : MonoBehaviour
             return;
         }
 
+        if (IsOnCooldown)
+        {
+            Debug.Log("Telekinesis is on cooldown.");
+            return;
+        }
+
         if (currentTarget == null) return;
 
         Levitatable levitatable = currentTarget.GetComponent<Levitatable>();
@@ -151,8 +171,13 @@ public class TelekinesisSpellCaster : MonoBehaviour
         {
             fireballCaster.enabled = false;
         }
-
+        if (characterAnimator != null)
+        {
+            characterAnimator.SetTrigger("CastLevitate");
+        }
         levitatedObject.BeginLevitate(GetLockedLevitateWorldPosition());
+
+        CooldownRemaining = cooldownDuration;
     }
 
     private void BeginLevitationLock()

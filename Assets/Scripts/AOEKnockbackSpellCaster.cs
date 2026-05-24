@@ -4,6 +4,13 @@ using UnityEngine.Windows.Speech;
 
 public class AOEKnockbackSpellCaster : MonoBehaviour
 {
+    [Header("Cooldown")]
+    [SerializeField] private float cooldownDuration = 1.5f;
+
+    public float CooldownDuration => cooldownDuration;
+    public float CooldownRemaining { get; private set; }
+    public bool IsOnCooldown => CooldownRemaining > 0f;
+
     [Header("References")]
     [SerializeField] private Camera playerCamera;
     [SerializeField] private BeamAimProvider aimProvider;
@@ -37,7 +44,10 @@ public class AOEKnockbackSpellCaster : MonoBehaviour
     private void Update()
     {
         UpdateCurrentTarget();
-
+        if (CooldownRemaining > 0f)
+        {
+            CooldownRemaining -= Time.deltaTime;
+        }
         if (Keyboard.current.gKey.wasPressedThisFrame)
         {
             CastKnockback();
@@ -51,7 +61,11 @@ public class AOEKnockbackSpellCaster : MonoBehaviour
         Vector3 origin;
 
         EyeTargetable ignoredTarget = null;
-
+        if (IsOnCooldown)
+        {
+            Debug.Log("Knockback is on cooldown.");
+            return;
+        }
         if (castFromPlayer)
         {
             origin = playerTransform.position;
@@ -116,7 +130,7 @@ public class AOEKnockbackSpellCaster : MonoBehaviour
 
             levitatable.ArcMoveTo(endPosition, upwardHeight, knockbackDuration);
         }
-
+        CooldownRemaining = cooldownDuration;
         Debug.Log("AOE knockback cast.");
     }
 

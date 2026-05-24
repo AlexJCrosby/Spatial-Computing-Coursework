@@ -51,10 +51,10 @@ MonoBehaviour:
   - title: Fireball
     position:
       serializedVersion: 2
-      x: 1602
+      x: 1604
       y: -440
-      width: 683
-      height: 1674
+      width: 681
+      height: 1724
     contents:
     - model: {fileID: 8926484042661614859}
       id: 0
@@ -78,9 +78,9 @@ MonoBehaviour:
   categories: []
   uiBounds:
     serializedVersion: 2
-    x: 1602
+    x: 1604
     y: -444
-    width: 1744
+    width: 1742
     height: 1951
 --- !u!114 &114350483966674976
 MonoBehaviour:
@@ -1191,10 +1191,10 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661615036}
       inputSlot: {fileID: 8926484042661615021}
-    position: {x: 1627, y: 1128}
+    position: {x: 1629, y: 1130}
     expandedSlots: []
     expanded: 0
-    supecollapsed: 0
+    supecollapsed: 1
 --- !u!114 &8926484042661615036
 MonoBehaviour:
   m_ObjectHideFlags: 0

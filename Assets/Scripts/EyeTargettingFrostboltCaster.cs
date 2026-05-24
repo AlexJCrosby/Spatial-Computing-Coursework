@@ -3,8 +3,10 @@ using UnityEngine.InputSystem;
 using UnityEngine.Windows.Speech;
 using System.Collections;
 
-public class EyeTargetingFireballCaster : MonoBehaviour
+public class EyeTargetingFrostboltCaster : MonoBehaviour
 {
+    [Header("Input")]
+    [SerializeField] private Key castKey = Key.Y;
     [Header("Cooldown")]
     [SerializeField] private float cooldownDuration = 2f;
 
@@ -13,8 +15,8 @@ public class EyeTargetingFireballCaster : MonoBehaviour
     public bool IsOnCooldown => CooldownRemaining > 0f;
 
     [Header("References")]
-    [SerializeField] private GameObject fireballPrefab;
-    [SerializeField] private Transform spellCastPoint;
+    [SerializeField] private GameObject frostboltPrefab;
+    [SerializeField] private Transform LeftCastPoint;
     [SerializeField] private Camera playerCamera;
     [SerializeField] private BeamAimProvider aimProvider;
     [SerializeField] private Animator characterAnimator;
@@ -22,7 +24,7 @@ public class EyeTargetingFireballCaster : MonoBehaviour
     [Header("Targeting")]
     [SerializeField] private float castDelay = 0.35f;
     [SerializeField] private float maxScreenDistance = 180f;
-    [SerializeField] private float projectileSpeed = 14f;
+    [SerializeField] private float projectileSpeed = 18f;
 
     private EyeTargetable[] targets;
     private EyeTargetable currentTarget;
@@ -33,21 +35,23 @@ public class EyeTargetingFireballCaster : MonoBehaviour
     {
         targets = FindObjectsByType<EyeTargetable>(FindObjectsSortMode.None);
 
-        keywordRecognizer = new KeywordRecognizer(new string[] { "fire" });
+        keywordRecognizer = new KeywordRecognizer(new string[] { "frost" });
         keywordRecognizer.OnPhraseRecognized += OnPhraseRecognized;
         keywordRecognizer.Start();
 
-        Debug.Log("Eye targeting fireball caster started. Press R or say: fire");
+        Debug.Log("Eye targeting frostbolt caster started. Press 2 or say: frost");
     }
 
     private void Update()
     {
-        UpdateCurrentTarget();
         if (CooldownRemaining > 0f)
         {
             CooldownRemaining -= Time.deltaTime;
         }
-        if (Keyboard.current.rKey.wasPressedThisFrame)
+
+        UpdateCurrentTarget();
+
+        if (Keyboard.current != null && Keyboard.current[castKey].wasPressedThisFrame)
         {
             CastAtCurrentTarget();
         }
@@ -66,7 +70,8 @@ public class EyeTargetingFireballCaster : MonoBehaviour
         {
             if (target == null) continue;
 
-            Vector3 targetScreenPosition = playerCamera.WorldToScreenPoint(target.GetTargetPoint());
+            Vector3 targetScreenPosition =
+                playerCamera.WorldToScreenPoint(target.GetTargetPoint());
 
             if (targetScreenPosition.z < 0) continue;
 
@@ -82,20 +87,7 @@ public class EyeTargetingFireballCaster : MonoBehaviour
             }
         }
 
-        if (currentTarget != closestTarget)
-        {
-            if (currentTarget != null)
-            {
-                currentTarget.SetHighlighted(false);
-            }
-
-            currentTarget = closestTarget;
-
-            if (currentTarget != null)
-            {
-                currentTarget.SetHighlighted(true);
-            }
-        }
+        currentTarget = closestTarget;
     }
 
     private Vector2 GetGazeScreenPosition()
@@ -117,27 +109,27 @@ public class EyeTargetingFireballCaster : MonoBehaviour
     {
         if (IsOnCooldown)
         {
-            Debug.Log("Fireball is on cooldown.");
+            Debug.Log("Frostbolt is on cooldown.");
             return;
         }
 
         if (currentTarget == null)
         {
-            Debug.Log("No eye target selected.");
+            Debug.Log("No eye target selected for frostbolt.");
             return;
         }
 
         if (characterAnimator != null)
         {
-            characterAnimator.SetTrigger("CastSpell");
+            characterAnimator.SetTrigger("CastFrost");
         }
 
         CooldownRemaining = cooldownDuration;
 
-        StartCoroutine(SpawnFireballAfterDelay(currentTarget.transform));
+        StartCoroutine(SpawnFrostboltAfterDelay(currentTarget.transform));
     }
 
-    private IEnumerator SpawnFireballAfterDelay(Transform targetTransform)
+    private IEnumerator SpawnFrostboltAfterDelay(Transform targetTransform)
     {
         yield return new WaitForSeconds(castDelay);
 
@@ -146,28 +138,28 @@ public class EyeTargetingFireballCaster : MonoBehaviour
             yield break;
         }
 
-        GameObject fireball = Instantiate(
-            fireballPrefab,
-            spellCastPoint.position,
-            spellCastPoint.rotation
+        GameObject frostbolt = Instantiate(
+            frostboltPrefab,
+            LeftCastPoint.position,
+            LeftCastPoint.rotation
         );
 
         SimpleFireballProjectile projectile =
-            fireball.GetComponent<SimpleFireballProjectile>();
+            frostbolt.GetComponent<SimpleFireballProjectile>();
 
         if (projectile == null)
         {
-            projectile = fireball.AddComponent<SimpleFireballProjectile>();
+            projectile = frostbolt.AddComponent<SimpleFireballProjectile>();
         }
 
         projectile.LaunchAt(targetTransform, projectileSpeed);
 
-        Debug.Log("Fired at target: " + targetTransform.name);
+        Debug.Log("Frostbolt fired at target: " + targetTransform.name);
     }
 
     private void OnPhraseRecognized(PhraseRecognizedEventArgs args)
     {
-        if (args.text.ToLower() == "fire")
+        if (args.text.ToLower() == "frost")
         {
             CastAtCurrentTarget();
         }
