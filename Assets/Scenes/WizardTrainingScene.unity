@@ -1127,7 +1127,6 @@ GameObject:
   - component: {fileID: 595615659}
   - component: {fileID: 595615658}
   - component: {fileID: 595615662}
-  - component: {fileID: 595615663}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1234,26 +1233,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameUI
   playerHealth: {fileID: 5767474888345352848}
-  healthSlider: {fileID: 0}
-  healthText: {fileID: 1077562570}
-  waveText: {fileID: 1252227456}
-  enemiesText: {fileID: 0}
---- !u!114 &595615663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 595615657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36771f2df4e41fa4690225326028ac10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameUI
-  playerHealth: {fileID: 5767474888345352848}
   healthSlider: {fileID: 1497342090}
   healthText: {fileID: 1077562570}
-  waveText: {fileID: 0}
+  waveText: {fileID: 1252227456}
   enemiesText: {fileID: 0}
 --- !u!1 &612305670
 GameObject:
@@ -3584,6 +3566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   maxHealth: 10
+  characterAnimator: {fileID: 1260019089}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
