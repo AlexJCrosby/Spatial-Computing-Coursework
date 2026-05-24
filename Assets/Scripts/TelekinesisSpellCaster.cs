@@ -76,6 +76,8 @@ public class TelekinesisSpellCaster : MonoBehaviour
 
     private void UpdateCurrentTarget()
     {
+        targets = FindObjectsByType<EyeTargetable>(FindObjectsSortMode.None);
+
         Vector2 gazeScreenPosition = GetGazeScreenPosition();
 
         EyeTargetable closestTarget = null;

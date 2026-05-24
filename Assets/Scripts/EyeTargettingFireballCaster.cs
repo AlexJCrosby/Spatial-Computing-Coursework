@@ -45,6 +45,8 @@ public class EyeTargetingFireballCaster : MonoBehaviour
 
     private void UpdateCurrentTarget()
     {
+        targets = FindObjectsByType<EyeTargetable>(FindObjectsSortMode.None);
+
         Vector2 gazeScreenPosition = GetGazeScreenPosition();
 
         EyeTargetable closestTarget = null;
@@ -54,8 +56,7 @@ public class EyeTargetingFireballCaster : MonoBehaviour
         {
             if (target == null) continue;
 
-            Vector3 targetScreenPosition =
-                playerCamera.WorldToScreenPoint(target.GetTargetPoint());
+            Vector3 targetScreenPosition = playerCamera.WorldToScreenPoint(target.GetTargetPoint());
 
             if (targetScreenPosition.z < 0) continue;
 

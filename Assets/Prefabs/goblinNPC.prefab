@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2fbdbaa2d41b5f4fb44c6861e7393fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EyeTargetable
-  normalHighlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  normalHighlightColor: {r: 1, g: 0, b: 0.087764025, a: 1}
   lockedHighlightColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &2652744429071750008
 MonoBehaviour:
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e3602cc1419371498f9e420a34f7368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPCHealth
-  maxHealth: 30
+  maxHealth: 3
   animator: {fileID: 0}
   destroyDelayAfterDeath: 3
 --- !u!114 &3312223900351224895
@@ -158,8 +158,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GoblinAI
   player: {fileID: 0}
   moveSpeed: 3
-  detectionRange: 50
+  detectionRange: 5000
   attackRange: 3
+  damage: 1
   attackCooldown: 1.2
   animator: {fileID: 2562582760034334136}
 --- !u!54 &6148589313967424883
@@ -184,7 +185,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
@@ -202,7 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Outline
   outlineMode: 0
-  outlineColor: {r: 0.99215686, g: 0.64987135, b: 0.043137245, a: 0.74509805}
+  outlineColor: {r: 0.99215686, g: 0.043137245, b: 0.06569451, a: 0.74509805}
   outlineWidth: 2.5
   precomputeOutline: 0
   bakeKeys: []
