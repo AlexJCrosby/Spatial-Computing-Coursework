@@ -4190,7 +4190,7 @@ MonoBehaviour:
   characterAnimator: {fileID: 1260019089}
   castDelay: 0
   maxScreenDistance: 180
-  projectileSpeed: 20
+  projectileSpeed: 50
 --- !u!114 &5767474888345352841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4270,7 +4270,7 @@ MonoBehaviour:
   characterAnimator: {fileID: 1260019089}
   castDelay: 0
   maxScreenDistance: 180
-  projectileSpeed: 15
+  projectileSpeed: 40
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
