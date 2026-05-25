@@ -570,9 +570,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab9d0d77aa060c545be225c2e6f5cd4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SnapToGroundOnStart
-  rayStartHeight: 50
-  rayDistance: 200
-  groundOffset: 0.05
 --- !u!1 &125196442
 GameObject:
   m_ObjectHideFlags: 0
@@ -2300,7 +2297,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Knock
+  m_text: 'Frost
 
 '
   m_isRightToLeft: 0
@@ -2329,8 +2326,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21.7
-  m_fontSizeBase: 21.7
+  m_fontSize: 30.58
+  m_fontSizeBase: 30.58
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
