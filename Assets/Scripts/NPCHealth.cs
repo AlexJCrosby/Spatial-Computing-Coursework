@@ -56,15 +56,23 @@ public class NPCHealth : MonoBehaviour
 
         Debug.Log(name + " died.");
 
-        if (animator != null)
-        {
-            animator.SetBool("Dead", true);
-        }
-
         GoblinAI goblinAI = GetComponent<GoblinAI>();
         if (goblinAI != null)
         {
             goblinAI.enabled = false;
+        }
+
+        CharacterController controller = GetComponent<CharacterController>();
+        if (controller != null)
+        {
+            controller.enabled = false;
+        }
+
+        if (animator != null)
+        {
+            animator.SetFloat("Speed", 0f);
+            animator.SetInteger("AttackIndex", 0);
+            animator.SetBool("Dead", true);
         }
 
         Destroy(gameObject, destroyDelayAfterDeath);
