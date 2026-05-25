@@ -432,6 +432,7 @@ MonoBehaviour:
   playerCamera: {fileID: 1621351384}
   aimProvider: {fileID: 84442032}
   characterAnimator: {fileID: 1902486878}
+  armIK: {fileID: 2063293453}
   castDelay: 0
   maxScreenDistance: 180
   projectileSpeed: 40
@@ -511,6 +512,7 @@ MonoBehaviour:
   playerCamera: {fileID: 1621351384}
   aimProvider: {fileID: 84442032}
   characterAnimator: {fileID: 1902486878}
+  armIK: {fileID: 2063293453}
   castDelay: 0
   maxScreenDistance: 180
   projectileSpeed: 50
@@ -3755,7 +3757,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -104578136787704052, guid: 78eeaecb7e80a444686ef30191d7e585, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2089196343}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 78eeaecb7e80a444686ef30191d7e585, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2063293453}
   m_SourcePrefab: {fileID: 100100000, guid: 78eeaecb7e80a444686ef30191d7e585, type: 3}
 --- !u!4 &1902486875 stripped
 Transform:
@@ -3944,6 +3949,27 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c5bf92a856be0442a2cc94ab6422628, type: 3}
+--- !u!1 &2063293452 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 78eeaecb7e80a444686ef30191d7e585, type: 3}
+  m_PrefabInstance: {fileID: 1902486874}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2063293453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063293452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee1f046fb30d3b247914a3890ef555c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpellArmIK
+  animator: {fileID: 1902486878}
+  ikWeight: 0
+  aimDistance: 2
+  maxAimAngle: 15
 --- !u!1 &2088033501
 GameObject:
   m_ObjectHideFlags: 0

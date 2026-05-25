@@ -18,6 +18,7 @@ public class EyeTargetingFireballCaster : MonoBehaviour
     [SerializeField] private Camera playerCamera;
     [SerializeField] private BeamAimProvider aimProvider;
     [SerializeField] private Animator characterAnimator;
+    [SerializeField] private SpellArmIK armIK;
 
     [Header("Targeting")]
     [SerializeField] private float castDelay = 0.35f;
@@ -132,6 +133,16 @@ public class EyeTargetingFireballCaster : MonoBehaviour
         {
             characterAnimator.SetTrigger("CastSpell");
         }
+        Vector3 target = currentTarget.GetTargetPoint();
+        Vector3 handPoint = spellCastPoint.position;
+        Vector3 aimPoint = handPoint + (target - handPoint).normalized * 2f;
+
+        armIK.AimAtLimited(
+            currentTarget.GetTargetPoint(),
+            AvatarIKGoal.RightHand,
+            transform,
+            spellCastPoint
+        );
 
         CooldownRemaining = cooldownDuration;
 
@@ -162,7 +173,7 @@ public class EyeTargetingFireballCaster : MonoBehaviour
         }
 
         projectile.LaunchAt(targetTransform, projectileSpeed);
-
+        StartCoroutine(StopAimAfterDelay());
         Debug.Log("Fired at target: " + targetTransform.name);
     }
 
@@ -184,5 +195,15 @@ public class EyeTargetingFireballCaster : MonoBehaviour
         }
 
         keywordRecognizer.Dispose();
+    }
+
+    private IEnumerator StopAimAfterDelay()
+    {
+        yield return new WaitForSeconds(0.4f);
+
+        if (armIK != null)
+        {
+            armIK.StopAiming();
+        }
     }
 }

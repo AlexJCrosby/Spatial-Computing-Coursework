@@ -20,6 +20,7 @@ public class EyeTargetingFrostboltCaster : MonoBehaviour
     [SerializeField] private Camera playerCamera;
     [SerializeField] private BeamAimProvider aimProvider;
     [SerializeField] private Animator characterAnimator;
+    [SerializeField] private SpellArmIK armIK;
 
     [Header("Targeting")]
     [SerializeField] private float castDelay = 0.35f;
@@ -124,6 +125,16 @@ public class EyeTargetingFrostboltCaster : MonoBehaviour
         {
             characterAnimator.SetTrigger("CastFrost");
         }
+        Vector3 target = currentTarget.GetTargetPoint();
+        Vector3 handPoint = LeftCastPoint.position;
+        Vector3 aimPoint = handPoint + (target - handPoint).normalized * 2f;
+
+        armIK.AimAtLimited(
+            currentTarget.GetTargetPoint(),
+            AvatarIKGoal.LeftHand,
+            transform,
+            LeftCastPoint
+        );
 
         CooldownRemaining = cooldownDuration;
 
@@ -154,7 +165,7 @@ public class EyeTargetingFrostboltCaster : MonoBehaviour
         }
 
         projectile.LaunchAt(targetTransform, projectileSpeed);
-
+        StartCoroutine(StopAimAfterDelay());
         Debug.Log("Frostbolt fired at target: " + targetTransform.name);
     }
 
@@ -176,5 +187,15 @@ public class EyeTargetingFrostboltCaster : MonoBehaviour
         }
 
         keywordRecognizer.Dispose();
+    }
+
+    private IEnumerator StopAimAfterDelay()
+    {
+        yield return new WaitForSeconds(0.4f);
+
+        if (armIK != null)
+        {
+            armIK.StopAiming();
+        }
     }
 }
