@@ -2490,6 +2490,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2186217001014013416, guid: 915ac35a5aca31d4c9575633be0f6b82, type: 3}
   m_PrefabInstance: {fileID: 415452137}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &424204610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 424204611}
+  m_Layer: 0
+  m_Name: NewForest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &424204611
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424204610}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -36.35279, y: -0, z: 47.78556}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &453235727
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8568,7 +8599,7 @@ GameObject:
   - component: {fileID: 1804453033}
   - component: {fileID: 1804453032}
   m_Layer: 0
-  m_Name: Terrain
+  m_Name: ForestTerrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10007,4 +10038,5 @@ SceneRoots:
   - {fileID: 233705708}
   - {fileID: 330682076}
   - {fileID: 604545505}
+  - {fileID: 424204611}
   - {fileID: 2019676653}
