@@ -70,9 +70,18 @@ public class WaveManager : MonoBehaviour
 
         Vector3 spawnPosition = spawnPoint.position + new Vector3(
             randomCircle.x,
-            0f,
+            50f,
             randomCircle.y
         );
+
+        if (Physics.Raycast(spawnPosition, Vector3.down, out RaycastHit hit, 200f))
+        {
+            spawnPosition = hit.point;
+        }
+        else
+        {
+            Debug.LogWarning("No ground found below spawn point.");
+        }
 
         GameObject enemy = Instantiate(
             enemyPrefab,
