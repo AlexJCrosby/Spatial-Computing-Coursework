@@ -137,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
 
         float speed = horizontalMove.magnitude;
 
-        animator.SetFloat(speedParameterName, speed);
+        animator.SetFloat(speedParameterName, speed, 0.05f, Time.deltaTime);
 
         float moveX = strafeInput;
         float moveZ = forwardBackInput;
@@ -147,8 +147,8 @@ public class PlayerMovement : MonoBehaviour
             moveZ = 1f;
         }
 
-        animator.SetFloat(moveXParameterName, moveX);
-        animator.SetFloat(moveZParameterName, moveZ);
+        animator.SetFloat(moveXParameterName, moveX, 0.05f, Time.deltaTime);
+        animator.SetFloat(moveZParameterName, moveZ, 0.05f, Time.deltaTime);
     }
 
     private void HandleTurning()
