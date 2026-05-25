@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 949521340316140036}
   - component: {fileID: 949521340316140037}
   - component: {fileID: 949521340316140042}
+  - component: {fileID: 6054375674198057941}
   m_Layer: 0
   m_Name: Frostbolt 7.0
   m_TagString: Untagged
@@ -122,6 +123,27 @@ VFXRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
+--- !u!135 &6054375674198057941
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949521340316140043}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1910397755199997503
 PrefabInstance:
   m_ObjectHideFlags: 0
