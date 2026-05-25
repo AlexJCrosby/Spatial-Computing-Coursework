@@ -288,7 +288,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5971012356241113125, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 20
+      value: 8.28
       objectReference: {fileID: 0}
     - target: {fileID: 5971012356241113125, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -375,6 +375,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8018084769812766026, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 84442026}
+    - targetCorrespondingSourceObject: {fileID: 8018084769812766026, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 84442040}
   m_SourcePrefab: {fileID: 100100000, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
 --- !u!4 &84442024 stripped
 Transform:
@@ -547,6 +550,21 @@ MonoBehaviour:
   minDepth: 9
   maxDepth: 25
   depthMoveSpeed: 30
+--- !u!114 &84442040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84442025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab9d0d77aa060c545be225c2e6f5cd4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SnapToGroundOnStart
+  rayStartHeight: 50
+  rayDistance: 200
+  groundOffset: 0.05
 --- !u!1 &125196442
 GameObject:
   m_ObjectHideFlags: 0

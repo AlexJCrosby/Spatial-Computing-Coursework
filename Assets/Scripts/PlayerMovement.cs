@@ -5,6 +5,7 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController controller;
     private PlayerInputActions inputActions;
     private Animator animator;
+    private bool snappedToGround;
 
     [Header("Animation")]
     [SerializeField] private Animator characterAnimator;
@@ -82,8 +83,45 @@ public class PlayerMovement : MonoBehaviour
         inputActions.Disable();
     }
 
+    private void SnapToGround()
+    {
+        Vector3 rayStart = transform.position + Vector3.up * 50f;
+
+        if (Physics.Raycast(rayStart, Vector3.down, out RaycastHit hit, 500f))
+        {
+            controller.enabled = false;
+
+            float controllerBottomToRoot =
+                controller.height * 0.5f - controller.center.y;
+
+            transform.position = hit.point + Vector3.up * (controllerBottomToRoot + 0.05f);
+
+            verticalVelocity = Vector3.zero;
+            lockedAirHorizontalMove = Vector3.zero;
+            lastGroundedHorizontalMove = Vector3.zero;
+
+            jumpRequested = false;
+            jumpedFromIdle = false;
+
+            controller.enabled = true;
+
+            Debug.Log("Player snapped to ground at: " + transform.position);
+        }
+        else
+        {
+            Debug.LogWarning("No ground found below player.");
+        }
+    }
+
     private void Update()
     {
+        if (!snappedToGround)
+        {
+            SnapToGround();
+            snappedToGround = true;
+            return;
+        }
+
         bool isGrounded = controller.isGrounded;
 
         HandleTurning();
