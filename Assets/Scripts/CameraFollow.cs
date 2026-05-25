@@ -9,6 +9,7 @@ public class CameraFollow : MonoBehaviour
     public float lookHeight = 1.5f;
     public float mouseCameraSpeed = 0.15f;
 
+
     private PlayerInputActions inputActions;
     private Vector2 lookInput;
 
@@ -16,6 +17,11 @@ public class CameraFollow : MonoBehaviour
     private bool rightClickHeld;
 
     private float cameraYawOffset = 0f;
+    private float cameraPitchOffset = 15f;
+
+    [SerializeField] private float minPitch = -10f;
+    [SerializeField] private float maxPitch = 45f;
+    [SerializeField] private float mouseVerticalSpeed = 0.1f;
 
     private void Awake()
     {
@@ -53,12 +59,31 @@ public class CameraFollow : MonoBehaviour
             cameraYawOffset += lookInput.x * mouseCameraSpeed;
         }
 
+        if (leftClickHeld || rightClickHeld)
+        {
+            cameraPitchOffset -= lookInput.y * mouseVerticalSpeed;
+
+            cameraPitchOffset = Mathf.Clamp(
+                cameraPitchOffset,
+                minPitch,
+                maxPitch
+            );
+        }
+
         if (rightClickHeld)
         {
             cameraYawOffset = 0f;
         }
 
-        Quaternion cameraRotation = target.rotation * Quaternion.Euler(0, cameraYawOffset, 0);
+        if (rightClickHeld)
+        {
+            cameraYawOffset = 0f;
+        }
+
+        Quaternion cameraRotation =
+            target.rotation *
+            Quaternion.Euler(cameraPitchOffset, cameraYawOffset, 0); 
+
         Vector3 desiredPosition = target.position + cameraRotation * offset;
 
         transform.position = Vector3.Lerp(
