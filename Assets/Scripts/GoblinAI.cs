@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class GoblinAI : MonoBehaviour
 {
+    [Header("Gravity")]
+    [SerializeField] private float gravity = -9.81f;
+    private Vector3 verticalVelocity;
+
     [Header("Target")]
     [SerializeField] private Transform player;
 
@@ -45,6 +49,8 @@ public class GoblinAI : MonoBehaviour
     {
         if (player == null) return;
 
+        ApplyGravity();
+
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
         if (distanceToPlayer <= detectionRange)
@@ -66,6 +72,20 @@ public class GoblinAI : MonoBehaviour
         {
             SetSpeed(0f);
         }
+    }
+
+    private void ApplyGravity()
+    {
+        if (controller == null) return;
+
+        if (controller.isGrounded && verticalVelocity.y < 0)
+        {
+            verticalVelocity.y = -2f;
+        }
+
+        verticalVelocity.y += gravity * Time.deltaTime;
+
+        controller.Move(verticalVelocity * Time.deltaTime);
     }
 
     private void MoveTowardsPlayer()
