@@ -3,7 +3,7 @@ using UnityEngine;
 public class GoblinAI : MonoBehaviour
 {
     [Header("Gravity")]
-    [SerializeField] private float gravity = -9.81f;
+    [SerializeField] private float gravity = -15f;
     private Vector3 verticalVelocity;
 
     [Header("Target")]
@@ -49,7 +49,7 @@ public class GoblinAI : MonoBehaviour
     {
         if (player == null) return;
 
-        ApplyGravity();
+        Vector3 horizontalMovement = Vector3.zero;
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
@@ -59,7 +59,7 @@ public class GoblinAI : MonoBehaviour
 
             if (distanceToPlayer > attackRange)
             {
-                MoveTowardsPlayer();
+                horizontalMovement = GetMovementTowardsPlayer();
                 SetSpeed(1f);
             }
             else
@@ -72,38 +72,44 @@ public class GoblinAI : MonoBehaviour
         {
             SetSpeed(0f);
         }
+
+        MoveWithGravity(horizontalMovement);
     }
 
-    private void ApplyGravity()
+    private Vector3 GetMovementTowardsPlayer()
     {
-        if (controller == null) return;
+        Vector3 direction = player.position - transform.position;
+        direction.y = 0f;
 
-        if (controller.isGrounded && verticalVelocity.y < 0)
+        if (direction.sqrMagnitude < 0.001f)
+        {
+            return Vector3.zero;
+        }
+
+        direction.Normalize();
+
+        return direction * moveSpeed;
+    }
+
+    private void MoveWithGravity(Vector3 horizontalMovement)
+    {
+        if (controller == null)
+        {
+            Debug.LogWarning(name + " has no CharacterController. Add one to the goblin prefab.");
+            transform.position += horizontalMovement * Time.deltaTime;
+            return;
+        }
+
+        if (controller.isGrounded && verticalVelocity.y < 0f)
         {
             verticalVelocity.y = -2f;
         }
 
         verticalVelocity.y += gravity * Time.deltaTime;
 
-        controller.Move(verticalVelocity * Time.deltaTime);
-    }
+        Vector3 finalMovement = horizontalMovement + verticalVelocity;
 
-    private void MoveTowardsPlayer()
-    {
-        Vector3 direction = player.position - transform.position;
-        direction.y = 0f;
-        direction.Normalize();
-
-        Vector3 movement = direction * moveSpeed * Time.deltaTime;
-
-        if (controller != null)
-        {
-            controller.Move(movement);
-        }
-        else
-        {
-            transform.position += movement;
-        }
+        controller.Move(finalMovement * Time.deltaTime);
     }
 
     private void TryAttack()
@@ -129,6 +135,7 @@ public class GoblinAI : MonoBehaviour
             {
                 playerHealth.TakeDamage(damage);
             }
+
             Invoke(nameof(ResetAttackIndex), 0.1f);
         }
     }
