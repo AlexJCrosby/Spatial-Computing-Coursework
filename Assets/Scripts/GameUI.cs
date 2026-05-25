@@ -8,11 +8,14 @@ public class GameUI : MonoBehaviour
     [SerializeField] private EyeTargetingFireballCaster fireballCaster;
     [SerializeField] private TelekinesisSpellCaster telekinesisCaster;
     [SerializeField] private AOEKnockbackSpellCaster knockbackCaster;
+    [SerializeField] private EyeTargetingFrostboltCaster frostboltCaster;
+
 
     [Header("Action Bar Cooldown Overlays")]
     [SerializeField] private Image fireCooldownOverlay;
     [SerializeField] private Image levitateCooldownOverlay;
     [SerializeField] private Image knockCooldownOverlay;
+    [SerializeField] private Image frostCooldownOverlay;
 
     [Header("References")]
     [SerializeField] private PlayerHealth playerHealth;
@@ -43,6 +46,11 @@ public class GameUI : MonoBehaviour
         {
             knockCooldownOverlay.fillAmount =
                 knockbackCaster.CooldownRemaining / knockbackCaster.CooldownDuration;
+        }
+        if (frostboltCaster != null && frostCooldownOverlay != null)
+        {
+            frostCooldownOverlay.fillAmount =
+                frostboltCaster.CooldownRemaining / frostboltCaster.CooldownDuration;
         }
     }
 
