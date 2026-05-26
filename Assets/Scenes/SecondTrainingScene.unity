@@ -2662,7 +2662,7 @@ MonoBehaviour:
   lookHeight: 2
   mouseCameraSpeed: 0.2
   minPitch: -10
-  maxPitch: 45
+  maxPitch: 90
   mouseVerticalSpeed: 0.1
 --- !u!114 &1621351382
 MonoBehaviour:

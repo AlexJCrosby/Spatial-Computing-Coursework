@@ -17,7 +17,7 @@ public class CameraFollow : MonoBehaviour
     private bool rightClickHeld;
 
     private float cameraYawOffset = 0f;
-    private float cameraPitchOffset = 25f;
+    private float cameraPitchOffset = 1f;
 
     [SerializeField] private float minPitch = -10f;
     [SerializeField] private float maxPitch = 45f;
