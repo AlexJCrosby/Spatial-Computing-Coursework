@@ -1,13 +1,8 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Windows.Speech;
 using System.Collections;
 
 public class Frostbolt : MonoBehaviour
 {
-    [Header("Input")]
-    [SerializeField] private Key castKey = Key.Y;
-
     [Header("Cooldown")]
     [SerializeField] private float cooldownDuration = 2f;
 
@@ -15,27 +10,12 @@ public class Frostbolt : MonoBehaviour
     public float CooldownRemaining { get; private set; }
     public bool IsOnCooldown => CooldownRemaining > 0f;
 
-    [Header("References")]
+    [Header("Setup")]
     [SerializeField] private GameObject frostboltPrefab;
-    [SerializeField] private Transform leftCastPoint;
-    [SerializeField] private EyeTargeting eyeTargeting;
-    [SerializeField] private Animator characterAnimator;
-    [SerializeField] private SpellArmIK armIK;
 
     [Header("Casting")]
     [SerializeField] private float castDelay = 0.35f;
     [SerializeField] private float projectileSpeed = 18f;
-
-    private KeywordRecognizer keywordRecognizer;
-
-    private void Start()
-    {
-        keywordRecognizer = new KeywordRecognizer(new string[] { "frost" });
-        keywordRecognizer.OnPhraseRecognized += OnPhraseRecognized;
-        keywordRecognizer.Start();
-
-        Debug.Log("Frostbolt ready. Press Y or say: frost");
-    }
 
     private void Update()
     {
@@ -43,14 +23,9 @@ public class Frostbolt : MonoBehaviour
         {
             CooldownRemaining -= Time.deltaTime;
         }
-
-        if (Keyboard.current != null && Keyboard.current[castKey].wasPressedThisFrame)
-        {
-            CastAtCurrentTarget();
-        }
     }
 
-    private void CastAtCurrentTarget()
+    public void Cast(SpellCastRequest request)
     {
         if (IsOnCooldown)
         {
@@ -58,59 +33,42 @@ public class Frostbolt : MonoBehaviour
             return;
         }
 
-        if (eyeTargeting == null)
+        if (!request.HasValidTarget)
         {
-            Debug.LogWarning("Frostbolt is missing EyeTargeting reference.");
+            Debug.Log("No valid target selected for frostbolt.");
             return;
         }
 
-        EyeTargetable currentTarget = eyeTargeting.CurrentTarget;
-
-        if (currentTarget == null)
+        if (frostboltPrefab == null)
         {
-            Debug.Log("No target selected for frostbolt.");
+            Debug.LogWarning("Frostbolt is missing frostbolt prefab.");
             return;
         }
 
-        if (characterAnimator != null)
+        if (request.CastPoint == null)
         {
-            characterAnimator.SetTrigger("CastFrost");
-        }
-
-        if (armIK != null && leftCastPoint != null)
-        {
-            armIK.AimAtLimited(
-                currentTarget.GetTargetPoint(),
-                AvatarIKGoal.LeftHand,
-                transform,
-                leftCastPoint
-            );
+            Debug.LogWarning("Frostbolt cast request has no cast point.");
+            return;
         }
 
         CooldownRemaining = cooldownDuration;
 
-        StartCoroutine(SpawnFrostboltAfterDelay(currentTarget.transform));
+        StartCoroutine(SpawnFrostboltAfterDelay(request));
     }
 
-    private IEnumerator SpawnFrostboltAfterDelay(Transform targetTransform)
+    private IEnumerator SpawnFrostboltAfterDelay(SpellCastRequest request)
     {
         yield return new WaitForSeconds(castDelay);
 
-        if (targetTransform == null)
+        if (!request.HasValidTarget || request.CastPoint == null)
         {
-            yield break;
-        }
-
-        if (frostboltPrefab == null || leftCastPoint == null)
-        {
-            Debug.LogWarning("Frostbolt is missing prefab or cast point.");
             yield break;
         }
 
         GameObject frostbolt = Instantiate(
             frostboltPrefab,
-            leftCastPoint.position,
-            leftCastPoint.rotation
+            request.CastPoint.position,
+            request.CastPoint.rotation
         );
 
         SimpleFireballProjectile projectile =
@@ -121,40 +79,8 @@ public class Frostbolt : MonoBehaviour
             projectile = frostbolt.AddComponent<SimpleFireballProjectile>();
         }
 
-        projectile.LaunchAt(targetTransform, projectileSpeed);
+        projectile.LaunchAt(request.Target.transform, projectileSpeed);
 
-        StartCoroutine(StopAimAfterDelay());
-
-        Debug.Log("Frostbolt fired at target: " + targetTransform.name);
-    }
-
-    private IEnumerator StopAimAfterDelay()
-    {
-        yield return new WaitForSeconds(0.4f);
-
-        if (armIK != null)
-        {
-            armIK.StopAiming();
-        }
-    }
-
-    private void OnPhraseRecognized(PhraseRecognizedEventArgs args)
-    {
-        if (args.text.ToLower() == "frost")
-        {
-            CastAtCurrentTarget();
-        }
-    }
-
-    private void OnDestroy()
-    {
-        if (keywordRecognizer == null) return;
-
-        if (keywordRecognizer.IsRunning)
-        {
-            keywordRecognizer.Stop();
-        }
-
-        keywordRecognizer.Dispose();
+        Debug.Log("Frostbolt fired at target: " + request.Target.name);
     }
 }

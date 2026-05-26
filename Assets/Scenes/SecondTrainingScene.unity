@@ -374,12 +374,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8018084769812766026, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 84442034}
-    - targetCorrespondingSourceObject: {fileID: 8018084769812766026, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 84442033}
-    - targetCorrespondingSourceObject: {fileID: 8018084769812766026, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 84442032}
     - targetCorrespondingSourceObject: {fileID: 8018084769812766026, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
       insertIndex: -1
@@ -402,6 +396,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8018084769812766026, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 84442049}
+    - targetCorrespondingSourceObject: {fileID: 8018084769812766026, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 84442050}
   m_SourcePrefab: {fileID: 100100000, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
 --- !u!4 &84442024 stripped
 Transform:
@@ -476,39 +473,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BeamAimProvider
   useMouseFallback: 1
   logDebugInfo: 0
---- !u!114 &84442033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 84442025}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ab7e91c77a82034c893deed62b2fb8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VoiceSpellCaster
-  playerSpellCaster: {fileID: 84442034}
---- !u!114 &84442034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 84442025}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfb09cadbf483ad4c8262a106f0671af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSpellCaster
-  fireballPrefab: {fileID: 6404518141201530030, guid: 43eee4f05095c8d49aa89a16a0337cb2, type: 3}
-  spellCastPoint: {fileID: 1711684736}
-  playerCamera: {fileID: 1621351384}
-  aimProvider: {fileID: 84442032}
-  characterAnimator: {fileID: 1902486878}
-  minDepth: 9
-  maxDepth: 25
-  depthMoveSpeed: 30
 --- !u!114 &84442046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -523,10 +487,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EyeTargetingFireballCaster
   cooldownDuration: 1
   fireballPrefab: {fileID: 6404518141201530030, guid: 43eee4f05095c8d49aa89a16a0337cb2, type: 3}
-  spellCastPoint: {fileID: 2089196343}
-  eyeTargeting: {fileID: 84442047}
-  characterAnimator: {fileID: 1902486878}
-  armIK: {fileID: 2063293453}
   castDelay: 0
   projectileSpeed: 40
 --- !u!114 &84442047
@@ -545,7 +505,8 @@ MonoBehaviour:
   aimProvider: {fileID: 84442032}
   preciseTargetScreenDistance: 180
   snapToClosestVisibleTarget: 1
-  highlightCurrentTarget: 1
+  tabTargetKey: 3
+  allowLeftClickSelection: 1
 --- !u!114 &84442048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -558,13 +519,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f2542cee9a57b546ad1d7b005fd99dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EyeTargetingFrostboltCaster
-  castKey: 42
   cooldownDuration: 1
   frostboltPrefab: {fileID: 949521340316140043, guid: 4332ae1ce4556944ca1b33eeb7e42dab, type: 3}
-  leftCastPoint: {fileID: 546680458}
-  eyeTargeting: {fileID: 84442047}
-  characterAnimator: {fileID: 1902486878}
-  armIK: {fileID: 2063293453}
   castDelay: 0
   projectileSpeed: 35
 --- !u!114 &84442049
@@ -580,7 +536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AOEKnockback
   cooldownDuration: 1.5
-  eyeTargeting: {fileID: 84442047}
+  targetingSystem: {fileID: 84442047}
   playerTransform: {fileID: 84442024}
   characterAnimator: {fileID: 1902486878}
   radius: 10
@@ -590,6 +546,28 @@ MonoBehaviour:
   groundRaycastHeight: 20
   groundRaycastDistance: 60
   landingHeightOffset: 0.05
+--- !u!114 &84442050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84442025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46bbbc1567c1105459bf9f9e39b40869, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpellCastingController
+  fireball: {fileID: 84442046}
+  frostbolt: {fileID: 84442048}
+  fireballKey: 43
+  frostboltKey: 42
+  targetingSystem: {fileID: 84442047}
+  voiceCastPoint: {fileID: 546680458}
+  keyboardCastPoint: {fileID: 2089196343}
+  characterAnimator: {fileID: 1902486878}
+  fireballTrigger: CastSpell
+  frostboltTrigger: CastFrost
 --- !u!1 &125196442
 GameObject:
   m_ObjectHideFlags: 0

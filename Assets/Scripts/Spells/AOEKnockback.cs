@@ -12,7 +12,7 @@ public class AOEKnockback : MonoBehaviour
     public bool IsOnCooldown => CooldownRemaining > 0f;
 
     [Header("References")]
-    [SerializeField] private EyeTargeting eyeTargeting;
+    [SerializeField] private TargetingSystem targetingSystem;
     [SerializeField] private Transform playerTransform;
     [SerializeField] private Animator characterAnimator;
 
@@ -83,13 +83,13 @@ public class AOEKnockback : MonoBehaviour
         }
         else
         {
-            if (eyeTargeting == null)
+            if (targetingSystem == null)
             {
-                Debug.LogWarning("AOEKnockback is missing EyeTargeting reference.");
+                Debug.LogWarning("AOEKnockback is missing TargetingSystem reference.");
                 return;
             }
 
-            EyeTargetable currentTarget = eyeTargeting.CurrentTarget;
+            EyeTargetable currentTarget = targetingSystem.CurrentTarget;
 
             if (currentTarget == null)
             {
