@@ -386,22 +386,22 @@ PrefabInstance:
       addedObject: {fileID: 84442031}
     - targetCorrespondingSourceObject: {fileID: 8018084769812766026, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 84442030}
-    - targetCorrespondingSourceObject: {fileID: 8018084769812766026, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 84442029}
-    - targetCorrespondingSourceObject: {fileID: 8018084769812766026, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 84442028}
     - targetCorrespondingSourceObject: {fileID: 8018084769812766026, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 84442027}
     - targetCorrespondingSourceObject: {fileID: 8018084769812766026, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 84442026}
+      addedObject: {fileID: 84442047}
     - targetCorrespondingSourceObject: {fileID: 8018084769812766026, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 84442040}
+      addedObject: {fileID: 84442046}
+    - targetCorrespondingSourceObject: {fileID: 8018084769812766026, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 84442048}
+    - targetCorrespondingSourceObject: {fileID: 8018084769812766026, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 84442049}
   m_SourcePrefab: {fileID: 100100000, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
 --- !u!4 &84442024 stripped
 Transform:
@@ -413,29 +413,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8018084769812766026, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
   m_PrefabInstance: {fileID: 84442023}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &84442026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 84442025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f2542cee9a57b546ad1d7b005fd99dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EyeTargetingFrostboltCaster
-  castKey: 42
-  cooldownDuration: 0.5
-  frostboltPrefab: {fileID: 949521340316140043, guid: 4332ae1ce4556944ca1b33eeb7e42dab, type: 3}
-  LeftCastPoint: {fileID: 546680458}
-  playerCamera: {fileID: 1621351384}
-  aimProvider: {fileID: 84442032}
-  characterAnimator: {fileID: 1902486878}
-  armIK: {fileID: 2063293453}
-  castDelay: 0
-  maxScreenDistance: 180
-  projectileSpeed: 40
 --- !u!114 &84442027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,28 +427,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   maxHealth: 1000
   characterAnimator: {fileID: 1902486878}
---- !u!114 &84442028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 84442025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3656b54b75c11849bc674b1b9cffb59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AOEKnockbackSpellCaster
-  cooldownDuration: 5
-  playerCamera: {fileID: 1621351384}
-  aimProvider: {fileID: 84442032}
-  playerTransform: {fileID: 84442024}
-  characterAnimator: {fileID: 1902486878}
-  maxScreenDistance: 180
-  radius: 5
-  knockbackDistance: 15
-  upwardHeight: 3.5
-  knockbackDuration: 1.6
 --- !u!114 &84442029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,34 +443,12 @@ MonoBehaviour:
   playerCamera: {fileID: 1621351384}
   aimProvider: {fileID: 84442032}
   playerTransform: {fileID: 84442024}
-  fireballCaster: {fileID: 84442030}
+  fireballCaster: {fileID: 0}
   characterAnimator: {fileID: 1902486878}
   maxScreenDistance: 180
   horizontalAngleRange: 80
   verticalMoveRange: 15
   minimumHeight: 1.5
---- !u!114 &84442030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 84442025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23f5b5fd3497e5d439fa8220da461a49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EyeTargetingFireballCaster
-  cooldownDuration: 0.5
-  fireballPrefab: {fileID: 6404518141201530030, guid: 43eee4f05095c8d49aa89a16a0337cb2, type: 3}
-  spellCastPoint: {fileID: 2089196343}
-  playerCamera: {fileID: 1621351384}
-  aimProvider: {fileID: 84442032}
-  characterAnimator: {fileID: 1902486878}
-  armIK: {fileID: 2063293453}
-  castDelay: 0
-  maxScreenDistance: 180
-  projectileSpeed: 50
 --- !u!114 &84442031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -576,7 +509,7 @@ MonoBehaviour:
   minDepth: 9
   maxDepth: 25
   depthMoveSpeed: 30
---- !u!114 &84442040
+--- !u!114 &84442046
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -585,9 +518,78 @@ MonoBehaviour:
   m_GameObject: {fileID: 84442025}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab9d0d77aa060c545be225c2e6f5cd4f, type: 3}
+  m_Script: {fileID: 11500000, guid: 23f5b5fd3497e5d439fa8220da461a49, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SnapToGroundOnStart
+  m_EditorClassIdentifier: Assembly-CSharp::EyeTargetingFireballCaster
+  cooldownDuration: 1
+  fireballPrefab: {fileID: 6404518141201530030, guid: 43eee4f05095c8d49aa89a16a0337cb2, type: 3}
+  spellCastPoint: {fileID: 2089196343}
+  eyeTargeting: {fileID: 84442047}
+  characterAnimator: {fileID: 1902486878}
+  armIK: {fileID: 2063293453}
+  castDelay: 0
+  projectileSpeed: 40
+--- !u!114 &84442047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84442025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ae2336b360143e45b15ece05b8c067e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EyeTargeting
+  playerCamera: {fileID: 1621351384}
+  aimProvider: {fileID: 84442032}
+  preciseTargetScreenDistance: 180
+  snapToClosestVisibleTarget: 1
+  highlightCurrentTarget: 1
+--- !u!114 &84442048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84442025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f2542cee9a57b546ad1d7b005fd99dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EyeTargetingFrostboltCaster
+  castKey: 42
+  cooldownDuration: 1
+  frostboltPrefab: {fileID: 949521340316140043, guid: 4332ae1ce4556944ca1b33eeb7e42dab, type: 3}
+  leftCastPoint: {fileID: 546680458}
+  eyeTargeting: {fileID: 84442047}
+  characterAnimator: {fileID: 1902486878}
+  armIK: {fileID: 2063293453}
+  castDelay: 0
+  projectileSpeed: 35
+--- !u!114 &84442049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84442025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78d86c9bc38ba4c41bcd4778037fbd0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AOEKnockback
+  cooldownDuration: 1.5
+  eyeTargeting: {fileID: 84442047}
+  playerTransform: {fileID: 84442024}
+  characterAnimator: {fileID: 1902486878}
+  radius: 10
+  knockbackDistance: 6
+  upwardHeight: 3
+  knockbackDuration: 0.6
+  groundRaycastHeight: 20
+  groundRaycastDistance: 60
+  landingHeightOffset: 0.05
 --- !u!1 &125196442
 GameObject:
   m_ObjectHideFlags: 0
@@ -2109,10 +2111,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36771f2df4e41fa4690225326028ac10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameUI
-  fireballCaster: {fileID: 84442030}
+  fireballCaster: {fileID: 84442046}
   telekinesisCaster: {fileID: 84442029}
-  knockbackCaster: {fileID: 84442028}
-  frostboltCaster: {fileID: 84442026}
+  knockbackCaster: {fileID: 84442049}
+  frostboltCaster: {fileID: 84442048}
   fireCooldownOverlay: {fileID: 1900865871}
   levitateCooldownOverlay: {fileID: 537006916}
   knockCooldownOverlay: {fileID: 929628729}

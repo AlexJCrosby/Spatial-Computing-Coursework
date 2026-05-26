@@ -46,34 +46,21 @@ public class PlayerHealth : MonoBehaviour
             characterAnimator.SetBool("Dead", true);
         }
 
-        PlayerMovement movement = GetComponent<PlayerMovement>();
-        if (movement != null)
-        {
-            movement.enabled = false;
-        }
+        DisableIfPresent<PlayerMovement>();
+        DisableIfPresent<PlayerSpellCaster>();
+        DisableIfPresent<Fireball>();
+        DisableIfPresent<Frostbolt>();
+        DisableIfPresent<TelekinesisSpellCaster>();
+        DisableIfPresent<AOEKnockback>();
+    }
 
-        PlayerSpellCaster spellCaster = GetComponent<PlayerSpellCaster>();
-        if (spellCaster != null)
-        {
-            spellCaster.enabled = false;
-        }
+    private void DisableIfPresent<T>() where T : MonoBehaviour
+    {
+        T component = GetComponent<T>();
 
-        EyeTargetingFireballCaster eyeFireball = GetComponent<EyeTargetingFireballCaster>();
-        if (eyeFireball != null)
+        if (component != null)
         {
-            eyeFireball.enabled = false;
-        }
-
-        TelekinesisSpellCaster telekinesis = GetComponent<TelekinesisSpellCaster>();
-        if (telekinesis != null)
-        {
-            telekinesis.enabled = false;
-        }
-
-        AOEKnockbackSpellCaster knockback = GetComponent<AOEKnockbackSpellCaster>();
-        if (knockback != null)
-        {
-            knockback.enabled = false;
+            component.enabled = false;
         }
     }
 }

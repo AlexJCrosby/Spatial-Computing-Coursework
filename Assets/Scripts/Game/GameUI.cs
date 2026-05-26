@@ -5,10 +5,10 @@ using UnityEngine.UI;
 public class GameUI : MonoBehaviour
 {
     [Header("Spell References")]
-    [SerializeField] private EyeTargetingFireballCaster fireballCaster;
+    [SerializeField] private Fireball fireballCaster;
     [SerializeField] private TelekinesisSpellCaster telekinesisCaster;
-    [SerializeField] private AOEKnockbackSpellCaster knockbackCaster;
-    [SerializeField] private EyeTargetingFrostboltCaster frostboltCaster;
+    [SerializeField] private AOEKnockback knockbackCaster;
+    [SerializeField] private Frostbolt frostboltCaster;
 
 
     [Header("Action Bar Cooldown Overlays")]

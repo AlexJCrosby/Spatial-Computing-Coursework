@@ -15,7 +15,7 @@ public class TelekinesisSpellCaster : MonoBehaviour
     [SerializeField] private Camera playerCamera;
     [SerializeField] private BeamAimProvider aimProvider;
     [SerializeField] private Transform playerTransform;
-    [SerializeField] private EyeTargetingFireballCaster fireballCaster;
+    [SerializeField] private Fireball fireballCaster;
     [SerializeField] private Animator characterAnimator;
 
     [Header("Targeting")]
