@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Windows.Speech;
+using System.Collections;
 
 public class SpellCastingController : MonoBehaviour
 {
@@ -24,6 +25,19 @@ public class SpellCastingController : MonoBehaviour
     [SerializeField] private string fireballTrigger = "CastSpell";
     [SerializeField] private string frostboltTrigger = "CastFrost";
 
+    [Header("Voice Volley Settings")]
+    [SerializeField] private int fireballVoiceCastCount = 5;
+    [SerializeField] private float fireballVoiceCastInterval = 1f;
+    [SerializeField] private float fireballVoiceCooldown = 8f;
+
+    [SerializeField] private int frostboltVoiceCastCount = 5;
+    [SerializeField] private float frostboltVoiceCastInterval = 1f;
+    [SerializeField] private float frostboltVoiceCooldown = 8f;
+
+    private float fireballVoiceCooldownRemaining;
+    private float frostboltVoiceCooldownRemaining;
+    private bool fireballVolleyActive;
+    private bool frostboltVolleyActive;
     private KeywordRecognizer keywordRecognizer;
 
     private void Start()
@@ -39,43 +53,96 @@ public class SpellCastingController : MonoBehaviour
 
         Debug.Log("SpellCastingController ready. Voice: fire/frost. Keys: R/Y.");
     }
-    
+
     private void Update()
+    {
+        TickVoiceCooldowns();
+        HandleKeyboardInput();
+    }
+
+    private void TickVoiceCooldowns()
+    {
+        if (fireballVoiceCooldownRemaining > 0f)
+        {
+            fireballVoiceCooldownRemaining -= Time.deltaTime;
+        }
+
+        if (frostboltVoiceCooldownRemaining > 0f)
+        {
+            frostboltVoiceCooldownRemaining -= Time.deltaTime;
+        }
+    }
+
+    private void HandleKeyboardInput()
     {
         if (Keyboard.current == null) return;
 
         if (Keyboard.current[fireballKey].wasPressedThisFrame)
         {
-            CastFireballFromKeyboard();
+            CastFireball(SpellInputSource.Keyboard);
         }
 
         if (Keyboard.current[frostboltKey].wasPressedThisFrame)
         {
-            CastFrostboltFromKeyboard();
+            CastFrostbolt(SpellInputSource.Keyboard);
         }
-    }
-
-    private void CastFireballFromKeyboard()
-    {
-        CastFireball(SpellInputSource.Keyboard);
-    }
-
-    private void CastFrostboltFromKeyboard()
-    {
-        CastFrostbolt(SpellInputSource.Keyboard);
     }
 
     private void CastFireballFromVoice()
     {
-        CastFireball(SpellInputSource.Voice);
+        if (fireballVolleyActive)
+        {
+            Debug.Log("Fireball voice volley is already active.");
+            return;
+        }
+
+        if (fireballVoiceCooldownRemaining > 0f)
+        {
+            Debug.Log("Fireball voice volley is on cooldown.");
+            return;
+        }
+
+        StartCoroutine(VoiceVolleyRoutine(
+            castAction: () => CastFireball(SpellInputSource.Voice, true),
+            castCount: fireballVoiceCastCount,
+            interval: fireballVoiceCastInterval,
+            onStart: () => fireballVolleyActive = true,
+            onEnd: () =>
+            {
+                fireballVolleyActive = false;
+                fireballVoiceCooldownRemaining = fireballVoiceCooldown;
+            }
+        ));
     }
 
     private void CastFrostboltFromVoice()
     {
-        CastFrostbolt(SpellInputSource.Voice);
+        if (frostboltVolleyActive)
+        {
+            Debug.Log("Frostbolt voice volley is already active.");
+            return;
+        }
+
+        if (frostboltVoiceCooldownRemaining > 0f)
+        {
+            Debug.Log("Frostbolt voice volley is on cooldown.");
+            return;
+        }
+
+        StartCoroutine(VoiceVolleyRoutine(
+            castAction: () => CastFrostbolt(SpellInputSource.Voice, true),
+            castCount: frostboltVoiceCastCount,
+            interval: frostboltVoiceCastInterval,
+            onStart: () => frostboltVolleyActive = true,
+            onEnd: () =>
+            {
+                frostboltVolleyActive = false;
+                frostboltVoiceCooldownRemaining = frostboltVoiceCooldown;
+            }
+        ));
     }
 
-    private void CastFireball(SpellInputSource inputSource)
+    private void CastFireball(SpellInputSource inputSource, bool bypassCooldown = false)
     {
         if (fireball == null)
         {
@@ -83,7 +150,7 @@ public class SpellCastingController : MonoBehaviour
             return;
         }
 
-        SpellCastRequest request = BuildRequest(inputSource);
+        SpellCastRequest request = BuildRequest(inputSource, bypassCooldown);
 
         if (!request.HasValidTarget)
         {
@@ -92,11 +159,10 @@ public class SpellCastingController : MonoBehaviour
         }
 
         TriggerAnimation(fireballTrigger);
-
         fireball.Cast(request);
     }
 
-    private void CastFrostbolt(SpellInputSource inputSource)
+    private void CastFrostbolt(SpellInputSource inputSource, bool bypassCooldown = false)
     {
         if (frostbolt == null)
         {
@@ -104,7 +170,7 @@ public class SpellCastingController : MonoBehaviour
             return;
         }
 
-        SpellCastRequest request = BuildRequest(inputSource);
+        SpellCastRequest request = BuildRequest(inputSource, bypassCooldown);
 
         if (!request.HasValidTarget)
         {
@@ -113,11 +179,36 @@ public class SpellCastingController : MonoBehaviour
         }
 
         TriggerAnimation(frostboltTrigger);
-
         frostbolt.Cast(request);
     }
 
-    private SpellCastRequest BuildRequest(SpellInputSource inputSource)
+    private IEnumerator VoiceVolleyRoutine(
+        System.Action castAction,
+        int castCount,
+        float interval,
+        System.Action onStart,
+        System.Action onEnd
+    )
+    {
+        onStart?.Invoke();
+
+        for (int i = 0; i < castCount; i++)
+        {
+            castAction?.Invoke();
+
+            if (i < castCount - 1)
+            {
+                yield return new WaitForSeconds(interval);
+            }
+        }
+
+        onEnd?.Invoke();
+    }
+
+    private SpellCastRequest BuildRequest(
+        SpellInputSource inputSource,
+        bool bypassCooldown = false
+    )
     {
         EyeTargetable target = GetTargetForInputSource(inputSource);
         Transform castPoint = GetCastPointForInputSource(inputSource);
@@ -125,7 +216,8 @@ public class SpellCastingController : MonoBehaviour
         return new SpellCastRequest(
             target,
             castPoint,
-            inputSource
+            inputSource,
+            bypassCooldown
         );
     }
 
@@ -135,11 +227,6 @@ public class SpellCastingController : MonoBehaviour
         {
             Debug.LogWarning("SpellCastingController is missing TargetingSystem reference.");
             return null;
-        }
-
-        if (inputSource == SpellInputSource.Keyboard)
-        {
-            return targetingSystem.SelectedTarget;
         }
 
         return targetingSystem.EyeTarget;

@@ -190,6 +190,16 @@ public class TargetingSystem : MonoBehaviour
         }
     }
 
+    public void SelectTargetIfNone()
+    {
+        if (SelectedTarget != null && SelectedTarget.CanBeTargeted)
+        {
+            return;
+        }
+
+        SelectNextVisibleTarget();
+    }
+
     private void RefreshAllHighlights()
     {
         foreach (EyeTargetable target in targets)

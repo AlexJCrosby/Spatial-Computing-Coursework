@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e3602cc1419371498f9e420a34f7368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPCHealth
-  maxHealth: 1
+  maxHealth: 6
   animator: {fileID: 0}
   destroyDelayAfterDeath: 3
 --- !u!114 &3312223900351224895

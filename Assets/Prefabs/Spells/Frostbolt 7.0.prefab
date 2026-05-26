@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 949521340316140037}
   - component: {fileID: 949521340316140042}
   - component: {fileID: 6054375674198057941}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Frostbolt 7.0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2816246263444442205}
@@ -296,6 +296,10 @@ PrefabInstance:
       propertyPath: InitialModule.startRotation.minScalar
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3627085169160478440, guid: 2b5cee9955310bc41b215d4c4139a3fd, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4437815489372539490, guid: 2b5cee9955310bc41b215d4c4139a3fd, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -351,6 +355,10 @@ PrefabInstance:
     - target: {fileID: 5134855725189285682, guid: 2b5cee9955310bc41b215d4c4139a3fd, type: 3}
       propertyPath: m_Name
       value: FrostBolt 5.0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5134855725189285682, guid: 2b5cee9955310bc41b215d4c4139a3fd, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5751995286324310214, guid: 2b5cee9955310bc41b215d4c4139a3fd, type: 3}
       propertyPath: m_LocalScale.x
@@ -408,6 +416,10 @@ PrefabInstance:
     - target: {fileID: 5920480514758584680, guid: e5ced4c0d2aadaa4db7816a6ff471025, type: 3}
       propertyPath: m_Name
       value: dust
+      objectReference: {fileID: 0}
+    - target: {fileID: 5920480514758584680, guid: e5ced4c0d2aadaa4db7816a6ff471025, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9178126625395030214, guid: e5ced4c0d2aadaa4db7816a6ff471025, type: 3}
       propertyPath: m_LocalScale.x

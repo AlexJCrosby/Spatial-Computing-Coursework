@@ -507,6 +507,7 @@ MonoBehaviour:
   snapToClosestVisibleTarget: 1
   tabTargetKey: 3
   allowLeftClickSelection: 1
+  clearSelectedTargetKey: 60
 --- !u!114 &84442048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -535,14 +536,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d86c9bc38ba4c41bcd4778037fbd0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AOEKnockback
-  cooldownDuration: 1.5
+  cooldownDuration: 20
   targetingSystem: {fileID: 84442047}
   playerTransform: {fileID: 84442024}
   characterAnimator: {fileID: 1902486878}
   radius: 10
-  knockbackDistance: 6
-  upwardHeight: 3
-  knockbackDuration: 0.6
+  knockbackDistance: 20
+  upwardHeight: 6
+  knockbackDuration: 2
   groundRaycastHeight: 20
   groundRaycastDistance: 60
   landingHeightOffset: 0.05
@@ -568,6 +569,12 @@ MonoBehaviour:
   characterAnimator: {fileID: 1902486878}
   fireballTrigger: CastSpell
   frostboltTrigger: CastFrost
+  fireballVoiceCastCount: 20
+  fireballVoiceCastInterval: 0.25
+  fireballVoiceCooldown: 2
+  frostboltVoiceCastCount: 20
+  frostboltVoiceCastInterval: 0.25
+  frostboltVoiceCooldown: 2
 --- !u!1 &125196442
 GameObject:
   m_ObjectHideFlags: 0

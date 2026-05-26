@@ -27,7 +27,7 @@ public class Frostbolt : MonoBehaviour
 
     public void Cast(SpellCastRequest request)
     {
-        if (IsOnCooldown)
+        if (IsOnCooldown && !request.BypassCooldown)
         {
             Debug.Log("Frostbolt is on cooldown.");
             return;
@@ -51,7 +51,10 @@ public class Frostbolt : MonoBehaviour
             return;
         }
 
-        CooldownRemaining = cooldownDuration;
+        if (!request.BypassCooldown)
+        {
+            CooldownRemaining = cooldownDuration;
+        }
 
         StartCoroutine(SpawnFrostboltAfterDelay(request));
     }
