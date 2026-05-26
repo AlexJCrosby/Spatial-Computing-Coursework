@@ -448,7 +448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7e95b7df9df8124087c5b9ae003e75b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
-  maxHealth: 10
+  maxHealth: 1000
   characterAnimator: {fileID: 1902486878}
 --- !u!114 &84442028
 MonoBehaviour:
