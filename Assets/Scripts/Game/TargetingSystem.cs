@@ -14,6 +14,7 @@ public class TargetingSystem : MonoBehaviour
     [Header("Selected Targeting")]
     [SerializeField] private Key tabTargetKey = Key.Tab;
     [SerializeField] private bool allowLeftClickSelection = true;
+    [SerializeField] private Key clearSelectedTargetKey = Key.Escape;
 
     public EyeTargetable CurrentTarget => EyeTarget;
     public EyeTargetable EyeTarget { get; private set; }
@@ -32,13 +33,37 @@ public class TargetingSystem : MonoBehaviour
     private void Update()
     {
         RefreshTargets();
-        UpdateEyeTarget();
         HandleSelectedTargetInput();
+        UpdateEyeTarget();
+        ValidateTargets();
+        RefreshAllHighlights();
     }
 
     private void RefreshTargets()
     {
         targets = FindObjectsByType<EyeTargetable>(FindObjectsSortMode.None);
+    }
+
+    private void HandleSelectedTargetInput()
+    {
+        if (Keyboard.current != null && Keyboard.current[tabTargetKey].wasPressedThisFrame)
+        {
+            SelectNextVisibleTarget();
+        }
+
+        if (Keyboard.current != null && Keyboard.current[clearSelectedTargetKey].wasPressedThisFrame)
+        {
+            SelectedTarget = null;
+        }
+
+        if (
+            allowLeftClickSelection &&
+            Mouse.current != null &&
+            Mouse.current.leftButton.wasPressedThisFrame
+        )
+        {
+            SelectTargetUnderMouse();
+        }
     }
 
     private void UpdateEyeTarget()
@@ -54,6 +79,9 @@ public class TargetingSystem : MonoBehaviour
         foreach (EyeTargetable target in targets)
         {
             if (!IsValidVisibleTarget(target)) continue;
+
+            // Eye target is not allowed to be the manually selected target.
+            if (target == SelectedTarget) continue;
 
             Vector3 screenPosition =
                 playerCamera.WorldToScreenPoint(target.GetTargetPoint());
@@ -76,35 +104,11 @@ public class TargetingSystem : MonoBehaviour
             }
         }
 
-        EyeTargetable newEyeTarget = preciseTarget;
+        EyeTarget = preciseTarget;
 
-        if (newEyeTarget == null && snapToClosestVisibleTarget)
+        if (EyeTarget == null && snapToClosestVisibleTarget)
         {
-            newEyeTarget = closestVisibleTarget;
-        }
-
-        SetEyeTarget(newEyeTarget);
-    }
-
-    private void HandleSelectedTargetInput()
-    {
-        if (Keyboard.current != null && Keyboard.current[tabTargetKey].wasPressedThisFrame)
-        {
-            SelectNextVisibleTarget();
-        }
-
-        if (
-            allowLeftClickSelection &&
-            Mouse.current != null &&
-            Mouse.current.leftButton.wasPressedThisFrame
-        )
-        {
-            SelectTargetUnderMouse();
-        }
-
-        if (SelectedTarget != null && !SelectedTarget.CanBeTargeted)
-        {
-            SetSelectedTarget(null);
+            EyeTarget = closestVisibleTarget;
         }
     }
 
@@ -114,7 +118,7 @@ public class TargetingSystem : MonoBehaviour
 
         if (nextTarget != null)
         {
-            SetSelectedTarget(nextTarget);
+            SelectedTarget = nextTarget;
         }
     }
 
@@ -152,6 +156,8 @@ public class TargetingSystem : MonoBehaviour
 
     private void SelectTargetUnderMouse()
     {
+        if (playerCamera == null) return;
+
         Ray ray = playerCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
         if (Physics.Raycast(ray, out RaycastHit hit, 500f))
@@ -161,7 +167,51 @@ public class TargetingSystem : MonoBehaviour
 
             if (target != null && target.CanBeTargeted)
             {
-                SetSelectedTarget(target);
+                SelectedTarget = target;
+            }
+        }
+    }
+
+    private void ValidateTargets()
+    {
+        if (EyeTarget != null && !EyeTarget.CanBeTargeted)
+        {
+            EyeTarget = null;
+        }
+
+        if (SelectedTarget != null && !SelectedTarget.CanBeTargeted)
+        {
+            SelectedTarget = null;
+        }
+
+        if (EyeTarget == SelectedTarget)
+        {
+            EyeTarget = null;
+        }
+    }
+
+    private void RefreshAllHighlights()
+    {
+        foreach (EyeTargetable target in targets)
+        {
+            if (target == null) continue;
+
+            bool isSelectedTarget = target == SelectedTarget;
+            bool isEyeTarget = target == EyeTarget;
+
+            if (isSelectedTarget)
+            {
+                // selected/tab/left-click target = locked highlight
+                target.SetHighlighted(true, true);
+            }
+            else if (isEyeTarget)
+            {
+                // eye target = normal highlight
+                target.SetHighlighted(true, false);
+            }
+            else
+            {
+                target.SetHighlighted(false);
             }
         }
     }
@@ -180,37 +230,6 @@ public class TargetingSystem : MonoBehaviour
         if (screenPosition.y < 0f || screenPosition.y > Screen.height) return false;
 
         return true;
-    }
-
-    private void SetEyeTarget(EyeTargetable newTarget)
-    {
-        if (EyeTarget == newTarget) return;
-
-        UpdateHighlight(EyeTarget);
-        EyeTarget = newTarget;
-        UpdateHighlight(EyeTarget);
-    }
-
-    private void SetSelectedTarget(EyeTargetable newTarget)
-    {
-        if (SelectedTarget == newTarget) return;
-
-        UpdateHighlight(SelectedTarget);
-        SelectedTarget = newTarget;
-        UpdateHighlight(SelectedTarget);
-    }
-
-    private void UpdateHighlight(EyeTargetable target)
-    {
-        if (target == null) return;
-
-        bool isEyeTarget = target == EyeTarget;
-        bool isSelectedTarget = target == SelectedTarget;
-
-        target.SetHighlighted(
-            isEyeTarget || isSelectedTarget,
-            isSelectedTarget
-        );
     }
 
     public Vector2 GetAimScreenPosition()

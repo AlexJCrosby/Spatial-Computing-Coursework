@@ -130,8 +130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2fbdbaa2d41b5f4fb44c6861e7393fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EyeTargetable
-  normalHighlightColor: {r: 1, g: 0, b: 0.087764025, a: 1}
-  lockedHighlightColor: {r: 1, g: 1, b: 1, a: 1}
+  normalHighlightColor: {r: 1, g: 1, b: 1, a: 1}
+  lockedHighlightColor: {r: 1, g: 0, b: 0.14148259, a: 1}
 --- !u!114 &2652744429071750008
 MonoBehaviour:
   m_ObjectHideFlags: 0
