@@ -60,38 +60,59 @@ public class EyeTargetingFireballCaster : MonoBehaviour
 
         Vector2 gazeScreenPosition = GetGazeScreenPosition();
 
-        EyeTargetable closestTarget = null;
-        float closestDistance = maxScreenDistance;
+        EyeTargetable preciseTarget = null;
+        float preciseDistance = maxScreenDistance;
+
+        EyeTargetable fallbackTarget = null;
+        float fallbackDistance = float.MaxValue;
 
         foreach (EyeTargetable target in targets)
         {
             if (target == null) continue;
             if (!target.CanBeTargeted) continue;
 
-            Vector3 targetScreenPosition = playerCamera.WorldToScreenPoint(target.GetTargetPoint());
+            Vector3 targetScreenPosition =
+                playerCamera.WorldToScreenPoint(target.GetTargetPoint());
 
+            // Ignore targets behind camera
             if (targetScreenPosition.z < 0) continue;
+
+            // Ignore targets outside visible screen
+            if (targetScreenPosition.x < 0 || targetScreenPosition.x > Screen.width) continue;
+            if (targetScreenPosition.y < 0 || targetScreenPosition.y > Screen.height) continue;
 
             float distance = Vector2.Distance(
                 gazeScreenPosition,
                 new Vector2(targetScreenPosition.x, targetScreenPosition.y)
             );
 
-            if (distance < closestDistance)
+            // Normal precise targeting
+            if (distance < preciseDistance)
             {
-                closestDistance = distance;
-                closestTarget = target;
+                preciseDistance = distance;
+                preciseTarget = target;
+            }
+
+            // Backup targeting: closest visible target to gaze
+            if (distance < fallbackDistance)
+            {
+                fallbackDistance = distance;
+                fallbackTarget = target;
             }
         }
 
-        if (currentTarget != closestTarget)
+        EyeTargetable selectedTarget = preciseTarget != null
+            ? preciseTarget
+            : fallbackTarget;
+
+        if (currentTarget != selectedTarget)
         {
             if (currentTarget != null)
             {
                 currentTarget.SetHighlighted(false);
             }
 
-            currentTarget = closestTarget;
+            currentTarget = selectedTarget;
 
             if (currentTarget != null)
             {
