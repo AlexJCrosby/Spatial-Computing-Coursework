@@ -8,6 +8,7 @@ public class SpellCastingController : MonoBehaviour
     [Header("Spells")]
     [SerializeField] private Fireball fireball;
     [SerializeField] private Frostbolt frostbolt;
+    [SerializeField] private AOEKnockback knockback;
 
     [Header("Keyboard Input")]
     [SerializeField] private Key fireballKey = Key.R;
@@ -261,6 +262,29 @@ public class SpellCastingController : MonoBehaviour
         else if (command == "frost")
         {
             CastFrostboltFromVoice();
+        }
+    }
+
+    public float GetCooldownFillAmount(SpellDefinition spell)
+    {
+        if (spell == null) return 0f;
+
+        switch (spell.spellID)
+        {
+            case SpellID.Fireball:
+                if (fireball == null) return 0f;
+                return fireball.CooldownRemaining / fireball.CooldownDuration;
+
+            case SpellID.Frostbolt:
+                if (frostbolt == null) return 0f;
+                return frostbolt.CooldownRemaining / frostbolt.CooldownDuration;
+
+            case SpellID.Knockback:
+                if (knockback == null) return 0f;
+                return knockback.CooldownRemaining / knockback.CooldownDuration;
+
+            default:
+                return 0f;
         }
     }
 

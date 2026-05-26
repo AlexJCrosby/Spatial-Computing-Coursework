@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a92a661e30863504281717a5d6c1923e, type: 3}
   m_Name: Fireball
   m_EditorClassIdentifier: Assembly-CSharp::SpellDefinition
-  spellName: 
+  spellName: Fireball
   spellID: 0
-  icon: {fileID: 0}
-  description: 
+  icon: {fileID: 21300000, guid: 40be8921eaa3c3d45980551b8b1bdc05, type: 3}
+  description: 'Fireball
+
+'

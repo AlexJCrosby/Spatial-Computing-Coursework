@@ -9,6 +9,9 @@ public class ActionBarUI : MonoBehaviour
         public SpellDefinition spell;
     }
 
+    [Header("Casting")]
+    [SerializeField] private SpellCastingController spellCastingController;
+
     [Header("Slots")]
     [SerializeField] private ActionBarSlot[] slots;
 
@@ -18,6 +21,26 @@ public class ActionBarUI : MonoBehaviour
     private void Start()
     {
         ApplyStartingLayout();
+    }
+    
+    private void Update()
+    {
+        UpdateCooldowns();
+    }
+
+    private void UpdateCooldowns()
+    {
+        if (spellCastingController == null) return;
+
+        foreach (ActionBarSlot slot in slots)
+        {
+            if (slot == null) continue;
+
+            float cooldownFill =
+                spellCastingController.GetCooldownFillAmount(slot.AssignedSpell);
+
+            slot.SetCooldown(cooldownFill);
+        }
     }
 
     private void ApplyStartingLayout()
@@ -31,7 +54,7 @@ public class ActionBarUI : MonoBehaviour
                 Debug.LogWarning("Invalid action bar slot index: " + startingSlot.slotIndex);
                 continue;
             }
-
+            Debug.Log("Applying starting action bar layout.");
             slots[startingSlot.slotIndex].SetSpell(startingSlot.spell);
         }
     }

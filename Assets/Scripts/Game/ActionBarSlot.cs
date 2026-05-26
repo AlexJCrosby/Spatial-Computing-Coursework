@@ -13,13 +13,18 @@ public class ActionBarSlot : MonoBehaviour
     public void SetSpell(SpellDefinition spell)
     {
         AssignedSpell = spell;
+
+        Debug.Log("Setting slot spell to: " + spell.spellName);
+
         Refresh();
+        SetCooldown(0.75f);
     }
 
     public void Clear()
     {
         AssignedSpell = null;
         Refresh();
+        SetCooldown(0.75f);
     }
 
     public void SetCooldown(float fillAmount)
@@ -32,17 +37,24 @@ public class ActionBarSlot : MonoBehaviour
 
     private void Refresh()
     {
-        if (iconImage == null) return;
+        if (iconImage == null)
+        {
+            Debug.LogError(name + " has no Icon Image assigned.");
+            return;
+        }
 
         if (AssignedSpell == null)
         {
             iconImage.sprite = null;
             iconImage.enabled = false;
+            return;
         }
-        else
-        {
-            iconImage.sprite = AssignedSpell.icon;
-            iconImage.enabled = AssignedSpell.icon != null;
-        }
+
+        Debug.Log("Icon sprite is: " + AssignedSpell.icon);
+
+        iconImage.sprite = AssignedSpell.icon;
+        iconImage.color = Color.white;
+        iconImage.enabled = true;
+        iconImage.gameObject.SetActive(true);
     }
 }
