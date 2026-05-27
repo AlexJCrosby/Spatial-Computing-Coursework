@@ -579,7 +579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EyeTargetingFireballCaster
   cooldownDuration: 1
   damage: 1
-  fireballPrefab: {fileID: 1485987801625442810, guid: 0203a37b0f047a74794f252f4783d6b2, type: 3}
+  fireballPrefab: {fileID: 3800864110370926544, guid: fca5bc6be87474d4d8479f14d0ed2351, type: 3}
   castDelay: 0
   projectileSpeed: 30
 --- !u!114 &84442047
@@ -615,7 +615,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EyeTargetingFrostboltCaster
   cooldownDuration: 1
   damage: 1
-  frostboltPrefab: {fileID: 8357042805450777661, guid: ab3404488d7b5f84394f8aeed7654211, type: 3}
+  frostboltPrefab: {fileID: 2594342239608267824, guid: cb6a830959b825146a9f9f1551cc607f, type: 3}
   castDelay: 0
   projectileSpeed: 25
 --- !u!114 &84442049
@@ -664,11 +664,11 @@ MonoBehaviour:
   characterAnimator: {fileID: 1902486878}
   fireballTrigger: CastSpell
   frostboltTrigger: CastFrost
-  fireballVoiceCastCount: 100
-  fireballVoiceCastInterval: 0.05
+  fireballVoiceCastCount: 50
+  fireballVoiceCastInterval: 0.1
   fireballVoiceCooldown: 60
-  frostboltVoiceCastCount: 100
-  frostboltVoiceCastInterval: 0.05
+  frostboltVoiceCastCount: 50
+  frostboltVoiceCastInterval: 0.1
   frostboltVoiceCooldown: 60
 --- !u!1 &125196442
 GameObject:
