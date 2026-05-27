@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5177876662074522338}
   - component: {fileID: 8024907109934147359}
   - component: {fileID: 2542259595886699021}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Projectile_Fire_2_LWRP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4871,11 +4871,11 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 4
-  m_CollisionDetection: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!135 &8024907109934147359
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4909,10 +4909,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c0856037d17322498c07284406b38e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ExplosionPrefab: {fileID: 6981941031284743971, guid: edbcd3b3c18ccf44db5b7031741faf88, type: 3}
-  DestroyExplosion: 5
-  DestroyChildren: 4
-  Velocity: {x: -15, y: 0}
+  lifetime: 5
+  explosionPrefab: {fileID: 6981941031284743971, guid: edbcd3b3c18ccf44db5b7031741faf88, type: 3}
+  destroyExplosionAfter: 4
+  destroyDetachedVisualAfter: 2
 --- !u!1 &3800864110802284986
 GameObject:
   m_ObjectHideFlags: 0

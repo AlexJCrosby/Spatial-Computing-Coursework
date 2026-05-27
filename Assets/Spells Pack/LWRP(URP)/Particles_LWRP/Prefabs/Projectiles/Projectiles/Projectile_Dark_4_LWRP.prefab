@@ -19511,7 +19511,7 @@ GameObject:
   - component: {fileID: 2795979044510009796}
   - component: {fileID: 9124780097625766429}
   - component: {fileID: 6719308641335342886}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Projectile_Dark_4_LWRP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24367,11 +24367,11 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 4
-  m_CollisionDetection: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!135 &9124780097625766429
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -24405,7 +24405,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c0856037d17322498c07284406b38e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ExplosionPrefab: {fileID: 7675784908668134992, guid: 6d1fea1343854824184e4c2c25dbc4b6, type: 3}
-  DestroyExplosion: 5
-  DestroyChildren: 3
-  Velocity: {x: -20, y: 0}
+  lifetime: 5
+  explosionPrefab: {fileID: 7675784908668134992, guid: 6d1fea1343854824184e4c2c25dbc4b6, type: 3}
+  destroyExplosionAfter: 4
+  destroyDetachedVisualAfter: 2
+  homeToTarget: 1
+  turnSpeed: 12

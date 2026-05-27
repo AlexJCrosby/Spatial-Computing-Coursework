@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4239023574742434551}
   - component: {fileID: 797873997319877364}
   - component: {fileID: 4846145217049646531}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Projectile_Ice_3_LWRP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4878,11 +4878,11 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 4
-  m_CollisionDetection: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!135 &797873997319877364
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4916,10 +4916,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c0856037d17322498c07284406b38e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ExplosionPrefab: {fileID: 5910997854716048990, guid: 2fa95aa1358815d47ad352550c7ceb99, type: 3}
-  DestroyExplosion: 5
-  DestroyChildren: 5
-  Velocity: {x: -15, y: 0}
+  lifetime: 5
+  explosionPrefab: {fileID: 5910997854716048990, guid: 2fa95aa1358815d47ad352550c7ceb99, type: 3}
+  destroyExplosionAfter: 4
+  destroyDetachedVisualAfter: 2
+  homeToTarget: 1
+  turnSpeed: 12
 --- !u!1 &2594342240193226743
 GameObject:
   m_ObjectHideFlags: 0

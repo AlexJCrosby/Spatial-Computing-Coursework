@@ -14662,7 +14662,7 @@ GameObject:
   - component: {fileID: 2621816464434416232}
   - component: {fileID: 9108744946503216420}
   - component: {fileID: 633576103552199870}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Projectile_Nature_LWRP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19611,7 +19611,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -19628,10 +19628,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c0856037d17322498c07284406b38e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ExplosionPrefab: {fileID: 5009343919208920899, guid: 936b80d9efe81df49b985eb0898c3f55, type: 3}
-  DestroyExplosion: 3
-  DestroyChildren: 1
-  Velocity: {x: -24, y: 4}
+  lifetime: 5
+  explosionPrefab: {fileID: 5009343919208920899, guid: 936b80d9efe81df49b985eb0898c3f55, type: 3}
+  destroyExplosionAfter: 4
+  destroyDetachedVisualAfter: 2
+  homeToTarget: 1
+  turnSpeed: 12
 --- !u!1 &6760736238468051309
 GameObject:
   m_ObjectHideFlags: 0

@@ -19529,7 +19529,7 @@ GameObject:
   - component: {fileID: 1085354205202620217}
   - component: {fileID: 2849163357486383812}
   - component: {fileID: 7751709978772047830}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Projectile_Arcane_2_LWRP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24386,11 +24386,11 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 4
-  m_CollisionDetection: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!135 &2849163357486383812
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -24424,7 +24424,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c0856037d17322498c07284406b38e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ExplosionPrefab: {fileID: 3470175545269027477, guid: 3f498e4cf53914e48b44a0340f496a52, type: 3}
-  DestroyExplosion: 5
-  DestroyChildren: 3
-  Velocity: {x: -20, y: 0}
+  lifetime: 5
+  explosionPrefab: {fileID: 3470175545269027477, guid: 3f498e4cf53914e48b44a0340f496a52, type: 3}
+  destroyExplosionAfter: 4
+  destroyDetachedVisualAfter: 2
+  homeToTarget: 1
+  turnSpeed: 12
