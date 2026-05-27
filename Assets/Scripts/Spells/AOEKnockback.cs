@@ -16,6 +16,7 @@ public class AOEKnockback : MonoBehaviour
     [SerializeField] private Transform playerTransform;
     [SerializeField] private Animator characterAnimator;
     [SerializeField] private LayerMask groundLayerMask;
+    [SerializeField] private GameObject crackDecalPrefab;
 
     [Header("VFX")]
     [SerializeField] private GameObject knockbackVfxPrefab;
@@ -33,6 +34,7 @@ public class AOEKnockback : MonoBehaviour
     [SerializeField] private float landingHeightOffset = 0.05f;
     [SerializeField] private float vfxGroundOffset = 0.05f;
 
+    [SerializeField] private float decalLifetime = 6f;
     private KeywordRecognizer keywordRecognizer;
 
     private void Start()
@@ -167,6 +169,24 @@ public class AOEKnockback : MonoBehaviour
             spawnPosition,
             Quaternion.identity
         );
+
+        if (crackDecalPrefab != null)
+        {
+            RaycastHit hit;
+
+            Vector3 rayStart = transform.position + Vector3.up * 5f;
+
+            if (Physics.Raycast(rayStart, Vector3.down, out hit, 20f))
+            {
+                GameObject decal = Instantiate(
+                    crackDecalPrefab,
+                    hit.point + Vector3.up * 0.02f,
+                    Quaternion.Euler(90f, Random.Range(0f, 360f), 0f)
+                );
+
+                Destroy(decal, decalLifetime);
+            }
+        }
 
         Destroy(vfx, vfxLifetime);
     }
