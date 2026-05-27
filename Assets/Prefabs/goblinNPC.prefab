@@ -161,7 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GoblinAI
   gravity: -9.81
   player: {fileID: 0}
-  moveSpeed: 3
+  moveSpeed: 5
   detectionRange: 5000
   attackRange: 3
   damage: 1

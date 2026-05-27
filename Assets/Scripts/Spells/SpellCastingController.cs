@@ -283,6 +283,16 @@ public class SpellCastingController : MonoBehaviour
                 if (knockback == null) return 0f;
                 return knockback.CooldownRemaining / knockback.CooldownDuration;
 
+            case SpellID.FireVolley:
+                return fireballVoiceCooldown > 0f
+                    ? fireballVoiceCooldownRemaining / fireballVoiceCooldown
+                    : 0f;
+
+            case SpellID.FrostVolley:
+                return frostboltVoiceCooldown > 0f
+                    ? frostboltVoiceCooldownRemaining / frostboltVoiceCooldown
+                    : 0f;
+
             default:
                 return 0f;
         }

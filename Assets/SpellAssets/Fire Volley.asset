@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a92a661e30863504281717a5d6c1923e, type: 3}
-  m_Name: Knockback
+  m_Name: Fire Volley
   m_EditorClassIdentifier: Assembly-CSharp::SpellDefinition
-  spellName: Knockback
-  spellID: 2
-  icon: {fileID: 21300000, guid: 11cff42fa3043894693c11bcf0c92b66, type: 3}
-  description: 'Knockback
+  spellName: Fire Volley
+  spellID: 4
+  icon: {fileID: 21300000, guid: ab5e57cf303d2b248bd0faa00f26e838, type: 3}
+  description: 'Fire Volley
 
 '

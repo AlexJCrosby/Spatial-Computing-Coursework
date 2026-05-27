@@ -4,8 +4,10 @@ public enum SpellID
 {
     Fireball,
     Frostbolt,
+    Knockback,
     Levitate,
-    Knockback
+    FireVolley,
+    FrostVolley
 }
 
 [CreateAssetMenu(
