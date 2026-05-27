@@ -494,6 +494,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8018084769812766026, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 84442056}
+    - targetCorrespondingSourceObject: {fileID: 8018084769812766026, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 84442057}
   m_SourcePrefab: {fileID: 100100000, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
 --- !u!4 &84442024 stripped
 Transform:
@@ -587,7 +590,7 @@ MonoBehaviour:
   voiceVolleyProjectilePrefab: {fileID: 2994363800222682087, guid: 52935ebed0585194ba76b98398f5dc27, type: 3}
   castDelay: 0
   keyboardProjectileSpeed: 30
-  voiceVolleyProjectileSpeed: 60
+  voiceVolleyProjectileSpeed: 90
 --- !u!114 &84442047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -626,7 +629,7 @@ MonoBehaviour:
   voiceVolleyProjectilePrefab: {fileID: 8357042805450777661, guid: 79d43e2119ac4be45840a482df49da4c, type: 3}
   castDelay: 0
   keyboardProjectileSpeed: 25
-  voiceVolleyProjectileSpeed: 50
+  voiceVolleyProjectileSpeed: 75
 --- !u!114 &84442049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -716,6 +719,35 @@ MonoBehaviour:
   groundRaycastDistance: 60
   groundOffset: 0.05
   frostNovaTrigger: CastFrost
+--- !u!114 &84442057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84442025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 309afb18b4f5f5a42ac54567380013bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VolcanicBomb
+  keybind: 40
+  voiceCommand: bomb
+  delayBeforeExplosion: 4.5
+  damage: 10
+  explosionRadius: 10
+  targetingSystem: {fileID: 84442047}
+  characterAnimator: {fileID: 1902486878}
+  castTrigger: CastBomb
+  targetExplosionTrigger: BombExplode
+  warningVfxPrefab: {fileID: 6669767379399158163, guid: 6bd7746646e320844a97eaffa20d33c3, type: 3}
+  explosionVfxPrefab: {fileID: 0}
+  warningVfxLocalOffset: {x: 0, y: 0.7, z: 0}
+  explosionVfxLifetime: 3
+  explosionVfxOffset: {x: 0, y: 0.7, z: 0}
+  hitVfxPrefab: {fileID: 5685069347925975538, guid: 1c4588a647e79774489c06bf83d7b03f, type: 3}
+  hitVfxLifetime: 4
+  hitVfxLocalOffset: {x: 0, y: 0.7, z: 0}
 --- !u!1 &125196442
 GameObject:
   m_ObjectHideFlags: 0
