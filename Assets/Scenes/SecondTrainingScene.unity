@@ -579,7 +579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EyeTargetingFireballCaster
   cooldownDuration: 1
   damage: 1
-  fireballPrefab: {fileID: 3800864110370926544, guid: fca5bc6be87474d4d8479f14d0ed2351, type: 3}
+  fireballPrefab: {fileID: 3800864110370926544, guid: f9070d9e2b4137640ab43b0b4791d685, type: 3}
   castDelay: 0
   projectileSpeed: 30
 --- !u!114 &84442047
@@ -615,7 +615,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EyeTargetingFrostboltCaster
   cooldownDuration: 1
   damage: 1
-  frostboltPrefab: {fileID: 2594342239608267824, guid: cb6a830959b825146a9f9f1551cc607f, type: 3}
+  frostboltPrefab: {fileID: 2594342239608267824, guid: 36a7e1f5d139abb4b8caf682052a5cd8, type: 3}
   castDelay: 0
   projectileSpeed: 25
 --- !u!114 &84442049
@@ -1325,7 +1325,7 @@ Transform:
   m_GameObject: {fileID: 546680457}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4442,7 +4442,7 @@ Transform:
   m_GameObject: {fileID: 2089196342}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
