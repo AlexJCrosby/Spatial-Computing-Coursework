@@ -28,6 +28,10 @@ public class VolcanicBomb : MonoBehaviour
     [SerializeField] private GameObject explosionVfxPrefab;
     [SerializeField] private Vector3 warningVfxLocalOffset = Vector3.zero;
     [SerializeField] private float explosionVfxLifetime = 5f;
+    [SerializeField] private Vector3 explosionVfxOffset = Vector3.zero;
+    [SerializeField] private GameObject hitVfxPrefab;
+    [SerializeField] private float hitVfxLifetime = 4f;
+    [SerializeField] private Vector3 hitVfxLocalOffset = Vector3.zero;
 
     private KeywordRecognizer keywordRecognizer;
 
@@ -126,7 +130,8 @@ public class VolcanicBomb : MonoBehaviour
             targetAnimator.SetTrigger(targetExplosionTrigger);
         }
 
-        Vector3 explosionOrigin = target.GetTargetPoint();
+        Vector3 explosionOrigin =
+            target.GetTargetPoint() + explosionVfxOffset;
 
         if (warningVfx != null)
         {
@@ -157,14 +162,33 @@ public class VolcanicBomb : MonoBehaviour
     {
         Collider[] hits = Physics.OverlapSphere(origin, explosionRadius);
 
+        HashSet<NPCHealth> damagedTargets = new();
+
         foreach (Collider hit in hits)
         {
             NPCHealth npcHealth = hit.GetComponentInParent<NPCHealth>();
 
             if (npcHealth == null) continue;
+            if (damagedTargets.Contains(npcHealth)) continue;
+
+            damagedTargets.Add(npcHealth);
 
             npcHealth.TakeDamage(damage);
+
+            SpawnHitVfx(npcHealth.transform);
         }
+    }
+
+    private void SpawnHitVfx(Transform target)
+    {
+        if (hitVfxPrefab == null) return;
+        if (target == null) return;
+
+        GameObject hitVfx = Instantiate(hitVfxPrefab, target);
+        hitVfx.transform.localPosition = hitVfxLocalOffset;
+        hitVfx.transform.localRotation = Quaternion.identity;
+
+        Destroy(hitVfx, hitVfxLifetime);
     }
 
     private void CleanupTarget(EyeTargetable target, GameObject warningVfx)
