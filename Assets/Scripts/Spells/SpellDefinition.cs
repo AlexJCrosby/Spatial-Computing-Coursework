@@ -7,13 +7,16 @@ public enum SpellID
     Knockback,
     Levitate,
     FireVolley,
-    FrostVolley
+    FrostVolley,
+    FrostNova,
+    VolcanicBomb
 }
 
 [CreateAssetMenu(
     fileName = "New Spell Definition",
     menuName = "Spells/Spell Definition"
 )]
+
 public class SpellDefinition : ScriptableObject
 {
     [Header("Identity")]

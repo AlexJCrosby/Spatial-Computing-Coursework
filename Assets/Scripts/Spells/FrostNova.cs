@@ -12,6 +12,11 @@ public class FrostNova : MonoBehaviour
     [Header("Frost Nova")]
     [SerializeField] private float duration = 3f;
     [SerializeField] private float radius = 5f;
+    [SerializeField] private float cooldownDuration = 8f;
+
+    public float CooldownDuration => cooldownDuration;
+    public float CooldownRemaining { get; private set; }
+    public bool IsOnCooldown => CooldownRemaining > 0f;
 
     [Header("References")]
     [SerializeField] private TargetingSystem targetingSystem;
@@ -49,6 +54,11 @@ public class FrostNova : MonoBehaviour
 
     private void Update()
     {
+        if (CooldownRemaining > 0f)
+        {
+            CooldownRemaining -= Time.deltaTime;
+        }
+
         if (Keyboard.current == null) return;
 
         if (Keyboard.current[keybind].wasPressedThisFrame)
@@ -63,6 +73,12 @@ public class FrostNova : MonoBehaviour
 
     private void CastFrostNova(bool castFromPlayer)
     {
+        if (IsOnCooldown)
+        {
+            Debug.Log("Frost Nova is on cooldown.");
+            return;
+        }
+
         if (playerTransform == null)
         {
             Debug.LogWarning("FrostNova is missing Player Transform reference.");
@@ -98,6 +114,8 @@ public class FrostNova : MonoBehaviour
         {
             characterAnimator.SetTrigger(frostNovaTrigger);
         }
+
+        CooldownRemaining = cooldownDuration;
 
         SpawnAoeVfx(origin);
         FreezeTargets(origin);

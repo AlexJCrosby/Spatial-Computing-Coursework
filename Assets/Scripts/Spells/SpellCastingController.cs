@@ -9,6 +9,8 @@ public class SpellCastingController : MonoBehaviour
     [SerializeField] private Fireball fireball;
     [SerializeField] private Frostbolt frostbolt;
     [SerializeField] private AOEKnockback knockback;
+    [SerializeField] private FrostNova frostNova;
+    [SerializeField] private VolcanicBomb volcanicBomb;
 
     [Header("Keyboard Input")]
     [SerializeField] private Key fireballKey = Key.R;
@@ -307,6 +309,14 @@ public class SpellCastingController : MonoBehaviour
                 return frostboltVoiceCooldown > 0f
                     ? frostboltVoiceCooldownRemaining / frostboltVoiceCooldown
                     : 0f;
+
+            case SpellID.FrostNova:
+                if (frostNova == null) return 0f;
+                return frostNova.CooldownRemaining / frostNova.CooldownDuration;
+
+            case SpellID.VolcanicBomb:
+                if (volcanicBomb == null) return 0f;
+                return volcanicBomb.CooldownRemaining / volcanicBomb.CooldownDuration;
 
             default:
                 return 0f;

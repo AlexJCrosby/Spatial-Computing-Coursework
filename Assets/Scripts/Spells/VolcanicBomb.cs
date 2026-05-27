@@ -14,6 +14,11 @@ public class VolcanicBomb : MonoBehaviour
     [SerializeField] private float delayBeforeExplosion = 3f;
     [SerializeField] private int damage = 3;
     [SerializeField] private float explosionRadius = 3f;
+    [SerializeField] private float cooldownDuration = 8f;
+
+    public float CooldownDuration => cooldownDuration;
+    public float CooldownRemaining { get; private set; }
+    public bool IsOnCooldown => CooldownRemaining > 0f;
 
     [Header("References")]
     [SerializeField] private TargetingSystem targetingSystem;
@@ -49,6 +54,11 @@ public class VolcanicBomb : MonoBehaviour
 
     private void Update()
     {
+        if (CooldownRemaining > 0f)
+        {
+            CooldownRemaining -= Time.deltaTime;
+        }
+
         if (Keyboard.current == null) return;
         if (keybind == Key.None) return;
 
@@ -60,6 +70,12 @@ public class VolcanicBomb : MonoBehaviour
 
     private void CastVolcanicBomb()
     {
+        if (IsOnCooldown)
+        {
+            Debug.Log("Volcanic Bomb is on cooldown.");
+            return;
+        }
+
         if (targetingSystem == null)
         {
             Debug.LogWarning("VolcanicBomb is missing TargetingSystem reference.");
@@ -94,6 +110,8 @@ public class VolcanicBomb : MonoBehaviour
 
             activeWarningVfx.Remove(target);
         }
+
+        CooldownRemaining = cooldownDuration;
 
         activeBombs[target] = StartCoroutine(BombRoutine(target));
 
