@@ -453,6 +453,12 @@ MonoBehaviour:
   detectionRange: 5000
   attackRange: 3
   damage: 1
+  obstacleCheckDistance: 1.2
+  obstacleCheckHeight: 0.8
+  avoidanceStrength: 1.5
+  obstacleLayers:
+    serializedVersion: 2
+    m_Bits: 256
   attackCooldown: 1.2
   animator: {fileID: 2562582760034334136}
 --- !u!54 &6148589313967424883

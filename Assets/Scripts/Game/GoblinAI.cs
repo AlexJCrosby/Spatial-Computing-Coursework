@@ -14,6 +14,10 @@ public class GoblinAI : MonoBehaviour
     [SerializeField] private float detectionRange = 10f;
     [SerializeField] private float attackRange = 2f;
     [SerializeField] private int damage = 1;
+    [SerializeField] private float obstacleCheckDistance = 1.2f;
+    [SerializeField] private float obstacleCheckHeight = 0.8f;
+    [SerializeField] private float avoidanceStrength = 1.5f;
+    [SerializeField] private LayerMask obstacleLayers;
 
     [Header("Attack")]
     [SerializeField] private float attackCooldown = 1.2f;
@@ -78,17 +82,67 @@ public class GoblinAI : MonoBehaviour
 
     private Vector3 GetMovementTowardsPlayer()
     {
-        Vector3 direction = player.position - transform.position;
-        direction.y = 0f;
+        Vector3 desiredDirection = player.position - transform.position;
+        desiredDirection.y = 0f;
 
-        if (direction.sqrMagnitude < 0.001f)
+        if (desiredDirection.sqrMagnitude < 0.001f)
         {
             return Vector3.zero;
         }
 
-        direction.Normalize();
+        desiredDirection.Normalize();
 
-        return direction * moveSpeed;
+        Vector3 rayOrigin = transform.position + Vector3.up * obstacleCheckHeight;
+
+        bool blockedAhead = Physics.Raycast(
+            rayOrigin,
+            desiredDirection,
+            obstacleCheckDistance,
+            obstacleLayers
+        );
+
+        if (blockedAhead)
+        {
+            Vector3 leftDirection = Quaternion.Euler(0f, -60f, 0f) * desiredDirection;
+            Vector3 rightDirection = Quaternion.Euler(0f, 60f, 0f) * desiredDirection;
+
+            bool blockedLeft = Physics.Raycast(
+                rayOrigin,
+                leftDirection,
+                obstacleCheckDistance,
+                obstacleLayers
+            );
+
+            bool blockedRight = Physics.Raycast(
+                rayOrigin,
+                rightDirection,
+                obstacleCheckDistance,
+                obstacleLayers
+            );
+
+            if (!blockedLeft && blockedRight)
+            {
+                desiredDirection = leftDirection;
+            }
+            else if (blockedLeft && !blockedRight)
+            {
+                desiredDirection = rightDirection;
+            }
+            else if (!blockedLeft && !blockedRight)
+            {
+                desiredDirection =
+                    Vector3.Distance(transform.position + leftDirection, player.position) <
+                    Vector3.Distance(transform.position + rightDirection, player.position)
+                        ? leftDirection
+                        : rightDirection;
+            }
+            else
+            {
+                desiredDirection = -desiredDirection;
+            }
+        }
+
+        return desiredDirection * moveSpeed * avoidanceStrength;
     }
 
     private void MoveWithGravity(Vector3 horizontalMovement)
