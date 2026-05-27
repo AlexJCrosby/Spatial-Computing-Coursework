@@ -51,10 +51,10 @@ MonoBehaviour:
   - title: Fireball
     position:
       serializedVersion: 2
-      x: 1602
+      x: 1550
       y: -440
-      width: 683
-      height: 1674
+      width: 735
+      height: 1724
     contents:
     - model: {fileID: 8926484042661614859}
       id: 0
@@ -78,9 +78,9 @@ MonoBehaviour:
   categories: []
   uiBounds:
     serializedVersion: 2
-    x: 1602
+    x: 1550
     y: -444
-    width: 1744
+    width: 1796
     height: 1951
 --- !u!114 &114350483966674976
 MonoBehaviour:
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d4c867f6b72b714dbb5fd1780afe208, type: 3}
-  m_Name: Fireball_01_withTrails
+  m_Name: Fireball_01_withTrails 1
   m_EditorClassIdentifier: 
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 0}
@@ -225,7 +225,7 @@ VisualEffectResource:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Fireball_01_withTrails
+  m_Name: Fireball_01_withTrails 1
   m_Graph: {fileID: 114350483966674976}
   m_Infos:
     m_RendererSettings:
@@ -320,7 +320,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 60
+      m_SerializableObject: 40
     m_Space: -1
   m_Property:
     name: Rate
@@ -1191,7 +1191,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661615036}
       inputSlot: {fileID: 8926484042661615021}
-    position: {x: 1627, y: 1128}
+    position: {x: 1575, y: 1118}
     expandedSlots: []
     expanded: 0
     supecollapsed: 0
@@ -2558,7 +2558,7 @@ MonoBehaviour:
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
+  m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
   m_OutputSlots:
@@ -2749,7 +2749,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615154}
   - {fileID: 8926484042661615158}
   dataType: 0
-  capacity: 100
+  capacity: 50
   stripCapacity: 16
   particlePerStripCount: 16
   needsComputeBounds: 0
