@@ -662,12 +662,12 @@ MonoBehaviour:
   characterAnimator: {fileID: 1902486878}
   fireballTrigger: CastSpell
   frostboltTrigger: CastFrost
-  fireballVoiceCastCount: 20
+  fireballVoiceCastCount: 100
   fireballVoiceCastInterval: 0.05
-  fireballVoiceCooldown: 20
-  frostboltVoiceCastCount: 20
+  fireballVoiceCooldown: 60
+  frostboltVoiceCastCount: 100
   frostboltVoiceCastInterval: 0.05
-  frostboltVoiceCooldown: 20
+  frostboltVoiceCooldown: 60
 --- !u!1 &125196442
 GameObject:
   m_ObjectHideFlags: 0
