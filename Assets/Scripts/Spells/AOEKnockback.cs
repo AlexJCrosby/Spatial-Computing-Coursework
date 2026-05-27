@@ -15,6 +15,11 @@ public class AOEKnockback : MonoBehaviour
     [SerializeField] private TargetingSystem targetingSystem;
     [SerializeField] private Transform playerTransform;
     [SerializeField] private Animator characterAnimator;
+    [SerializeField] private LayerMask groundLayerMask;
+
+    [Header("VFX")]
+    [SerializeField] private GameObject knockbackVfxPrefab;
+    [SerializeField] private float vfxLifetime = 5f;
 
     [Header("Targeting")]
     [SerializeField] private float radius = 5f;
@@ -26,6 +31,7 @@ public class AOEKnockback : MonoBehaviour
     [SerializeField] private float groundRaycastHeight = 20f;
     [SerializeField] private float groundRaycastDistance = 60f;
     [SerializeField] private float landingHeightOffset = 0.05f;
+    [SerializeField] private float vfxGroundOffset = 0.05f;
 
     private KeywordRecognizer keywordRecognizer;
 
@@ -101,6 +107,8 @@ public class AOEKnockback : MonoBehaviour
             ignoredTarget = currentTarget;
         }
 
+        SpawnKnockbackVfx(origin);
+
         Collider[] hits = Physics.OverlapSphere(origin, radius);
 
         foreach (Collider hit in hits)
@@ -147,20 +155,36 @@ public class AOEKnockback : MonoBehaviour
         Debug.Log("AOE knockback cast.");
     }
 
+    private void SpawnKnockbackVfx(Vector3 origin)
+    {
+        if (knockbackVfxPrefab == null) return;
+
+        Vector3 spawnPosition = SnapPositionToGround(origin);
+        spawnPosition.y += vfxGroundOffset;
+
+        GameObject vfx = Instantiate(
+            knockbackVfxPrefab,
+            spawnPosition,
+            Quaternion.identity
+        );
+
+        Destroy(vfx, vfxLifetime);
+    }
+
     private Vector3 SnapPositionToGround(Vector3 position)
     {
         Vector3 rayStart = position + Vector3.up * groundRaycastHeight;
 
         if (Physics.Raycast(
-            rayStart,
-            Vector3.down,
-            out RaycastHit hit,
-            groundRaycastDistance
-        ))
+             rayStart,
+             Vector3.down,
+             out RaycastHit hit,
+             groundRaycastDistance,
+             groundLayerMask
+         ))
         {
             position.y = hit.point.y + landingHeightOffset;
         }
-
         return position;
     }
 

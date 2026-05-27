@@ -630,10 +630,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d86c9bc38ba4c41bcd4778037fbd0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AOEKnockback
-  cooldownDuration: 20
+  cooldownDuration: 1
   targetingSystem: {fileID: 84442047}
   playerTransform: {fileID: 84442024}
   characterAnimator: {fileID: 1902486878}
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  knockbackVfxPrefab: {fileID: 7747745502478403832, guid: 677238dfed53a2c45b171dbe0d3019f4, type: 3}
+  vfxLifetime: 1
   radius: 10
   knockbackDistance: 20
   upwardHeight: 6
@@ -641,6 +646,7 @@ MonoBehaviour:
   groundRaycastHeight: 20
   groundRaycastDistance: 60
   landingHeightOffset: 0.05
+  vfxGroundOffset: 0.05
 --- !u!114 &84442050
 MonoBehaviour:
   m_ObjectHideFlags: 0
