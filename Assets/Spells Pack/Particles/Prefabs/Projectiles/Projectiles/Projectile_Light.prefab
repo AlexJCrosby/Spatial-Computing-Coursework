@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5021204317874399418}
   - component: {fileID: 3645560516263605438}
   - component: {fileID: 1700859269516208388}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Trail(glow)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4859,7 +4859,7 @@ GameObject:
   m_Component:
   - component: {fileID: 371114089987613669}
   - component: {fileID: 8238031988680166396}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4889,7 +4889,7 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2078417121618325703}
   m_Enabled: 0
-  serializedVersion: 12
+  serializedVersion: 13
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
@@ -4941,7 +4941,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -4957,7 +4957,7 @@ GameObject:
   - component: {fileID: 4964053581918951220}
   - component: {fileID: 7104203480153047059}
   - component: {fileID: 7665290631809903987}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9812,7 +9812,7 @@ GameObject:
   - component: {fileID: 7905661704852219280}
   - component: {fileID: 7011942232389472203}
   - component: {fileID: 7072446048323228996}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Projectile_Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14748,7 +14748,7 @@ GameObject:
   - component: {fileID: 8874882253210453374}
   - component: {fileID: 8042053273096890288}
   - component: {fileID: 3845037115514895497}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}

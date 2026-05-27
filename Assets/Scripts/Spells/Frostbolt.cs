@@ -10,6 +10,9 @@ public class Frostbolt : MonoBehaviour
     public float CooldownRemaining { get; private set; }
     public bool IsOnCooldown => CooldownRemaining > 0f;
 
+    [Header("Damage")]
+    [SerializeField] private int damage = 1;
+
     [Header("Setup")]
     [SerializeField] private GameObject frostboltPrefab;
 
@@ -74,15 +77,15 @@ public class Frostbolt : MonoBehaviour
             request.CastPoint.rotation
         );
 
-        SimpleFireballProjectile projectile =
-            frostbolt.GetComponent<SimpleFireballProjectile>();
+        Projectile projectile =
+            frostbolt.GetComponent<Projectile>();
 
         if (projectile == null)
         {
-            projectile = frostbolt.AddComponent<SimpleFireballProjectile>();
+            projectile = frostbolt.AddComponent<Projectile>();
         }
 
-        projectile.LaunchAt(request.Target.transform, projectileSpeed);
+        projectile.LaunchAt(request.Target.transform, projectileSpeed, damage);
 
         Debug.Log("Frostbolt fired at target: " + request.Target.name);
     }

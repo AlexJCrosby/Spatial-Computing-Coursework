@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6408456868548894758}
   - component: {fileID: 6408456868548894756}
   - component: {fileID: 6408456868548894759}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Energy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4859,7 +4859,7 @@ GameObject:
   - component: {fileID: 6408456868806090115}
   - component: {fileID: 6408456868806090113}
   - component: {fileID: 6408456868806090112}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spell 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9712,7 +9712,7 @@ GameObject:
   - component: {fileID: 6408456868880991934}
   - component: {fileID: 6408456868880991932}
   - component: {fileID: 6408456868880991935}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Thunder 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14560,7 +14560,7 @@ GameObject:
   - component: {fileID: 6408456869737278222}
   - component: {fileID: 6408456869737278220}
   - component: {fileID: 6408456869737278223}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spell 3 (Trail)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19407,7 +19407,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6408456869940476652}
   - component: {fileID: 6408456869940476653}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19437,7 +19437,7 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6408456869940476655}
   m_Enabled: 0
-  serializedVersion: 12
+  serializedVersion: 13
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
@@ -19489,7 +19489,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -19505,7 +19505,7 @@ GameObject:
   - component: {fileID: 6408456869940538083}
   - component: {fileID: 6408456869940538081}
   - component: {fileID: 6408456869940538080}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24365,7 +24365,7 @@ GameObject:
   - component: {fileID: 2670102916635636509}
   - component: {fileID: 6342906219253550232}
   - component: {fileID: 9151604815448410417}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Projectile_Nature_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

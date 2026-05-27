@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7362078867126605751}
   - component: {fileID: 2243896464490632887}
   - component: {fileID: 2327312771200654297}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Trail(glow)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4859,7 +4859,7 @@ GameObject:
   - component: {fileID: 5718720738734335740}
   - component: {fileID: 5718720738734335742}
   - component: {fileID: 5718720738734335741}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9709,7 +9709,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4655013920167522155}
   - component: {fileID: 5203517639231367992}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9739,7 +9739,7 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7583064951092404652}
   m_Enabled: 0
-  serializedVersion: 12
+  serializedVersion: 13
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
@@ -9791,7 +9791,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -9810,7 +9810,7 @@ GameObject:
   - component: {fileID: 5625134077815802845}
   - component: {fileID: 1162752575060932557}
   - component: {fileID: 4259809099583106131}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Projectile_Arcane_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

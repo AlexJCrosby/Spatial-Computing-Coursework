@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4087715685538913360}
   - component: {fileID: 4087715685538913362}
   - component: {fileID: 4087715685538913361}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Trails
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4859,13 +4859,14 @@ GameObject:
   m_Component:
   - component: {fileID: 4087715685679177198}
   - component: {fileID: 4087715685679177197}
-  m_Layer: 0
+  - component: {fileID: 219586955241901571}
+  m_Layer: 7
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4087715685679177198
 Transform:
   m_ObjectHideFlags: 0
@@ -4889,7 +4890,7 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4087715685679177196}
   m_Enabled: 0
-  serializedVersion: 12
+  serializedVersion: 13
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
@@ -4941,11 +4942,40 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &219586955241901571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4087715685679177196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_CustomShadowLayers: 0
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!1 &4087715685938930284
 GameObject:
   m_ObjectHideFlags: 0
@@ -4957,7 +4987,7 @@ GameObject:
   - component: {fileID: 4087715685938930285}
   - component: {fileID: 4087715685938930287}
   - component: {fileID: 4087715685938930286}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9873,7 +9903,7 @@ GameObject:
   - component: {fileID: 4087715686051907657}
   - component: {fileID: 4087715686051907659}
   - component: {fileID: 4087715686051907658}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Snow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14666,7 +14696,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: e9b3f3b6befbf454285a4a5100a66581, type: 2}
-  - {fileID: 2100000, guid: 0a0fca5b4c3e12a4e9c45fd03683201d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14731,7 +14760,7 @@ GameObject:
   - component: {fileID: 4087715686179487529}
   - component: {fileID: 4087715686179487531}
   - component: {fileID: 4087715686179487530}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19519,7 +19548,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 8b61441d89c35ed46b53faed4300cabf, type: 2}
-  - {fileID: 2100000, guid: 784fd635e5d16964ca0bc4d30c54283d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19587,7 +19615,7 @@ GameObject:
   - component: {fileID: 44697904235720975}
   - component: {fileID: 2890041701411433714}
   - component: {fileID: 7206502949172259296}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Projectile_Ice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24368,7 +24396,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: fca9ccea9760e3a45bf0dd60cac096c0, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -24468,7 +24495,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.2
+  m_Radius: 0.4
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7206502949172259296
 MonoBehaviour:
@@ -24477,7 +24504,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8357042805450777661}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c0856037d17322498c07284406b38e8, type: 3}
   m_Name: 

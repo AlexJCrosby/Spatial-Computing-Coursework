@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 697817569469349968}
   - component: {fileID: 2098065914742006430}
   - component: {fileID: 5177626510303787431}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4917,7 +4917,7 @@ GameObject:
   - component: {fileID: 2247369253266677950}
   - component: {fileID: 1425850311353436901}
   - component: {fileID: 1198150152298401898}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Projectile_Light_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9853,7 +9853,7 @@ GameObject:
   - component: {fileID: 3919560405683311130}
   - component: {fileID: 1157984130376762685}
   - component: {fileID: 1794220685721135197}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14704,7 +14704,7 @@ GameObject:
   - component: {fileID: 3974472557439479188}
   - component: {fileID: 4616593121628434832}
   - component: {fileID: 7285809884594564138}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Trail(glow)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

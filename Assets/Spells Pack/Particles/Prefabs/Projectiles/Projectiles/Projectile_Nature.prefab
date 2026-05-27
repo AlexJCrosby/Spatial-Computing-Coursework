@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4353209431981275243}
   - component: {fileID: 4353209431981275237}
   - component: {fileID: 4353209431981275236}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4860,7 +4860,7 @@ GameObject:
   - component: {fileID: 4353209432472517093}
   - component: {fileID: 4353209432472517095}
   - component: {fileID: 4353209432472517094}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9712,7 +9712,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4353209432894147200}
   - component: {fileID: 4353209432894147201}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9742,7 +9742,7 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4353209432894147207}
   m_Enabled: 0
-  serializedVersion: 12
+  serializedVersion: 13
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 5
@@ -9794,7 +9794,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -9810,7 +9810,7 @@ GameObject:
   - component: {fileID: 4353209433533289361}
   - component: {fileID: 4353209433533289363}
   - component: {fileID: 4353209433533289362}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rock_Low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14668,7 +14668,7 @@ GameObject:
   - component: {fileID: 4353209433655525798}
   - component: {fileID: 4353209433655525792}
   - component: {fileID: 4353209433655525799}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Smoke 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19520,7 +19520,7 @@ GameObject:
   - component: {fileID: 5033283913732876437}
   - component: {fileID: 2293320015810351065}
   - component: {fileID: 7598042304854199875}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Projectile_Nature
   m_TagString: Untagged
   m_Icon: {fileID: 0}

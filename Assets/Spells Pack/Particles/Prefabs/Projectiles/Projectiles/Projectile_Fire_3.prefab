@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8109775693537154236}
   - component: {fileID: 6345016736684443969}
   - component: {fileID: 1447870753305922643}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Projectile_Fire_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4894,7 +4894,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.2
+  m_Radius: 0.4
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1447870753305922643
 MonoBehaviour:
@@ -4903,7 +4903,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 283538348305088910}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c0856037d17322498c07284406b38e8, type: 3}
   m_Name: 
@@ -4923,7 +4923,7 @@ GameObject:
   - component: {fileID: 283538348712861671}
   - component: {fileID: 283538348712861665}
   - component: {fileID: 283538348712861670}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9773,7 +9773,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5740635702274482506}
   - component: {fileID: 1597527795295378045}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9803,7 +9803,7 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5887709897033620403}
   m_Enabled: 0
-  serializedVersion: 12
+  serializedVersion: 13
   m_Type: 2
   m_Color: {r: 1, g: 0.32178217, b: 0, a: 1}
   m_Intensity: 5
@@ -9855,7 +9855,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -9871,7 +9871,7 @@ GameObject:
   - component: {fileID: 6884466979458141305}
   - component: {fileID: 6884466979458141311}
   - component: {fileID: 6884466979458141304}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14720,7 +14720,7 @@ GameObject:
   - component: {fileID: 6884466980927678204}
   - component: {fileID: 6884466980927678146}
   - component: {fileID: 6884466980927678147}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Expansive Wave
   m_TagString: Untagged
   m_Icon: {fileID: 0}

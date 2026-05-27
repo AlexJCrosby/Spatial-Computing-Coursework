@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5399389678292945466}
   - component: {fileID: 5399389678292945464}
   - component: {fileID: 5399389678292945467}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Attraction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4872,7 +4872,7 @@ GameObject:
   - component: {fileID: 3191546891526771159}
   - component: {fileID: 2432211616176421735}
   - component: {fileID: 7008176942085948442}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Projectile_Storm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9790,7 +9790,7 @@ GameObject:
   - component: {fileID: 5900896552648668930}
   - component: {fileID: 5900896552648668928}
   - component: {fileID: 5900896552648668929}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Thunder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14649,7 +14649,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4196985122876654066}
   - component: {fileID: 5514760591421832588}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14679,7 +14679,7 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7126879747251093862}
   m_Enabled: 0
-  serializedVersion: 12
+  serializedVersion: 13
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
@@ -14731,7 +14731,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4239023574742434551}
   - component: {fileID: 797873997319877364}
   - component: {fileID: 4846145217049646531}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Projectile_Ice_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4902,7 +4902,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.2
+  m_Radius: 0.4
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4846145217049646531
 MonoBehaviour:
@@ -4911,7 +4911,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2594342239608267824}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c0856037d17322498c07284406b38e8, type: 3}
   m_Name: 
@@ -4931,7 +4931,7 @@ GameObject:
   - component: {fileID: 2594342240193226738}
   - component: {fileID: 2594342240193226740}
   - component: {fileID: 2594342240193226741}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9781,7 +9781,7 @@ GameObject:
   - component: {fileID: 2743702724794130985}
   - component: {fileID: 2743702724794130991}
   - component: {fileID: 2743702724794130990}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Snow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14637,7 +14637,7 @@ GameObject:
   m_Component:
   - component: {fileID: 138828108921488581}
   - component: {fileID: 7595181664454072780}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14667,7 +14667,7 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5035783983920861522}
   m_Enabled: 0
-  serializedVersion: 12
+  serializedVersion: 13
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
@@ -14719,7 +14719,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1

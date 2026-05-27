@@ -10,6 +10,9 @@ public class Fireball : MonoBehaviour
     public float CooldownRemaining { get; private set; }
     public bool IsOnCooldown => CooldownRemaining > 0f;
 
+    [Header("Damage")]
+    [SerializeField] private int damage = 1;
+
     [Header("Setup")]
     [SerializeField] private GameObject fireballPrefab;
 
@@ -74,15 +77,15 @@ public class Fireball : MonoBehaviour
             request.CastPoint.rotation
         );
 
-        SimpleFireballProjectile projectile =
-            fireball.GetComponent<SimpleFireballProjectile>();
+        Projectile projectile =
+            fireball.GetComponent<Projectile>();
 
         if (projectile == null)
         {
-            projectile = fireball.AddComponent<SimpleFireballProjectile>();
+            projectile = fireball.AddComponent<Projectile>();
         }
 
-        projectile.LaunchAt(request.Target.transform, projectileSpeed);
+        projectile.LaunchAt(request.Target.transform, projectileSpeed, damage);
 
         Debug.Log("Fireball fired at target: " + request.Target.name);
     }

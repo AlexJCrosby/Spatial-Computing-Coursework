@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1760762515273205169}
   - component: {fileID: 1760762515273205167}
   - component: {fileID: 1760762515273205166}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Expansive Wave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4860,7 +4860,7 @@ GameObject:
   - component: {fileID: 1760762515864686870}
   - component: {fileID: 1760762515864686868}
   - component: {fileID: 1760762515864686871}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Attraction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9718,7 +9718,7 @@ GameObject:
   - component: {fileID: 884791782845938380}
   - component: {fileID: 2883177090196939779}
   - component: {fileID: 2263081311225796934}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Arcane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14580,7 +14580,7 @@ GameObject:
   - component: {fileID: 8638102242689506529}
   - component: {fileID: 3799687207691807467}
   - component: {fileID: 3984454180913159328}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19428,7 +19428,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8158924412323280406}
   - component: {fileID: 805781308793518372}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19458,7 +19458,7 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7314776111065170684}
   m_Enabled: 0
-  serializedVersion: 12
+  serializedVersion: 13
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
@@ -19510,7 +19510,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -19529,7 +19529,7 @@ GameObject:
   - component: {fileID: 1085354205202620217}
   - component: {fileID: 2849163357486383812}
   - component: {fileID: 7751709978772047830}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Projectile_Arcane_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
