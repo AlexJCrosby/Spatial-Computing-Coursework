@@ -491,6 +491,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8018084769812766026, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 84442050}
+    - targetCorrespondingSourceObject: {fileID: 8018084769812766026, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 84442056}
   m_SourcePrefab: {fileID: 100100000, guid: 84aab381e9f1ffb448d5e578838fce7a, type: 3}
 --- !u!4 &84442024 stripped
 Transform:
@@ -670,6 +673,8 @@ MonoBehaviour:
   knockback: {fileID: 84442049}
   fireballKey: 43
   frostboltKey: 42
+  fireVolleyKey: 36
+  frostVolleyKey: 16
   targetingSystem: {fileID: 84442047}
   voiceCastPoint: {fileID: 546680458}
   keyboardCastPoint: {fileID: 2089196343}
@@ -682,6 +687,35 @@ MonoBehaviour:
   frostboltVoiceCastCount: 50
   frostboltVoiceCastInterval: 0.1
   frostboltVoiceCooldown: 20
+--- !u!114 &84442056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84442025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90321c98a8f35b34996a6377b8024c1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FrostNova
+  keybind: 32
+  duration: 5
+  radius: 10
+  targetingSystem: {fileID: 84442047}
+  playerTransform: {fileID: 84442024}
+  characterAnimator: {fileID: 1902486878}
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  aoeVfxPrefab: {fileID: 5814864941146802141, guid: d3b04768c83040b419f8960119e0bced, type: 3}
+  aoeVfxLifetime: 5
+  rootVfxPrefab: {fileID: 7579983198049091657, guid: 6f7a32cf15d5dbb4db37af55d60e1472, type: 3}
+  rootVfxLocalOffset: {x: 0, y: 0, z: 0}
+  groundRaycastHeight: 20
+  groundRaycastDistance: 60
+  groundOffset: 0.05
+  frostNovaTrigger: CastFrost
 --- !u!1 &125196442
 GameObject:
   m_ObjectHideFlags: 0
@@ -1737,7 +1771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 643ee330e14f8aa42ae4f915fd2b9b5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveManager
-  spawnRadius: 3
+  spawnRadius: 10
   enemyPrefab: {fileID: 9096113502089606520, guid: 35b37281d04955f4c90c28cf77a341c0, type: 3}
   spawnPoints:
   - {fileID: 1653953757}
@@ -1761,7 +1795,7 @@ MonoBehaviour:
   - {fileID: 1644522255}
   - {fileID: 1869177229}
   timeBetweenWaves: 0.5
-  startingEnemyCount: 3
+  startingEnemyCount: 20
 --- !u!4 &662573440
 Transform:
   m_ObjectHideFlags: 0

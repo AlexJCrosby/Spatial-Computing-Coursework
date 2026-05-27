@@ -14,6 +14,9 @@ public class SpellCastingController : MonoBehaviour
     [SerializeField] private Key fireballKey = Key.R;
     [SerializeField] private Key frostboltKey = Key.Y;
 
+    [SerializeField] private Key fireVolleyKey = Key.T;
+    [SerializeField] private Key frostVolleyKey = Key.U;
+
     [Header("Targeting")]
     [SerializeField] private TargetingSystem targetingSystem;
 
@@ -34,6 +37,8 @@ public class SpellCastingController : MonoBehaviour
     [SerializeField] private int frostboltVoiceCastCount = 5;
     [SerializeField] private float frostboltVoiceCastInterval = 1f;
     [SerializeField] private float frostboltVoiceCooldown = 8f;
+
+
 
     private float fireballVoiceCooldownRemaining;
     private float frostboltVoiceCooldownRemaining;
@@ -86,6 +91,16 @@ public class SpellCastingController : MonoBehaviour
         if (Keyboard.current[frostboltKey].wasPressedThisFrame)
         {
             CastFrostbolt(SpellInputSource.Keyboard);
+        }
+
+        if (Keyboard.current[fireVolleyKey].wasPressedThisFrame)
+        {
+            CastFireballFromVoice();
+        }
+
+        if (Keyboard.current[frostVolleyKey].wasPressedThisFrame)
+        {
+            CastFrostboltFromVoice();
         }
     }
 
