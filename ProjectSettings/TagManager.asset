@@ -14,7 +14,7 @@ TagManager:
   - Player
   - Projectile
   - Ground
-  - 
+  - Enemy
   - 
   - 
   - 
@@ -50,4 +50,5 @@ TagManager:
   - Light Layer 5
   - Light Layer 6
   - Light Layer 7
+  - GroundDecal
   m_MigratedRenderPipelines: []

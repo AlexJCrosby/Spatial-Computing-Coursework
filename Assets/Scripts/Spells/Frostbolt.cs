@@ -11,14 +11,17 @@ public class Frostbolt : MonoBehaviour
     public bool IsOnCooldown => CooldownRemaining > 0f;
 
     [Header("Damage")]
-    [SerializeField] private int damage = 1;
+    [SerializeField] private int keyboardDamage = 1;
+    [SerializeField] private int voiceVolleyDamage = 1;
 
-    [Header("Setup")]
-    [SerializeField] private GameObject frostboltPrefab;
+    [Header("Projectile Prefabs")]
+    [SerializeField] private GameObject keyboardProjectilePrefab;
+    [SerializeField] private GameObject voiceVolleyProjectilePrefab;
 
     [Header("Casting")]
     [SerializeField] private float castDelay = 0.35f;
-    [SerializeField] private float projectileSpeed = 18f;
+    [SerializeField] private float keyboardProjectileSpeed = 18f;
+    [SerializeField] private float voiceVolleyProjectileSpeed = 18f;
 
     private void Update()
     {
@@ -39,12 +42,6 @@ public class Frostbolt : MonoBehaviour
         if (!request.HasValidTarget)
         {
             Debug.Log("No valid target selected for frostbolt.");
-            return;
-        }
-
-        if (frostboltPrefab == null)
-        {
-            Debug.LogWarning("Frostbolt is missing frostbolt prefab.");
             return;
         }
 
@@ -71,22 +68,57 @@ public class Frostbolt : MonoBehaviour
             yield break;
         }
 
+        GameObject prefab = GetPrefabForRequest(request);
+
+        if (prefab == null)
+        {
+            Debug.LogWarning("Frostbolt is missing projectile prefab.");
+            yield break;
+        }
+
         GameObject frostbolt = Instantiate(
-            frostboltPrefab,
+            prefab,
             request.CastPoint.position,
             request.CastPoint.rotation
         );
 
-        Projectile projectile =
-            frostbolt.GetComponent<Projectile>();
+        Projectile projectile = frostbolt.GetComponent<Projectile>();
 
         if (projectile == null)
         {
             projectile = frostbolt.AddComponent<Projectile>();
         }
 
-        projectile.LaunchAt(request.Target.transform, projectileSpeed, damage);
+        projectile.LaunchAt(
+            request.Target.transform,
+            GetSpeedForRequest(request),
+            GetDamageForRequest(request)
+        );
 
         Debug.Log("Frostbolt fired at target: " + request.Target.name);
+    }
+
+    private GameObject GetPrefabForRequest(SpellCastRequest request)
+    {
+        if (request.InputSource == SpellInputSource.Voice && voiceVolleyProjectilePrefab != null)
+        {
+            return voiceVolleyProjectilePrefab;
+        }
+
+        return keyboardProjectilePrefab;
+    }
+
+    private float GetSpeedForRequest(SpellCastRequest request)
+    {
+        return request.InputSource == SpellInputSource.Voice
+            ? voiceVolleyProjectileSpeed
+            : keyboardProjectileSpeed;
+    }
+
+    private int GetDamageForRequest(SpellCastRequest request)
+    {
+        return request.InputSource == SpellInputSource.Voice
+            ? voiceVolleyDamage
+            : keyboardDamage;
     }
 }

@@ -4889,7 +4889,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: c70cdc149f5e26f4ca4b4f67f899fb56, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9795,7 +9794,6 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 91d85379cab54cf4da3cf9b505b257dd, type: 2}
   - {fileID: 2100000, guid: 91d85379cab54cf4da3cf9b505b257dd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -14761,7 +14759,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: d9cde9eb15ae2ba4f9142dab1273dba7, type: 2}
-  - {fileID: 2100000, guid: d9cde9eb15ae2ba4f9142dab1273dba7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14827,7 +14824,7 @@ GameObject:
   - component: {fileID: 7747745502478403834}
   - component: {fileID: 7747745502478403833}
   m_Layer: 0
-  m_Name: Spell_Nature_LWRP
+  m_Name: Earthquake NO Decal Projetor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14854,6 +14851,7 @@ Transform:
   - {fileID: 7747745503274663965}
   - {fileID: 7747745503291799559}
   - {fileID: 7747745501821883676}
+  - {fileID: 9120048086101723045}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!198 &7747745502478403834
@@ -19657,7 +19655,7 @@ ParticleSystemRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7747745502478403832}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -19675,7 +19673,6 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: caabc6a8617f23048a5b7f4499f0da4a, type: 2}
   - {fileID: 2100000, guid: caabc6a8617f23048a5b7f4499f0da4a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -24583,7 +24580,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: e52182d537599ea4aa9a0828349d2478, type: 2}
-  - {fileID: 2100000, guid: e52182d537599ea4aa9a0828349d2478, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -29490,7 +29486,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 3d215c2ddf96a0043922b17a989d2bd7, type: 2}
-  - {fileID: 2100000, guid: 3d215c2ddf96a0043922b17a989d2bd7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -34396,7 +34391,6 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f2398d750275d9748ae22ec2b9468c7f, type: 2}
   - {fileID: 2100000, guid: f2398d750275d9748ae22ec2b9468c7f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -39340,7 +39334,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: c70cdc149f5e26f4ca4b4f67f899fb56, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -44323,7 +44316,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a7d7c4a1507acdc4889ddcaf63d14c69, type: 2}
-  - {fileID: 2100000, guid: a7d7c4a1507acdc4889ddcaf63d14c69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -44377,3 +44369,69 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
+--- !u!1001 &4963354071406400895
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7747745502478403835}
+    m_Modifications:
+    - target: {fileID: 189044570786873776, guid: 48dcb82f987a6af4da12a04e2696461e, type: 3}
+      propertyPath: m_Name
+      value: Crack Decal Projector
+      objectReference: {fileID: 0}
+    - target: {fileID: 4211300307285168858, guid: 48dcb82f987a6af4da12a04e2696461e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.3389744
+      objectReference: {fileID: 0}
+    - target: {fileID: 4211300307285168858, guid: 48dcb82f987a6af4da12a04e2696461e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.1448064
+      objectReference: {fileID: 0}
+    - target: {fileID: 4211300307285168858, guid: 48dcb82f987a6af4da12a04e2696461e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0000006131846
+      objectReference: {fileID: 0}
+    - target: {fileID: 4211300307285168858, guid: 48dcb82f987a6af4da12a04e2696461e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4211300307285168858, guid: 48dcb82f987a6af4da12a04e2696461e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4211300307285168858, guid: 48dcb82f987a6af4da12a04e2696461e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4211300307285168858, guid: 48dcb82f987a6af4da12a04e2696461e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4211300307285168858, guid: 48dcb82f987a6af4da12a04e2696461e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4211300307285168858, guid: 48dcb82f987a6af4da12a04e2696461e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4211300307285168858, guid: 48dcb82f987a6af4da12a04e2696461e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6061958639977780790, guid: 48dcb82f987a6af4da12a04e2696461e, type: 3}
+      propertyPath: m_RenderingLayerMask.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 48dcb82f987a6af4da12a04e2696461e, type: 3}
+--- !u!4 &9120048086101723045 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4211300307285168858, guid: 48dcb82f987a6af4da12a04e2696461e, type: 3}
+  m_PrefabInstance: {fileID: 4963354071406400895}
+  m_PrefabAsset: {fileID: 0}
