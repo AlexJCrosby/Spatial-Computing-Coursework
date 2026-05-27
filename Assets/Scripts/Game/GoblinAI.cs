@@ -28,6 +28,7 @@ public class GoblinAI : MonoBehaviour
     private CharacterController controller;
     private int nextAttackIndex = 1;
     private float lastAttackTime;
+    public bool IsFrozen { get; set; }
 
     private void Awake()
     {
@@ -163,8 +164,14 @@ public class GoblinAI : MonoBehaviour
 
         Vector3 finalMovement = horizontalMovement + verticalVelocity;
 
+        if (!controller.enabled)
+        {
+            return;
+        }
+
         controller.Move(finalMovement * Time.deltaTime);
     }
+
 
     private void TryAttack()
     {

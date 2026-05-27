@@ -144,7 +144,19 @@ public class Levitatable : MonoBehaviour
 
         transform.position = endPosition;
 
-        if (controller != null) controller.enabled = true;
-        if (goblinAI != null) goblinAI.enabled = true;
+        if (goblinAI != null && goblinAI.IsFrozen)
+        {
+            yield break;
+        }
+
+        if (controller != null)
+        {
+            controller.enabled = true;
+        }
+
+        if (goblinAI != null)
+        {
+            goblinAI.enabled = true;
+        }
     }
 }

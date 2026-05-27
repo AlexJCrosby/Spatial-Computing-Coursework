@@ -34,7 +34,9 @@ public class FrostNova : MonoBehaviour
     [SerializeField] private string frostNovaTrigger = "CastFrost";
 
     private KeywordRecognizer keywordRecognizer;
+
     private readonly Dictionary<GoblinAI, Coroutine> activeFreezes = new();
+    private readonly Dictionary<GoblinAI, GameObject> activeRootVfx = new();
 
     private void Start()
     {
@@ -126,6 +128,17 @@ public class FrostNova : MonoBehaviour
             if (activeFreezes.TryGetValue(goblinAI, out Coroutine existingFreeze))
             {
                 StopCoroutine(existingFreeze);
+                activeFreezes.Remove(goblinAI);
+            }
+
+            if (activeRootVfx.TryGetValue(goblinAI, out GameObject existingVfx))
+            {
+                if (existingVfx != null)
+                {
+                    Destroy(existingVfx);
+                }
+
+                activeRootVfx.Remove(goblinAI);
             }
 
             activeFreezes[goblinAI] = StartCoroutine(
@@ -140,8 +153,21 @@ public class FrostNova : MonoBehaviour
 
         Animator targetAnimator = goblinAI.GetComponentInChildren<Animator>();
         Rigidbody rb = goblinAI.GetComponent<Rigidbody>();
+        CharacterController controller = goblinAI.GetComponent<CharacterController>();
+        Levitatable levitatable = goblinAI.GetComponent<Levitatable>();
 
+        if (levitatable != null)
+        {
+            levitatable.StopAllCoroutines();
+        }
+
+        goblinAI.IsFrozen = true;
         goblinAI.enabled = false;
+
+        if (controller != null)
+        {
+            controller.enabled = false;
+        }
 
         if (rb != null)
         {
@@ -162,6 +188,8 @@ public class FrostNova : MonoBehaviour
             rootVfx = Instantiate(rootVfxPrefab, targetRoot);
             rootVfx.transform.localPosition = rootVfxLocalOffset;
             rootVfx.transform.localRotation = Quaternion.identity;
+
+            activeRootVfx[goblinAI] = rootVfx;
         }
 
         yield return new WaitForSeconds(duration);
@@ -171,9 +199,20 @@ public class FrostNova : MonoBehaviour
             Destroy(rootVfx);
         }
 
+        activeRootVfx.Remove(goblinAI);
+
         if (goblinAI != null)
         {
+            CharacterController currentController = goblinAI.GetComponent<CharacterController>();
+
+            if (currentController != null)
+            {
+                currentController.enabled = true;
+            }
+
+            goblinAI.IsFrozen = false;
             goblinAI.enabled = true;
+
             activeFreezes.Remove(goblinAI);
         }
     }

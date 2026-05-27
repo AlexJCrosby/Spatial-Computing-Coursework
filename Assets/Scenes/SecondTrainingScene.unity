@@ -587,7 +587,7 @@ MonoBehaviour:
   voiceVolleyProjectilePrefab: {fileID: 2994363800222682087, guid: 52935ebed0585194ba76b98398f5dc27, type: 3}
   castDelay: 0
   keyboardProjectileSpeed: 30
-  voiceVolleyProjectileSpeed: 30
+  voiceVolleyProjectileSpeed: 60
 --- !u!114 &84442047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -625,8 +625,8 @@ MonoBehaviour:
   keyboardProjectilePrefab: {fileID: 2594342239608267824, guid: 36a7e1f5d139abb4b8caf682052a5cd8, type: 3}
   voiceVolleyProjectilePrefab: {fileID: 8357042805450777661, guid: 79d43e2119ac4be45840a482df49da4c, type: 3}
   castDelay: 0
-  keyboardProjectileSpeed: 18
-  voiceVolleyProjectileSpeed: 18
+  keyboardProjectileSpeed: 25
+  voiceVolleyProjectileSpeed: 50
 --- !u!114 &84442049
 MonoBehaviour:
   m_ObjectHideFlags: 0
