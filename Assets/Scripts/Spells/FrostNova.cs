@@ -61,7 +61,7 @@ public class FrostNova : MonoBehaviour
 
         if (Keyboard.current == null) return;
 
-        if (Keyboard.current[keybind].wasPressedThisFrame)
+        if (keybind != Key.None && Keyboard.current[keybind].wasPressedThisFrame)
         {
             bool castFromPlayer =
                 Keyboard.current.leftAltKey.isPressed ||

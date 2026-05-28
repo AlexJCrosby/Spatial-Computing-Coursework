@@ -62,7 +62,7 @@ public class VolcanicBomb : MonoBehaviour
         if (Keyboard.current == null) return;
         if (keybind == Key.None) return;
 
-        if (Keyboard.current[keybind].wasPressedThisFrame)
+        if (keybind != Key.None && Keyboard.current[keybind].wasPressedThisFrame)
         {
             CastVolcanicBomb();
         }
