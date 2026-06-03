@@ -3038,7 +3038,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 70}
+  m_AnchoredPosition: {x: 0, y: 95}
   m_SizeDelta: {x: 682.9, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1069680028
@@ -3061,8 +3061,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Final Wave: 0
-
+  m_text: 'You survived until wave 0
 
 '
   m_isRightToLeft: 0
@@ -3091,8 +3090,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3388,7 +3387,7 @@ MonoBehaviour:
   gameOverPanel: {fileID: 1733665121}
   gameOverText: {fileID: 429848423}
   playAgainButton: {fileID: 2036562189}
-  waveReachedText: {fileID: 0}
+  waveReachedText: {fileID: 1069680028}
 --- !u!114 &1188314117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4388,8 +4387,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 429848422}
-  - {fileID: 2036562188}
   - {fileID: 1069680027}
+  - {fileID: 2036562188}
   m_Father: {fileID: 1188314120}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
