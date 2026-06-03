@@ -1,93 +1,111 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
 {
-    [Header("Spell References")]
-    [SerializeField] private Fireball fireballCaster;
-    [SerializeField] private TelekinesisSpellCaster telekinesisCaster;
-    [SerializeField] private AOEKnockback knockbackCaster;
-    [SerializeField] private Frostbolt frostboltCaster;
-
-
-    [Header("Action Bar Cooldown Overlays")]
-    [SerializeField] private Image fireCooldownOverlay;
-    [SerializeField] private Image levitateCooldownOverlay;
-    [SerializeField] private Image knockCooldownOverlay;
-    [SerializeField] private Image frostCooldownOverlay;
-
     [Header("References")]
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private WaveManager waveManager;
 
-    [Header("UI")]
+    [Header("Health UI")]
     [SerializeField] private Slider healthSlider;
     [SerializeField] private TMP_Text healthText;
+
+    [Header("Wave UI")]
     [SerializeField] private TMP_Text waveText;
+
+    [Header("Enemy Count UI")]
+    [SerializeField] private bool showEnemiesRemaining = false;
     [SerializeField] private TMP_Text enemiesText;
+
+    [Header("Game Over UI")]
     [SerializeField] private GameObject gameOverPanel;
-    
-    private void UpdateActionBarCooldowns()
+    [SerializeField] private TMP_Text gameOverText;
+    [SerializeField] private Button playAgainButton;
+
+    private bool gameOverShown;
+
+    private void Start()
     {
-        if (fireballCaster != null && fireCooldownOverlay != null)
+        if (gameOverPanel != null)
         {
-            fireCooldownOverlay.fillAmount =
-                fireballCaster.CooldownRemaining / fireballCaster.CooldownDuration;
+            gameOverPanel.SetActive(false);
         }
 
-        if (telekinesisCaster != null && levitateCooldownOverlay != null)
+        if (playAgainButton != null)
         {
-            levitateCooldownOverlay.fillAmount =
-                telekinesisCaster.CooldownRemaining / telekinesisCaster.CooldownDuration;
-        }
-
-        if (knockbackCaster != null && knockCooldownOverlay != null)
-        {
-            knockCooldownOverlay.fillAmount =
-                knockbackCaster.CooldownRemaining / knockbackCaster.CooldownDuration;
-        }
-        if (frostboltCaster != null && frostCooldownOverlay != null)
-        {
-            frostCooldownOverlay.fillAmount =
-                frostboltCaster.CooldownRemaining / frostboltCaster.CooldownDuration;
+            playAgainButton.onClick.AddListener(PlayAgain);
         }
     }
 
     private void Update()
     {
-        UpdateActionBarCooldowns();
+        UpdateHealthUI();
+        UpdateWaveUI();
+        UpdateGameOverUI();
+    }
 
-        if (playerHealth != null)
+    private void UpdateHealthUI()
+    {
+        if (playerHealth == null) return;
+
+        if (healthSlider != null)
         {
-            if (healthSlider != null)
-            {
-                healthSlider.maxValue = playerHealth.MaxHealth;
-                healthSlider.value = playerHealth.CurrentHealth;
-            }
-
-            if (healthText != null)
-            {
-                healthText.text = "Health: " + playerHealth.CurrentHealth + " / " + playerHealth.MaxHealth;
-            }
-
-            if (gameOverPanel != null)
-            {
-                gameOverPanel.SetActive(playerHealth.CurrentHealth <= 0);
-            }
+            healthSlider.maxValue = playerHealth.MaxHealth;
+            healthSlider.value = playerHealth.CurrentHealth;
         }
 
-        if (waveManager != null)
+        if (healthText != null)
         {
-            if (waveText != null)
-            {
-                waveText.text = "Wave: " + waveManager.CurrentWave;
-            }
+            healthText.text = "Health: " + playerHealth.CurrentHealth + " / " + playerHealth.MaxHealth;
+        }
+    }
 
-            if (enemiesText != null)
+    private void UpdateWaveUI()
+    {
+        if (waveManager == null) return;
+
+        if (waveText != null)
+        {
+            waveText.text = "Wave: " + waveManager.CurrentWave;
+        }
+
+        if (enemiesText != null)
+        {
+            enemiesText.gameObject.SetActive(showEnemiesRemaining);
+
+            if (showEnemiesRemaining)
             {
                 enemiesText.text = "Enemies: " + waveManager.EnemiesRemaining;
             }
         }
+    }
+
+    private void UpdateGameOverUI()
+    {
+        if (playerHealth == null) return;
+        if (gameOverShown) return;
+
+        if (playerHealth.CurrentHealth <= 0)
+        {
+            gameOverShown = true;
+
+            if (gameOverPanel != null)
+            {
+                gameOverPanel.SetActive(true);
+            }
+
+            if (gameOverText != null)
+            {
+                gameOverText.text = "Game Over";
+            }
+        }
+    }
+
+    private void PlayAgain()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
