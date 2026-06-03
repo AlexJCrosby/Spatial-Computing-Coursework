@@ -24,6 +24,7 @@ public class GameUI : MonoBehaviour
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private TMP_Text gameOverText;
     [SerializeField] private Button playAgainButton;
+    [SerializeField] private TMP_Text waveReachedText;
 
     private bool gameOverShown;
 
@@ -100,6 +101,12 @@ public class GameUI : MonoBehaviour
             if (gameOverText != null)
             {
                 gameOverText.text = "Game Over";
+            }
+
+            if (waveReachedText != null && waveManager != null)
+            {
+                waveReachedText.text =
+                    "You survived until Wave " + waveManager.CurrentWave + "!";
             }
         }
     }
