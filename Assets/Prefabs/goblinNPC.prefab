@@ -1002,5 +1002,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NPCDamageTextSpawner
   npcHealth: {fileID: 2652744429071750008}
   combatTextPrefab: {fileID: 8383887605890583334, guid: 10d2f9d3092288548ba2219f353c2862, type: 3}
-  spawnOffset: {x: 0, y: 2.6, z: 0}
-  randomHorizontalOffset: 0.25
+  spawnOffset: {x: 0, y: 1, z: 0}
+  randomHorizontalOffset: 1.5
