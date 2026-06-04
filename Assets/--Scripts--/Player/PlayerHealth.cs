@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class PlayerHealth : MonoBehaviour
 
     public int MaxHealth => maxHealth;
     public int CurrentHealth { get; private set; }
+    public event Action<int> OnDamaged;
 
     private bool isDead;
 
@@ -26,6 +28,7 @@ public class PlayerHealth : MonoBehaviour
 
         CurrentHealth -= amount;
         CurrentHealth = Mathf.Max(CurrentHealth, 0);
+        OnDamaged?.Invoke(amount);
 
         Debug.Log("Player health: " + CurrentHealth);
 

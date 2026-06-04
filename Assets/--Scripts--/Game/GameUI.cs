@@ -1,10 +1,13 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
 {
+    public static bool ShowEnemyHealthBars { get; private set; } = true;
+
     [Header("References")]
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private WaveManager waveManager;
@@ -17,19 +20,27 @@ public class GameUI : MonoBehaviour
     [SerializeField] private TMP_Text waveText;
 
     [Header("Enemy Count UI")]
-    [SerializeField] private bool showEnemiesRemaining = false;
+    [SerializeField] private bool showEnemiesRemaining = true;
     [SerializeField] private TMP_Text enemiesText;
+
+    [Header("Enemy Health Bar Toggle")]
+    [SerializeField] private bool showEnemyHealthBarsOnStart = true;
+    [SerializeField] private Key enemyHealthBarToggleKey = Key.V;
+    [SerializeField] private bool requireCtrlForHealthBarToggle = true;
 
     [Header("Game Over UI")]
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private TMP_Text gameOverText;
-    [SerializeField] private Button playAgainButton;
     [SerializeField] private TMP_Text waveReachedText;
+    [SerializeField] private Button playAgainButton;
 
     private bool gameOverShown;
 
     private void Start()
     {
+        ShowEnemyHealthBars = showEnemyHealthBarsOnStart;
+        RefreshAllEnemyHealthBars();
+
         if (gameOverPanel != null)
         {
             gameOverPanel.SetActive(false);
@@ -43,9 +54,43 @@ public class GameUI : MonoBehaviour
 
     private void Update()
     {
+        HandleEnemyHealthBarToggle();
+
         UpdateHealthUI();
         UpdateWaveUI();
         UpdateGameOverUI();
+    }
+
+    private void HandleEnemyHealthBarToggle()
+    {
+        if (Keyboard.current == null) return;
+
+        bool togglePressed =
+            Keyboard.current[enemyHealthBarToggleKey].wasPressedThisFrame;
+
+        if (!togglePressed) return;
+
+        bool ctrlHeld =
+            Keyboard.current.leftCtrlKey.isPressed ||
+            Keyboard.current.rightCtrlKey.isPressed;
+
+        if (requireCtrlForHealthBarToggle && !ctrlHeld) return;
+
+        ShowEnemyHealthBars = !ShowEnemyHealthBars;
+        RefreshAllEnemyHealthBars();
+
+        Debug.Log("Enemy health bars visible: " + ShowEnemyHealthBars);
+    }
+
+    private void RefreshAllEnemyHealthBars()
+    {
+        EnemyHealthBar[] healthBars =
+            FindObjectsByType<EnemyHealthBar>(FindObjectsSortMode.None);
+
+        foreach (EnemyHealthBar healthBar in healthBars)
+        {
+            healthBar.Refresh();
+        }
     }
 
     private void UpdateHealthUI()
@@ -60,7 +105,8 @@ public class GameUI : MonoBehaviour
 
         if (healthText != null)
         {
-            healthText.text = "Health: " + playerHealth.CurrentHealth + " / " + playerHealth.MaxHealth;
+            healthText.text =
+                "Health: " + playerHealth.CurrentHealth + " / " + playerHealth.MaxHealth;
         }
     }
 
@@ -106,7 +152,7 @@ public class GameUI : MonoBehaviour
             if (waveReachedText != null && waveManager != null)
             {
                 waveReachedText.text =
-                    "You survived until Wave " + waveManager.CurrentWave + "!";
+                    "You survived until Wave " + waveManager.CurrentWave;
             }
         }
     }
