@@ -35,6 +35,7 @@ public class AOEKnockback : MonoBehaviour
     [SerializeField] private float vfxGroundOffset = 0.05f;
 
     // [SerializeField] private float decalLifetime = 6f;
+
     private KeywordRecognizer keywordRecognizer;
 
     private void Start()
@@ -43,7 +44,7 @@ public class AOEKnockback : MonoBehaviour
         keywordRecognizer.OnPhraseRecognized += OnPhraseRecognized;
         keywordRecognizer.Start();
 
-        Debug.Log("AOE Knockback ready. Press G or say Knock.");
+        Debug.Log("AOE Knockback ready. Press G, Alt+G, or say Knock.");
     }
 
     private void Update()
@@ -55,11 +56,15 @@ public class AOEKnockback : MonoBehaviour
 
         if (Keyboard.current != null && Keyboard.current.gKey.wasPressedThisFrame)
         {
-            CastKnockback();
+            bool castFromPlayer =
+                Keyboard.current.leftAltKey.isPressed ||
+                Keyboard.current.rightAltKey.isPressed;
+
+            CastKnockback(castFromPlayer);
         }
     }
 
-    private void CastKnockback()
+    private void CastKnockback(bool castFromPlayer)
     {
         if (IsOnCooldown)
         {
@@ -72,10 +77,6 @@ public class AOEKnockback : MonoBehaviour
             Debug.LogWarning("AOEKnockback is missing Player Transform reference.");
             return;
         }
-
-        bool castFromPlayer =
-            Keyboard.current != null &&
-            (Keyboard.current.leftAltKey.isPressed || Keyboard.current.rightAltKey.isPressed);
 
         Vector3 origin;
         EyeTargetable ignoredTarget = null;
@@ -205,6 +206,7 @@ public class AOEKnockback : MonoBehaviour
         {
             position.y = hit.point.y + landingHeightOffset;
         }
+
         return position;
     }
 
@@ -212,7 +214,7 @@ public class AOEKnockback : MonoBehaviour
     {
         if (args.text.ToLower() == "knock")
         {
-            CastKnockback();
+            CastKnockback(true);
         }
     }
 

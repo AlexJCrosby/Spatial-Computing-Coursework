@@ -13,6 +13,7 @@ public class WaveManager : MonoBehaviour
     [Header("Wave Settings")]
     [SerializeField] private float timeBetweenWaves = 3f;
     [SerializeField] private int startingEnemyCount = 1;
+    [SerializeField] private int enemyIncreasePerWave = 4;
 
     public int CurrentWave { get; private set; }
     public int EnemiesRemaining => activeEnemies.Count;
@@ -46,7 +47,8 @@ public class WaveManager : MonoBehaviour
 
         CurrentWave++;
 
-        int enemiesToSpawn = startingEnemyCount + CurrentWave - 1;
+        int enemiesToSpawn =
+            startingEnemyCount + ((CurrentWave - 1) * enemyIncreasePerWave);
 
         for (int i = 0; i < enemiesToSpawn; i++)
         {
