@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class NPCHealth : MonoBehaviour
@@ -12,7 +13,13 @@ public class NPCHealth : MonoBehaviour
     private int currentHealth;
     private bool isDead;
 
+    public int MaxHealth => maxHealth;
+    public int CurrentHealth => currentHealth;
     public bool IsDead => isDead;
+
+    public event Action<int, int, int> OnHealthChanged;
+    public event Action<int> OnDamaged;
+    public event Action OnDied;
 
     private void Awake()
     {
@@ -22,15 +29,25 @@ public class NPCHealth : MonoBehaviour
         {
             animator = GetComponentInChildren<Animator>();
         }
+
+        OnHealthChanged?.Invoke(currentHealth, maxHealth, 0);
     }
 
     public void TakeDamage(int damageAmount)
     {
         if (isDead) return;
 
+        int previousHealth = currentHealth;
+
         currentHealth -= damageAmount;
+        currentHealth = Mathf.Max(currentHealth, 0);
+
+        int actualDamageTaken = previousHealth - currentHealth;
 
         Debug.Log(name + " took damage. Health: " + currentHealth);
+
+        OnHealthChanged?.Invoke(currentHealth, maxHealth, actualDamageTaken);
+        OnDamaged?.Invoke(actualDamageTaken);
 
         if (currentHealth <= 0)
         {
@@ -52,9 +69,13 @@ public class NPCHealth : MonoBehaviour
 
     private void Die()
     {
+        if (isDead) return;
+
         isDead = true;
 
         Debug.Log(name + " died.");
+
+        OnDied?.Invoke();
 
         GoblinAI goblinAI = GetComponent<GoblinAI>();
         if (goblinAI != null)
